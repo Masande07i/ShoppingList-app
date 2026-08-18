@@ -5,73 +5,80 @@ import { FiShoppingBag } from "react-icons/fi";
 
 export const Signup = () => {
   return (
-     <section className= {style.slate}>
-        <div className ={style.logo}>
-         <FiShoppingBag className={style.icon}/>
-         <Text variant= "h1" style={{ color:' #FF4EA7'}}> Shopping List</Text>
-        </div>
-        <div className ={style.heading}>
-        <Text variant= "h2"> Create Account</Text>
-        <Text variant= "p">Sign up to get started with shopping list</Text>
-         </div>
+    <section className={style.slate}>
+      <div className={style.logo}>
+        <FiShoppingBag className={style.icon}/>
+        <Text variant="h1" style={{ color: '#FF4EA7' }}> Shopping List</Text>
+      </div>
+      
+      <div className={style.heading}>
+        <Text variant="h2"> Create Account</Text>
+        <Text variant="p">Sign up to get started with shopping list</Text>
+      </div>
        
-        <div>
-        <label htmlFor="text">First Name:</label>
-        <input
-          type="text"
-          name="text"
-          placeholder="Enter your first Name"
-         />
-     </div>
       <div>
-        <label htmlFor="text">Surname:</label>
+        <label htmlFor="firstName">First Name:</label>
         <input
           type="text"
-          name="text"
-          placeholder="Enter your surname"
-         />
-     </div>
+          id="firstName"
+          name="firstName"
+          placeholder="Enter your first name"
+        />
+      </div>
 
+      <div>
+        <label htmlFor="surname">Surname:</label>
+        <input
+          type="text"
+          id="surname"
+          name="surname"
+          placeholder="Enter your surname"
+        />
+      </div>
    
-     <div>
+      <div>
         <label htmlFor="email">Email:</label>
         <input
-          type="text"
+          type="email"
+          id="email"
           name="email"
           placeholder="Enter your email"
-         />
-     </div>
+        />
+      </div>
 
       <div>
-        <label htmlFor="text">Phobe number:</label>
+        <label htmlFor="phone">Phone number:</label>
         <input
-          type="text"
-          name="text"
+          type="tel"
+          id="phone"
+          name="phone"
           placeholder="Enter your phone number"
-         />
-     </div>
+        />
+      </div>
      
-     <div>
-        <label htmlFor="text">Password:</label>
+      <div>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
-          name="text"
-          placeholder="Enter your passwword"
-         />
-     </div>
-     <div>
-        <label htmlFor="text"> Confirm password:</label>
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="confirmPassword">Confirm password:</label>
         <input
           type="password"
-          name="text"
-          placeholder="Enter your passwword"
-         />
-     </div>
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Enter your password"
+        />
+      </div>
 
-       <Button label = "SIGN UP" type='button' />
+      <Button label="SIGN UP" type="button" />
 
-       <Text variant ='p' >Already have an account?</Text>
-
-     </section>
+      <Text variant="p">Already have an account?</Text>
+    </section>
   )
 }
