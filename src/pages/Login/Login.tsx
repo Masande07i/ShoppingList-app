@@ -10,7 +10,10 @@ export const Login = () => {
          <FiShoppingBag className={style.icon}/>
          <Text variant= "h1" style={{ color:' #FF4EA7'}}> Shopping List</Text>
         </div>
+        <div className ={style.heading}>
         <Text variant= "h2"> Welcome Back!!</Text>
+        <Text variant= "p">Log in to continue with your account</Text>
+         </div>
        
    
      <div>
@@ -18,12 +21,13 @@ export const Login = () => {
         <input
           type="text"
           name="email"
-          placeholder="Enter an email"
+          placeholder="Enter your email"
          />
      </div>
      
      <div>
         <label htmlFor="text">Password:</label>
+    
         <input
           type="password"
           name="text"
@@ -31,6 +35,8 @@ export const Login = () => {
          />
      </div>
        <Button label = "LOGIN" type='button' />
+
+       <Text variant="p" >Don't have an account yet?</Text>
      </section>
   )
 }

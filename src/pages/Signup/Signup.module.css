@@ -19,12 +19,3 @@
     color: #FF4EA7;
     font-weight: 400;
 }
-.heading{
-   gap:10px;
-   border-radius: 5px solid red;
-}
-.icons{
-    position: absolute;
-  left: 10px;
-  top: 50%;
-}
