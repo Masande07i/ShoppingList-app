@@ -1,0 +1,18 @@
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+   
+}
+.icon{
+    font-size: 70px;
+    color: #FF4EA7;
+    font-weight: 400;
+}
+
+section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -40px;
+}

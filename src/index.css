@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
@@ -48,9 +48,9 @@
   #social .button-icon {
     filter: invert(1) brightness(2);
   }
-}
+} */
 
-#root {
+/* #root {
   width: 1126px;
   max-width: 100%;
   margin: 0 auto;
@@ -108,4 +108,13 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+} */
+
+body{
+  background-color: #F9E3F2;
+}
+
+h1{
+  font-size: 70px;
+  font-weight: 1000;
 }
