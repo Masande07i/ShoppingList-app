@@ -11,7 +11,6 @@ export const Login = () => {
  const email = useSelector((state:RootState) => state.login.email)
   const password = useSelector((state:RootState) => state.login.password)
 
- 
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -79,7 +78,8 @@ export const Login = () => {
           Don't have an account yet?
         </Text>
 
-        <a href="#">Sign up</a>
+        <a href="#"onClick={(e) => {e.preventDefault();
+           navigate("/signup");}}>Sign up</a>
       </div>
         
     </form>
