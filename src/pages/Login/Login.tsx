@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import type { RootState } from "../../Store/Store";
 
 export const Login = () => {
- const email = useSelector((state:RootState) => state.login.email)
+  const email = useSelector((state:RootState) => state.login.email)
   const password = useSelector((state:RootState) => state.login.password)
 
 
