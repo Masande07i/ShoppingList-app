@@ -2,16 +2,15 @@ import { Text } from "../../components/Text/Text";
 import style from "./Login.module.css";
 import { Button } from "../../components/Button/Button";
 import {FiShoppingBag,FiMail,FiLock,FiEyeOff} from "react-icons/fi";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateEmailInput, updatePasswordInput } from "../../features/LoginSlice";
 import { useNavigate } from "react-router-dom";
 import type { RootState } from "../../Store/Store";
 
 export const Login = () => {
-
-  const email = useSelector((state:RootState) => state.login.email)
+ const email = useSelector((state:RootState) => state.login.email)
   const password = useSelector((state:RootState) => state.login.password)
+ 
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,15 +27,12 @@ export const Login = () => {
       <div className={style.logo}>
         <FiShoppingBag className={style.logoIcon} />
 
-        <Text variant="h1" style={{ color: "#FF4EA7" }}>
-          Shopping List
-        </Text>
+        <Text variant="h1" style={{ color: "#FF4EA7" }}>Shopping List</Text>
       </div>
 
       <div className={style.heading}>
         <Text variant="h2">Welcome Back!!</Text>
-        <Text variant="p">
-          Log in to continue with your account
+        <Text variant="p">Log in to continue with your account
         </Text>
       </div>
 

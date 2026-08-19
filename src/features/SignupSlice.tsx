@@ -22,16 +22,27 @@ export const SignupSlice = createSlice({
     name: 'signup',
     initialState,
     reducers :{
-        updateInput:(state, action : PayloadAction<string>) =>{
-            state.email = action.payload;
+        updateNameInput:(state, action : PayloadAction<string>) =>{
+            state.name = action.payload;
+        },
+         updateSurnameInput:(state, action : PayloadAction<string>) =>{
             state.surname =action.payload;
-            state.email = action.payload;
+        },
+         updateEmailInput:(state, action : PayloadAction<string>) =>{
+           state.email = action.payload;
+        },
+         updatePhoneInput:(state, action : PayloadAction<string>) =>{
+           state.phone = action.payload;
+        },
+        updatePasswordInput:(state, action : PayloadAction<string>) =>{
             state.password = action.payload;
-            state.confirmPassword = action.payload
-        }
+        },
+        updateConfirmPasswordInput:(state, action : PayloadAction<string>) =>{
+             state.confirmPassword = action.payload;
+        },
     }
 });
 
-export const { updateInput} = SignupSlice.actions
+export const { updateNameInput, updateSurnameInput,updateEmailInput,updatePhoneInput,updatePasswordInput, updateConfirmPasswordInput} = SignupSlice.actions
 
 export default SignupSlice.reducer
