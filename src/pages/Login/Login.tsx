@@ -2,33 +2,41 @@ import { Text } from "../../components/Text/Text";
 import style from "./Login.module.css";
 import { Button } from "../../components/Button/Button";
 import {FiShoppingBag,FiMail,FiLock,FiEyeOff} from "react-icons/fi";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateEmailInput, updatePasswordInput } from "../../features/LoginSlice";
 
 export const Login = () => {
+
+  const [email,setEmail] = useState(" ");
+  const [password,setPassword] = useState(" ")
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+   e.preventDefault();
+   dispatch(updateEmailInput(email))
+   dispatch(updatePasswordInput(password))
+  }
+
   return (
-    <section className={style.slate}>
+    <form onSubmit={handleSubmit} className={style.slate}>
       <div className={style.logo}>
         <FiShoppingBag className={style.logoIcon} />
 
-        <Text
-          variant="h1"
-          style={{ color: "#FF4EA7" }}
-        >
+        <Text variant="h1" style={{ color: "#FF4EA7" }}>
           Shopping List
         </Text>
       </div>
 
       <div className={style.heading}>
         <Text variant="h2">Welcome Back!!</Text>
-
         <Text variant="p">
           Log in to continue with your account
         </Text>
       </div>
 
-  
       <div className={style.form}>
-
-     
         <div className={style.inputContainer}>
           <FiMail className={style.inputIcon} />
 
@@ -36,7 +44,9 @@ export const Login = () => {
             type="email"
             id="email"
             name="email"
+            value ={email}
             placeholder="Email address"
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -47,7 +57,9 @@ export const Login = () => {
             type="password"
             id="password"
             name="password"
+            value={password}
             placeholder="Password"
+             onChange={(e) => setPassword(e.target.value)}
           />
           <FiEyeOff className={style.eyeIcon} />
         </div>
@@ -57,17 +69,17 @@ export const Login = () => {
         </div>
 
         <div className={style.loginButton}>
-          <Button label="LOG IN" type="button"/>
+          <Button label="LOG IN" type="submit"/>
         </div>
       </div>
 
       <div className={style.signup}>
         <Text variant="p">
-          Don’t have an account yet?
+          Don't have an account yet?
         </Text>
 
         <a href="#">Sign up</a>
       </div>
-    </section>
+    </form>
   );
-};
+}

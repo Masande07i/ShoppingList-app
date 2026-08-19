@@ -4,15 +4,13 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 export interface LoginProps {
   email: string;
   password: string;
-  formHasBeenSubmitted: boolean;
-  formErrorMessage: string | null; 
+  
 }
 
 const initialState: LoginProps = {
   email: '',
   password: '',
-  formHasBeenSubmitted: false, 
-  formErrorMessage: null       
+      
 };
 
 export const LoginSlice = createSlice({
@@ -28,21 +26,10 @@ export const LoginSlice = createSlice({
     resetLoginForm: (state) => {
       state.email = '';
       state.password = '';
-      state.formHasBeenSubmitted = false;
-      state.formErrorMessage = null;
-    },
-    setValidationError: (state, action: PayloadAction<string>) => {
-      state.formErrorMessage = action.payload;
-      state.formHasBeenSubmitted = true; 
     }
   }
 });
 
-export const { 
-  updateEmailInput, 
-  updatePasswordInput, 
-  resetLoginForm, 
-  setValidationError 
-} = LoginSlice.actions;
+export const { updateEmailInput, updatePasswordInput, resetLoginForm } = LoginSlice.actions;
 
 export default LoginSlice.reducer;
