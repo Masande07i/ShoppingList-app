@@ -23,13 +23,13 @@ export const LoginSlice = createSlice({
     updatePasswordInput: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
-    resetLoginForm: (state) => {
-      state.email = '';
-      state.password = '';
-    }
+    // resetLoginForm: (state) => {
+    //   state.email = '';
+    //   state.password = '';
+    // }
   }
 });
 
-export const { updateEmailInput, updatePasswordInput, resetLoginForm } = LoginSlice.actions;
+export const { updateEmailInput, updatePasswordInput } = LoginSlice.actions;
 
 export default LoginSlice.reducer;

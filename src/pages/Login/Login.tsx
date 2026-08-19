@@ -10,6 +10,7 @@ import type { RootState } from "../../Store/Store";
 export const Login = () => {
  const email = useSelector((state:RootState) => state.login.email)
   const password = useSelector((state:RootState) => state.login.password)
+
  
 
   const dispatch = useDispatch();
@@ -23,10 +24,10 @@ export const Login = () => {
   
 
   return (
+
     <form onSubmit={handleSubmit} className={style.slate}>
       <div className={style.logo}>
         <FiShoppingBag className={style.logoIcon} />
-
         <Text variant="h1" style={{ color: "#FF4EA7" }}>Shopping List</Text>
       </div>
 
@@ -80,6 +81,7 @@ export const Login = () => {
 
         <a href="#">Sign up</a>
       </div>
+        
     </form>
   );
 }

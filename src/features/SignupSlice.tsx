@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-export interface SignupProps{
+export interface User{
     name: string;
     surname: string;
     email : string;
@@ -10,20 +10,29 @@ export interface SignupProps{
     confirmPassword: string
 }
 
-const initialState: SignupProps={
-    name : '',
+const initialState: User={
+    name: '',
     surname: '',
-    email: '',
-    password: '',
+    email : '',
     phone: '',
-    confirmPassword :''
+    password:'',
+    confirmPassword: ''
 }
 export const SignupSlice = createSlice({
     name: 'signup',
     initialState,
     reducers :{
-        updateNameInput:(state, action : PayloadAction<string>) =>{
-            state.name = action.payload;
+        registerUser:(state, action : PayloadAction<User>) =>{
+
+            // state.name=action.payload.name;
+            // state.surname=action.payload.surname;
+            // state.email=action.payload.email;
+            // state.phone=action.payload.phone;
+            // state.password=action.payload.password;
+            // state.confirmPassword=action.payload.confirmPassword;
+        },
+         updateNameInput:(state, action : PayloadAction<string>) =>{
+            state.name =action.payload;
         },
          updateSurnameInput:(state, action : PayloadAction<string>) =>{
             state.surname =action.payload;
@@ -43,6 +52,6 @@ export const SignupSlice = createSlice({
     }
 });
 
-export const { updateNameInput, updateSurnameInput,updateEmailInput,updatePhoneInput,updatePasswordInput, updateConfirmPasswordInput} = SignupSlice.actions
+export const { registerUser, updateNameInput, updateSurnameInput,updateEmailInput,updatePhoneInput,updatePasswordInput,updateConfirmPasswordInput} = SignupSlice.actions
 
 export default SignupSlice.reducer

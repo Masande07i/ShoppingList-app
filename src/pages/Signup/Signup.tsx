@@ -5,26 +5,41 @@ import { FiShoppingBag } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../Store/Store";
-import { updateNameInput,updateSurnameInput,updateEmailInput,updatePhoneInput,updatePasswordInput,updateConfirmPasswordInput } from "../../features/SignupSlice";
+import type { User } from "../../features/SignupSlice";
+import { registerUser, 
+  updateConfirmPasswordInput, 
+  updateEmailInput, 
+  updateNameInput, 
+  updatePasswordInput,
+   updatePhoneInput,
+    updateSurnameInput } from "../../features/SignupSlice";
+
 
 export const Signup = () => {
-  const name = useSelector((state:RootState) => state.signup.name)
-  const surname = useSelector((state:RootState) => state.signup.surname)
-  const email= useSelector((state:RootState) => state.signup.email)
-  const phone = useSelector((state:RootState) => state.signup.phone)
-  const password = useSelector((state:RootState) => state.signup.password)
-  const confirmPasssword = useSelector((state:RootState) => state.signup.confirmPassword)
+
+  
+  const user :User = useSelector((state: RootState) => state.signup)
+ 
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
    e.preventDefault();
-   console.log(email, password,name,surname,confirmPasssword,phone)
+    dispatch(
+      registerUser({
+       name:user.name,
+       surname:user.surname,
+       email:user.email,
+       phone:user.phone,
+       password:user.password,
+       confirmPassword:user.confirmPassword
+      }));
+      console.log(user.name,user.surname,user.email,user.phone)
    navigate('/login')
   }
   
-
 
   return (
     <form onSubmit={handleSubmit} className={style.slate}>
@@ -44,69 +59,69 @@ export const Signup = () => {
           type="text"
           id="firstName"
           name="firstName"
-          value ={name}
+          value ={user.name}
           placeholder="Enter your first name"
           onChange={(e) =>  dispatch(updateNameInput(e.target.value))}
         />
       </div>
 
       <div>
-        <label htmlFor="surname">Surname:</label>
+       
         <input
           type="text"
           id="surname"
           name="surname"
-          value={surname}
+          value={user.surname}
           placeholder="Enter your surname"
-          onChange={(e) =>  dispatch(updateSurnameInput(e.target.value))}
+         onChange={(e) =>  dispatch(updateSurnameInput(e.target.value))}
         />
       </div>
    
       <div>
-        <label htmlFor="email">Email:</label>
+       
         <input
           type="email"
           id="email"
           name="email"
-          value = {email}
+          value = {user.email}
           placeholder="Enter your email"
           onChange={(e) =>  dispatch(updateEmailInput(e.target.value))}
         />
       </div>
 
       <div>
-        <label htmlFor="phone">Phone number:</label>
+       
         <input
           type="tel"
           id="phone"
           name="phone"
-          value ={phone}
+          value ={user.phone}
           placeholder="Enter your phone number"
           onChange={(e) =>  dispatch(updatePhoneInput(e.target.value))}
         />
       </div>
      
       <div>
-        <label htmlFor="password">Password:</label>
+       
         <input
           type="password"
           id="password"
           name="password"
-          value ={password}
+          value ={user.password}
           placeholder="Enter your password"
-          onChange={(e) =>  dispatch(updatePasswordInput(e.target.value))}
+           onChange={(e) =>  dispatch(updatePasswordInput(e.target.value))}
         />
       </div>
 
       <div>
-        <label htmlFor="confirmPassword">Confirm password:</label>
+        
         <input
           type="password"
           id="confirmPassword"
           name="confirmPassword"
-          value ={confirmPasssword}
+          value ={user.confirmPassword}
           placeholder="Enter your password"
-          onChange={(e) =>  dispatch(updateConfirmPasswordInput(e.target.value))}
+           onChange={(e) =>  dispatch(updateConfirmPasswordInput(e.target.value))}
         />
       </div>
 
