@@ -5,7 +5,7 @@ import { FiShoppingBag } from "react-icons/fi";
 
 export const Signup = () => {
   return (
-    <section className={style.slate}>
+    <form className={style.slate}>
       <div className={style.logo}>
         <FiShoppingBag className={style.icon}/>
         <Text variant="h1" style={{ color: '#FF4EA7' }}> Shopping List</Text>
@@ -79,6 +79,6 @@ export const Signup = () => {
       <Button label="SIGN UP" type="button" />
 
       <Text variant="p">Already have an account?</Text>
-    </section>
+    </form>
   )
 }

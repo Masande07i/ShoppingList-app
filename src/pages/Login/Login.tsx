@@ -3,21 +3,25 @@ import style from "./Login.module.css";
 import { Button } from "../../components/Button/Button";
 import {FiShoppingBag,FiMail,FiLock,FiEyeOff} from "react-icons/fi";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateEmailInput, updatePasswordInput } from "../../features/LoginSlice";
+import { useNavigate } from "react-router-dom";
+import type { RootState } from "../../Store/Store";
 
 export const Login = () => {
 
-  const [email,setEmail] = useState(" ");
-  const [password,setPassword] = useState(" ")
+  const email = useSelector((state:RootState) => state.login.email)
+  const password = useSelector((state:RootState) => state.login.password)
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
    e.preventDefault();
-   dispatch(updateEmailInput(email))
-   dispatch(updatePasswordInput(password))
+   console.log(email, password)
+   navigate('/')
   }
+  
 
   return (
     <form onSubmit={handleSubmit} className={style.slate}>
@@ -46,7 +50,7 @@ export const Login = () => {
             name="email"
             value ={email}
             placeholder="Email address"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) =>  dispatch(updateEmailInput(e.target.value))}
           />
         </div>
 
@@ -59,7 +63,7 @@ export const Login = () => {
             name="password"
             value={password}
             placeholder="Password"
-             onChange={(e) => setPassword(e.target.value)}
+             onChange={(e) => dispatch(updatePasswordInput(e.target.value))}
           />
           <FiEyeOff className={style.eyeIcon} />
         </div>
