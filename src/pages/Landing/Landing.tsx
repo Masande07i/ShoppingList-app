@@ -11,8 +11,11 @@ export const Landing = () => {
     const navigate= useNavigate();
 
 const handleStart =() =>{
-    navigate ('/login')
+    navigate ('/login');
+}
 
+const handleSign = () =>{
+    navigate('/signup')
 }
     return (
         <section className={style.landing}>
@@ -26,8 +29,8 @@ const handleStart =() =>{
                 </div>
 
                 <div className={style.navButtons}>
-                    <Button label="LOGIN" type="button"/>
-                    <Button label="SIGNUP"type="button"/>
+                    <Button label="LOGIN" type="button" onClick={handleStart}/>
+                    <Button label="SIGNUP"type="button" onClick={handleSign}/>
                 </div>
             </div>
 
