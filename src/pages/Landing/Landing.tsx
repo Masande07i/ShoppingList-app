@@ -2,8 +2,18 @@ import { Text } from '../../components/Text/Text'
 import style from './Landing.module.css'
 import { FiShoppingBag } from 'react-icons/fi'
 import { Button } from '../../components/Button/Button'
+import { useNavigate } from 'react-router-dom'
+
+
 
 export const Landing = () => {
+
+    const navigate= useNavigate();
+
+const handleStart =() =>{
+    navigate ('/login')
+
+}
     return (
         <section className={style.landing}>
 
@@ -40,7 +50,7 @@ export const Landing = () => {
                     Want to manage your shopping lists?
                 </Text>
 
-                <Button label="Get Started" type="button"/>
+                <Button label="Get Started" type="button" onClick={handleStart}/>
             </div>
         </section>
     )
