@@ -35,6 +35,15 @@
       "password": "112",
       "confirmPassword": "112",
       "id": "giv_xI5erPo"
+    },
+    {
+      "name": "",
+      "surname": "",
+      "email": "",
+      "phone": "",
+      "password": "",
+      "confirmPassword": "",
+      "id": "d75MM9GlevE"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
