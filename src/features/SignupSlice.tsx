@@ -1,57 +1,100 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export interface User{
-    name: string;
-    surname: string;
-    email : string;
-    phone: string;
-    password:string;
-    confirmPassword: string
+
+interface UserData {
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirmPassword: string;
 }
 
-const initialState: User={
-    name: '',
-    surname: '',
-    email : '',
-    phone: '',
-    password:'',
-    confirmPassword: ''
+interface SignupState extends UserData {
+  loading: boolean;
+  error: string | null;
+  success: boolean;
 }
-export const SignupSlice = createSlice({
-    name: 'signup',
-    initialState,
-    reducers :{
-        registerUser:(state, action : PayloadAction<User>) =>{
 
-            // state.name=action.payload.name;
-            // state.surname=action.payload.surname;
-            // state.email=action.payload.email;
-            // state.phone=action.payload.phone;
-            // state.password=action.payload.password;
-            // state.confirmPassword=action.payload.confirmPassword;
+const initialState: SignupState = {
+  name: "",
+  surname: "",
+  email: "",
+  phone: "",
+  password: "",
+  confirmPassword: "",
+  loading: false,
+  error: null,
+  success: false,
+};
+
+export const signupUser = createAsyncThunk("signup/signupUser",
+  async (userData: UserData, thunkAPI) => {
+    try {
+      const response = await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-         updateNameInput:(state, action : PayloadAction<string>) =>{
-            state.name =action.payload;
-        },
-         updateSurnameInput:(state, action : PayloadAction<string>) =>{
-            state.surname =action.payload;
-        },
-         updateEmailInput:(state, action : PayloadAction<string>) =>{
-           state.email = action.payload;
-        },
-         updatePhoneInput:(state, action : PayloadAction<string>) =>{
-           state.phone = action.payload;
-        },
-        updatePasswordInput:(state, action : PayloadAction<string>) =>{
-            state.password = action.payload;
-        },
-        updateConfirmPasswordInput:(state, action : PayloadAction<string>) =>{
-             state.confirmPassword = action.payload;
-        },
+        body: JSON.stringify(userData),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to create account");
+      }
+      return await response.json();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error instanceof Error ? error.message : "Something went wrong"
+      );
     }
+  }
+);
+
+const signupSlice = createSlice({
+  name: "signup",
+  initialState,
+  reducers: {
+    updateNameInput: (state, action) => {
+         state.name = action.payload; },
+    updateSurnameInput: (state, action) => {
+         state.surname = action.payload; },
+    updateEmailInput: (state, action) => { 
+        state.email = action.payload; },
+    updatePhoneInput: (state, action) => {
+         state.phone = action.payload; },
+    updatePasswordInput: (state, action) => {
+         state.password = action.payload; },
+    updateConfirmPasswordInput: (state, action) => { 
+        state.confirmPassword = action.payload; },
+    clearForm: (state) => {
+      state.name = "";
+      state.surname = "";
+      state.email = "";
+      state.phone = "";
+      state.password = "";
+      state.confirmPassword = "";
+    }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(signupUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.success = false;
+      })
+      .addCase(signupUser.fulfilled, (state) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(signupUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+        state.success = false;
+      });
+  },
 });
 
-export const { registerUser, updateNameInput, updateSurnameInput,updateEmailInput,updatePhoneInput,updatePasswordInput,updateConfirmPasswordInput} = SignupSlice.actions
+export const {updateNameInput,updateSurnameInput,updateEmailInput,updatePhoneInput,updatePasswordInput,updateConfirmPasswordInput,clearForm
+} = signupSlice.actions;
 
-export default SignupSlice.reducer
+export default signupSlice.reducer;

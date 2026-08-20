@@ -4,10 +4,9 @@ import { Button } from "../../components/Button/Button";
 import {FiShoppingBag,FiUser,FiMail,FiPhone,FiLock,FiEyeOff} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../../Store/Store";
-import type { User } from "../../features/SignupSlice";
+import type { RootState,AppDispatch } from "../../Store/Store";
 import {
-  registerUser,
+  signupUser,
   updateConfirmPasswordInput,
   updateEmailInput,
   updateNameInput,
@@ -17,25 +16,23 @@ import {
 } from "../../features/SignupSlice";
 
 export const Signup = () => {
-  const user: User = useSelector((state: RootState) => state.signup);
+  const user= useSelector((state: RootState) => state.signup);
 
-  const dispatch = useDispatch();
+ const dispatch = useDispatch<AppDispatch>();
+
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(
-      registerUser({
-        name: user.name,
+   dispatch(signupUser({  name: user.name,
         surname: user.surname,
         email: user.email,
         phone: user.phone,
         password: user.password,
-        confirmPassword: user.confirmPassword,
-      })
-    );
-    navigate("/login");
+        confirmPassword: user.confirmPassword, }));
+   
+    navigate('/login')
   };
 
   return (
