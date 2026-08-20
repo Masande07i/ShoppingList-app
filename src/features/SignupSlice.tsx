@@ -85,6 +85,13 @@ const signupSlice = createSlice({
       .addCase(signupUser.fulfilled, (state) => {
         state.loading = false;
         state.success = true;
+
+         state.name= "";
+         state.surname= "";
+         state.email= "";
+         state.phone= "";
+         state.password= "";
+         state.confirmPassword= "";
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.loading = false;
