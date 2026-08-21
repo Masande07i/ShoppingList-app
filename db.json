@@ -1,15 +1,14 @@
 {
   "users": [
     {
-      "name": "Masande",
+      "name": "Nondumo",
       "surname": "Magoso",
       "email": "magoso.nondumo@gmail.com",
       "phone": "08654",
-      "password": "111",
-      "confirmPassword": "111",
-      "id": "lluc7SUiFG8"
+      "password": "1111",
+      "confirmPassword": "1111",
+      "id": "f_xJ5HEbw-M"
     }
-   
   ],
   "$schema": "./node_modules/json-server/schema.json"
 }

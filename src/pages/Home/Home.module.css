@@ -1,0 +1,15 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.icon {
+    color: #ff4ea7;
+    font-size: 40px;
+}
+.pages {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
