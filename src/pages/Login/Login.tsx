@@ -1,42 +1,66 @@
 import { Text } from "../../components/Text/Text";
 import style from "./Login.module.css";
 import { Button } from "../../components/Button/Button";
-import {FiShoppingBag,FiMail,FiLock,FiEyeOff} from "react-icons/fi";
-import { useDispatch, useSelector } from "react-redux";
-import { updateEmailInput, updatePasswordInput } from "../../features/LoginSlice";
+import {
+  FiShoppingBag,
+  FiMail,
+  FiLock,
+  FiEyeOff,
+} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import type { RootState } from "../../Store/Store";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "../../Store/Store";
+
+import {
+  loginUser,
+  updateEmailInput,
+  updatePasswordInput,
+} from "../../features/LoginSlice";
 
 export const Login = () => {
-  const email = useSelector((state:RootState) => state.login.email)
-  const password = useSelector((state:RootState) => state.login.password)
+  const user = useSelector((state: RootState) => state.login);
 
+  const dispatch = useDispatch<AppDispatch>();
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-   e.preventDefault();
-   console.log(email, password)
-   navigate('/home')
-  }
-  
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const result = await dispatch(
+      loginUser({
+        email: user.email,
+        password: user.password,
+      })
+    );
+
+    if (loginUser.fulfilled.match(result)) {
+      navigate('/home');
+    }
+  };
 
   return (
-
     <form onSubmit={handleSubmit} className={style.slate}>
+
       <div className={style.logo}>
         <FiShoppingBag className={style.logoIcon} />
-        <Text variant="h1" style={{ color: "#FF4EA7" }}>Shopping List</Text>
+
+        <Text variant="h1" style={{ color: "#FF4EA7" }}>
+          Shopping List
+        </Text>
       </div>
 
       <div className={style.heading}>
-        <Text variant="h2">Welcome Back!!</Text>
-        <Text variant="p">Log in to continue with your account
+        <Text variant="h2">Welcome Back</Text>
+
+        <Text variant="p">
+          Log in to continue to your shopping list
         </Text>
       </div>
 
       <div className={style.form}>
+
         <div className={style.inputContainer}>
           <FiMail className={style.inputIcon} />
 
@@ -44,9 +68,9 @@ export const Login = () => {
             type="email"
             id="email"
             name="email"
-            value ={email}
+            value={user.email}
             placeholder="Email address"
-            onChange={(e) =>  dispatch(updateEmailInput(e.target.value))}
+            onChange={(e) =>dispatch(updateEmailInput(e.target.value))}
           />
         </div>
 
@@ -57,31 +81,34 @@ export const Login = () => {
             type="password"
             id="password"
             name="password"
-            value={password}
+            value={user.password}
             placeholder="Password"
-             onChange={(e) => dispatch(updatePasswordInput(e.target.value))}
+            onChange={(e) =>dispatch(updatePasswordInput(e.target.value))}
           />
+
           <FiEyeOff className={style.eyeIcon} />
         </div>
 
-        <div className={style.forgotPassword}>
-          <a href="#">Forgot password?</a>
+        <div className={style.loginButton}>
+          <Button
+            label="LOG IN"
+            type="submit"
+          />
         </div>
 
-        <div className={style.loginButton}>
-          <Button label="LOG IN" type="submit"/>
-        </div>
       </div>
 
       <div className={style.signup}>
         <Text variant="p">
-          Don't have an account yet?
+          Don't have an account?
         </Text>
 
-        <a href="#"onClick={(e) => {e.preventDefault();
-           navigate("/signup");}}>Sign up</a>
+        <a
+          href="#"onClick={(e) => {e.preventDefault();navigate("/signup");
+          }}
+        > Sign up </a>
       </div>
-        
+
     </form>
   );
-}
+};

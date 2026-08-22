@@ -7,9 +7,12 @@
 .backButton {
     border: none;
     background: transparent;
+    padding: 0;
     cursor: pointer;
     font-size: 30px;
     color: #171717;
+    display: flex;
+    align-items: center;
 }
 .profileHeader {
     display: flex;
@@ -40,7 +43,6 @@
     margin: 0 0 12px;
     font-size: 15px;
 }
-
 .card {
     background-color: #efc8e9;
     padding: 10px 24px 20px;
@@ -60,13 +62,15 @@
     font-size: 20px;
     font-weight: 700;
 }
-
 .editButton {
     border: none;
     background: transparent;
     cursor: pointer;
     font-size: 31px;
     color: #171717;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .personalInfo {

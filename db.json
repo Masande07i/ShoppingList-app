@@ -1,49 +1,13 @@
 {
   "users": [
     {
-      "name": "Masande",
-      "surname": "Magoso",
-      "email": "magoso.nondumo@gmail.com",
-      "phone": "08654",
-      "password": "111",
-      "confirmPassword": "111",
-      "id": "lluc7SUiFG8"
-    },
-    {
-      "name": "yolanda",
-      "surname": "mtolo",
-      "email": "gfdd@gmail.com",
-      "phone": "0877665",
-      "password": "111",
-      "confirmPassword": "111",
-      "id": "2EiKmnRcsEQ"
-    },
-    {
-      "name": "nong",
-      "surname": "hgf",
-      "email": "njhhj@gmail.com",
-      "phone": "8766",
-      "password": "00",
-      "confirmPassword": "00",
-      "id": "R7ynwgj_W6k"
-    },
-    {
       "name": "Nondumo",
       "surname": "Magoso",
       "email": "magoso.nondumo@gmail.com",
-      "phone": "tt666",
-      "password": "112",
-      "confirmPassword": "112",
-      "id": "giv_xI5erPo"
-    },
-    {
-      "name": "",
-      "surname": "",
-      "email": "",
-      "phone": "",
-      "password": "",
-      "confirmPassword": "",
-      "id": "d75MM9GlevE"
+      "phone": "08654",
+      "password": "1111",
+      "confirmPassword": "1111",
+      "id": "f_xJ5HEbw-M"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
