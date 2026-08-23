@@ -1,8 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface UserData {
+
+  id?: string;
+  name: string;
+  surname: string;
   email: string;
+  phone: string;
   password: string;
+  confirmPassword?: string;
 }
 
 interface LoginState {

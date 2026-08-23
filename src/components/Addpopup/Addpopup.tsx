@@ -1,4 +1,4 @@
-import styles from './AddItem.module.css'
+import styles from './Addpopup.module.css'
 import { Text } from '../Text/Text'
 import { Button } from '../Button/Button'
 import { FiUpload } from 'react-icons/fi'

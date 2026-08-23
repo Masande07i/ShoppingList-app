@@ -2,23 +2,16 @@ import { FiArrowLeft, FiEdit2 } from "react-icons/fi";
 import { Text } from "../../components/Text/Text";
 import style from "./Profile.module.css";
 import { useNavigate } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
-import type { RootState ,AppDispatch } from "../../Store/Store";
-import { signupUser } from "../../features/SignupSlice";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../Store/Store";
 
 export const Profile = () => {
 
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
 
-  const user = useSelector((state: RootState) => state.signup);
-
-    dispatch(signupUser({  name: user.name,
-          surname: user.surname,
-          email: user.email,
-          phone: user.phone,
-          password: user.password,
-          confirmPassword: user.confirmPassword, }));
+  const user = useSelector(
+    (state: RootState) => state.login.user
+  );
 
   const handleBack = () => {
     navigate("/home");
@@ -76,23 +69,43 @@ export const Profile = () => {
         <div className={style.personalInfo}>
 
           <div>
-            <Text variant="p">First Name</Text>
-            <Text variant="p">{user?.name}</Text>
+            <Text variant="p">
+              First Name
+            </Text>
+
+            <Text variant="p">
+              {user?.name}
+            </Text>
           </div>
 
           <div>
-            <Text variant="p">Last Name</Text>
-            <Text variant="p">{user?.surname}</Text>
+            <Text variant="p">
+              Last Name
+            </Text>
+
+            <Text variant="p">
+              {user?.surname}
+            </Text>
           </div>
 
           <div>
-            <Text variant="p">Email Address</Text>
-            <Text variant="p">{user?.email}</Text>
+            <Text variant="p">
+              Email Address
+            </Text>
+
+            <Text variant="p">
+              {user?.email}
+            </Text>
           </div>
 
           <div>
-            <Text variant="p">Phone number</Text>
-            <Text variant="p">{user?.phone}</Text>
+            <Text variant="p">
+              Phone number
+            </Text>
+
+            <Text variant="p">
+              {user?.phone}
+            </Text>
           </div>
 
         </div>
