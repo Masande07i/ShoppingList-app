@@ -1,22 +1,31 @@
 {
   "users": [
     {
-      "name": "Nondumo",
-      "surname": "Magoso",
+      "name": "Sindy",
+      "surname": "Ngcobo",
       "email": "magoso.nondumo@gmail.com",
-      "phone": "0837848383",
-      "password": "1234",
-      "confirmPassword": "1234",
-      "id": "4dwjk2DBcLE"
+      "phone": "0987766",
+      "password": "zzzz",
+      "confirmPassword": "zzzz",
+      "id": "7BGqpvYCMZk"
     },
     {
-      "name": "Nondumo",
-      "surname": "Magoso",
-      "email": "magoso.nondumo@gmail.com",
-      "phone": "0837848383",
-      "password": "12345",
-      "confirmPassword": "12345",
-      "id": "yThtpzNFttA"
+      "name": "asanda",
+      "surname": "Mdladla",
+      "email": "asanda@gmail.com",
+      "phone": "06787",
+      "password": "hhhh",
+      "confirmPassword": "hhhh",
+      "id": "yCZF8_en1UI"
+    },
+    {
+      "name": "wendy",
+      "surname": "mtolo",
+      "email": "wendy@gmail.com",
+      "phone": "98755",
+      "password": "mmmm",
+      "confirmPassword": "mmmm",
+      "id": "n6zZO8azrlc"
     }
   ],
   "lists": [
@@ -49,6 +58,12 @@
       "category": "ewq",
       "notes": "ewq",
       "id": "42aJAxoM3AM"
+    },
+    {
+      "name": "tttttttttt",
+      "category": "hgfdfghj",
+      "notes": "jhjkgffg",
+      "id": "bl-91QltIJU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

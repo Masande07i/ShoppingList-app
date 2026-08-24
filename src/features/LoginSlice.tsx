@@ -14,12 +14,23 @@ const initialState: LoginState = {
 
 };
 
-export const loginUser = createAsyncThunk("login/loginUser", async (loginData:Pick<UserData, "email" | "password" >,thunkAPI) => {
+export const loginUser = createAsyncThunk(
+  "login/loginUser",
+  async (
+    loginData: Pick<UserData, "email" | "password">,
+    thunkAPI
+  ) => {
+    if (!loginData.email) {
+      return thunkAPI.rejectWithValue("Email is required.");
+    }
+
+    if (!loginData.password) {
+      return thunkAPI.rejectWithValue("Password is required.");
+    }
+
     try {
-      const response = await fetch(`http://localhost:3000/users?email=${loginData.email }`,
-        {
-          method: "GET",
-        }
+      const response = await fetch(
+        `http://localhost:3000/users?email=${loginData.email}`
       );
 
       if (!response.ok) {
@@ -37,20 +48,20 @@ export const loginUser = createAsyncThunk("login/loginUser", async (loginData:Pi
       const user = users[0];
 
       if (user.password !== loginData.password) {
-        return thunkAPI.rejectWithValue(
-          "Incorrect password."
-        );
+        return thunkAPI.rejectWithValue("Incorrect password.");
       }
 
       return user;
 
     } catch (error) {
-      return thunkAPI.rejectWithValue(error instanceof Error? error.message: "Something went wrong"
+      return thunkAPI.rejectWithValue(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong"
       );
     }
   }
 );
-
 const loginSlice = createSlice({
   name: "login",
   initialState,

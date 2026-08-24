@@ -10,6 +10,7 @@ import { updateRegister } from "../../features/SignupSlice";
 
 export const Login = () => {
   const userReg = useSelector((state: RootState) => state.signup);
+  const { error } = useSelector((state: RootState) => state.login);
   const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
@@ -27,10 +28,7 @@ export const Login = () => {
     if (loginUser.fulfilled.match(result)) {
       navigate('/home');
     }
-    else{
-      console.log("user does not exist");
-      
-    }
+    
     
   };
 
@@ -78,7 +76,9 @@ export const Login = () => {
             value={userReg.inputs.password}
             placeholder="Password"
             onChange={(e) =>dispatch(updateRegister({password:e.target.value}))}
+            
           />
+          {error && <p className={style.error}>{error}</p>}
 
           <FiEyeOff className={style.eyeIcon} />
         </div>

@@ -128,4 +128,8 @@
   font-weight: 600;
   text-decoration: none;
 }
-
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 8px;
+}
