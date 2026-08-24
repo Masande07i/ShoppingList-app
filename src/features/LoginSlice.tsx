@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 import type { UserData } from "./SignupSlice";
 
 interface LoginState {
@@ -71,7 +70,6 @@ const loginSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
-        
         state.error = null;
       })
 

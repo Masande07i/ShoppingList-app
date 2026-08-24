@@ -28,25 +28,18 @@ const initialState: ShoppingListState = {
   success: false,
 };
 
-export const addShoppingList = createAsyncThunk(
-  'shoppingList/addShoppingList',
-
-  async (shoppingItem: ShoppingItem, thunkAPI) => {
+export const addShoppingList = createAsyncThunk('shoppingList/addShoppingList',async (shoppingItem: ShoppingItem, thunkAPI) => {
     try {
       const response = await fetch('http://localhost:3000/lists', {
         method: 'POST',
-
         headers: {
           'Content-Type': 'application/json',
         },
-
         body: JSON.stringify(shoppingItem),
       });
-
       if (!response.ok) {
         throw new Error('Failed to create shopping item');
       }
-
       return await response.json();
 
     } catch (error) {

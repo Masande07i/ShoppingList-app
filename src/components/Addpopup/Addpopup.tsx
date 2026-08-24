@@ -3,14 +3,15 @@ import type { AppDispatch, RootState } from "../../Store/Store";
 import {updateInputs,addShoppingList} from "../../features/ShoppingListSlice";
 import { Button } from "../Button/Button";
 import { Text } from "../Text/Text";
-
 import styles from './Addpopup.module.css';
+
 
 export const AddItem = () => {
 
   const shoppingListState = useSelector((state: RootState) => state.shoppingList);
 
   const dispatch = useDispatch<AppDispatch>();
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,6 +29,7 @@ export const AddItem = () => {
         notes: shoppingListState.inputs.notes,
       })
     );
+   
   };
 
   return (

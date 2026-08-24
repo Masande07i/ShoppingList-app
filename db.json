@@ -5,18 +5,18 @@
       "surname": "Magoso",
       "email": "magoso.nondumo@gmail.com",
       "phone": "0837848383",
-      "password": "123",
-      "confirmPassword": "123",
-      "id": "mbi4Figx7v0"
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": "4dwjk2DBcLE"
     },
     {
       "name": "Nondumo",
       "surname": "Magoso",
       "email": "magoso.nondumo@gmail.com",
       "phone": "0837848383",
-      "password": "1234",
-      "confirmPassword": "1234",
-      "id": "4dwjk2DBcLE"
+      "password": "12345",
+      "confirmPassword": "12345",
+      "id": "yThtpzNFttA"
     }
   ],
   "lists": [
@@ -31,6 +31,24 @@
       "category": "qwwwwww",
       "notes": "wqwq",
       "id": "Ey2iYQwwmJY"
+    },
+    {
+      "name": "rrSS",
+      "category": "W",
+      "notes": "SSSS",
+      "id": "-C4emHveNAA"
+    },
+    {
+      "name": "e",
+      "category": "frffrrrrr",
+      "notes": "SSSS",
+      "id": "J7Jty5PmzwE"
+    },
+    {
+      "name": "wedeed",
+      "category": "ewq",
+      "notes": "ewq",
+      "id": "42aJAxoM3AM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

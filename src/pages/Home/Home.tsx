@@ -104,11 +104,7 @@ export const Home = () => {
           </div>
 
 
-          <Button
-            label="+ Add New List"
-            className={style.addButton}
-            onClick={() => setShowAddItem(true)}
-          />
+          <Button label="+ Add New List" className={style.addButton}onClick={() => setShowAddItem(true)}/>
 
         </div>
 
