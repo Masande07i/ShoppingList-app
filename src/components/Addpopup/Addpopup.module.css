@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 480px;
+  background: #f9e5f3;
+  padding: 35px 40px;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.label span {
+  color: #ff3f9f;
+}
+
+.input {
+  width: 100%;
+  height: 38px;
+  border: none;
+  padding: 0 10px;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+
+.optional {
+  color: #333 !important;
+  font-weight: normal;
+  font-size: 15px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.cancelButton,
+.saveButton {
+  width: 150px;
+  background: #ff3f9f;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  height: 40px;
+}

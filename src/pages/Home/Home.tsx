@@ -1,4 +1,4 @@
-import {FiShoppingBag,FiHome,FiShoppingCart,FiUser,FiLogOut} from "react-icons/fi"
+import { FiShoppingBag, FiHome, FiShoppingCart, FiUser, FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Text } from "../../components/Text/Text";
@@ -7,14 +7,12 @@ import { AddItem } from "../../components/Addpopup/Addpopup";
 import style from "./Home.module.css";
 
 export const Home = () => {
-
   const navigate = useNavigate();
 
   const [showAddItem, setShowAddItem] = useState(false);
 
   return (
     <section className={style.home}>
-
 
       <aside className={style.sidebar}>
 
@@ -26,8 +24,6 @@ export const Home = () => {
           </Text>
         </div>
 
-
-   
         <nav className={style.navigation}>
 
           <button
@@ -35,86 +31,67 @@ export const Home = () => {
             onClick={() => navigate("/home")}
           >
             <FiHome className={style.navIcon} />
-
-            <Text variant="p">
-              Home
-            </Text>
+            <Text variant="p">Home</Text>
           </button>
-
 
           <button
             className={style.navItem}
             onClick={() => navigate("/my-list")}
           >
             <FiShoppingCart className={style.navIcon} />
-
-            <Text variant="p">
-              My List
-            </Text>
+            <Text variant="p">My List</Text>
           </button>
-
 
           <button
             className={style.navItem}
             onClick={() => navigate("/profile")}
           >
             <FiUser className={style.navIcon} />
-
-            <Text variant="p">
-              Profile
-            </Text>
+            <Text variant="p">Profile</Text>
           </button>
 
         </nav>
-
 
         <button
           className={style.logout}
           onClick={() => navigate("/login")}
         >
           <FiLogOut className={style.logoutIcon} />
-
-          <Text variant="p">
-            Logout
-          </Text>
+          <Text variant="p">Logout</Text>
         </button>
 
       </aside>
-
-
 
       <main className={style.mainContent}>
 
         <div className={style.header}>
 
           <div>
-            <Text
-              variant="h1"
-              className={style.heading}
-            >
+            <Text variant="h1" className={style.heading}>
               My Shopping List
             </Text>
 
-            <Text
-              variant="p"
-              className={style.description}
-            >
+            <Text variant="p" className={style.description}>
               All your lists in one place
             </Text>
           </div>
 
-
-          <Button label="+ Add New List" className={style.addButton}onClick={() => setShowAddItem(true)}/>
+          <Button
+            label="+ Add New List"
+            className={style.addButton}
+            onClick={() => setShowAddItem(true)}
+          />
 
         </div>
 
       </main>
 
+      {/* POPUP */}
       {showAddItem && (
         <div className={style.popup}>
-          <AddItem />
+          <AddItem onClose={() => setShowAddItem(false)} />
         </div>
-      )} 
+      )}
 
     </section>
   );

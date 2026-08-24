@@ -1,22 +1,31 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../Store/Store";
-import {updateInputs,addShoppingList} from "../../features/ShoppingListSlice";
+import {
+  updateInputs,
+  addShoppingList
+} from "../../features/ShoppingListSlice";
 import { Button } from "../Button/Button";
 import { Text } from "../Text/Text";
-import styles from './Addpopup.module.css';
+import styles from "./Addpopup.module.css";
 
+interface AddItemProps {
+  onClose: () => void;
+}
 
-export const AddItem = () => {
+export const AddItem = ({ onClose }: AddItemProps) => {
 
-  const shoppingListState = useSelector((state: RootState) => state.shoppingList);
+  const shoppingListState = useSelector(
+    (state: RootState) => state.shoppingList
+  );
 
   const dispatch = useDispatch<AppDispatch>();
-
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!shoppingListState.inputs.name || !shoppingListState.inputs.category
+    if (
+      !shoppingListState.inputs.name ||
+      !shoppingListState.inputs.category
     ) {
       alert("Please fill out all required fields.");
       return;
@@ -29,7 +38,8 @@ export const AddItem = () => {
         notes: shoppingListState.inputs.notes,
       })
     );
-   
+
+    onClose();
   };
 
   return (
@@ -37,63 +47,83 @@ export const AddItem = () => {
 
       <div className={styles.card}>
 
-        <Text variant="h1"className={styles.title}>
+        <Text variant="h1" className={styles.title}>
           Add New Item
         </Text>
 
-        <form onSubmit={handleSubmit}className={styles.form}>
+        <form onSubmit={handleSubmit} className={styles.form}>
 
           <div className={styles.formGroup}>
-            <Text variant="span"className={styles.label}>
-              Item Name <span >*</span>
+            <Text variant="span" className={styles.label}>
+              Item Name <span>*</span>
             </Text>
 
             <input
               id="itemName"
               type="text"
               className={styles.input}
-              placeholder="Enter item name"
               value={shoppingListState.inputs.name}
-              onChange={(e) =>dispatch(updateInputs({name: e.target.value}))}
+              onChange={(e) =>
+                dispatch(updateInputs({ name: e.target.value }))
+              }
               required
             />
           </div>
-
 
           <div className={styles.formGroup}>
             <Text variant="span" className={styles.label}>
               Category <span>*</span>
             </Text>
+
             <input
               id="category"
               type="text"
               className={styles.input}
-              placeholder="Category"
               value={shoppingListState.inputs.category}
-              onChange={(e) =>dispatch(updateInputs({category: e.target.value}))}
+              onChange={(e) =>
+                dispatch(updateInputs({ category: e.target.value }))
+              }
               required
             />
           </div>
 
           <div className={styles.formGroup}>
-            <Text variant="span"className={styles.label}>
-              Notes
-              <span className={styles.optional}>{" "} (optional)</span>
+            <Text variant="span" className={styles.label}>
+              Notes <span className={styles.optional}>(optional)</span>
             </Text>
 
             <input
               id="notes"
               type="text"
               className={styles.input}
-              placeholder="Add optional notes"
               value={shoppingListState.inputs.notes}
-              onChange={(e) =>dispatch(updateInputs({notes: e.target.value}))}
+              onChange={(e) =>
+                dispatch(updateInputs({ notes: e.target.value }))
+              }
             />
           </div>
-          <Button type="submit" label="SAVE"className={styles.actionButton}/>
-          <Button type="submit" label="CANCEL"className={styles.actionButton}/>
+
+          <div className={styles.actions}>
+
+            <Button
+              type="button"
+              label="CANCEL"
+              className={styles.cancelButton}
+              onClick={onClose}
+            />
+
+            <Button
+              type="submit"
+              label="SAVE"
+              className={styles.saveButton}
+            />
+
+          </div>
+
         </form>
+
       </div>
+
     </section>
   );
 };

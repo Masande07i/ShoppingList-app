@@ -14,12 +14,8 @@ const initialState: LoginState = {
 
 };
 
-export const loginUser = createAsyncThunk(
-  "login/loginUser",
-  async (
-    loginData: Pick<UserData, "email" | "password">,
-    thunkAPI
-  ) => {
+export const loginUser = createAsyncThunk("login/loginUser",async (loginData: Pick<UserData, "email" | "password">,
+  thunkAPI) => {
     if (!loginData.email) {
       return thunkAPI.rejectWithValue("Email is required.");
     }
