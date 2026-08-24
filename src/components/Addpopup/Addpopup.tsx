@@ -1,9 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../Store/Store";
-import {
-  updateInputs,
-  addShoppingList
-} from "../../features/ShoppingListSlice";
+import {updateInputs,addShoppingList} from "../../features/ShoppingListSlice";
 import { Button } from "../Button/Button";
 import { Text } from "../Text/Text";
 import styles from "./Addpopup.module.css";
@@ -14,9 +11,7 @@ interface AddItemProps {
 
 export const AddItem = ({ onClose }: AddItemProps) => {
 
-  const shoppingListState = useSelector(
-    (state: RootState) => state.shoppingList
-  );
+  const shoppingListState = useSelector((state: RootState) => state.shoppingList);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -24,8 +19,7 @@ export const AddItem = ({ onClose }: AddItemProps) => {
     e.preventDefault();
 
     if (
-      !shoppingListState.inputs.name ||
-      !shoppingListState.inputs.category
+      !shoppingListState.inputs.name ||!shoppingListState.inputs.category
     ) {
       alert("Please fill out all required fields.");
       return;
@@ -64,8 +58,7 @@ export const AddItem = ({ onClose }: AddItemProps) => {
               className={styles.input}
               value={shoppingListState.inputs.name}
               onChange={(e) =>
-                dispatch(updateInputs({ name: e.target.value }))
-              }
+                dispatch(updateInputs({ name: e.target.value }))}
               required
             />
           </div>
@@ -98,26 +91,13 @@ export const AddItem = ({ onClose }: AddItemProps) => {
               className={styles.input}
               value={shoppingListState.inputs.notes}
               onChange={(e) =>
-                dispatch(updateInputs({ notes: e.target.value }))
-              }
+                dispatch(updateInputs({ notes: e.target.value }))}
             />
           </div>
 
           <div className={styles.actions}>
-
-            <Button
-              type="button"
-              label="CANCEL"
-              className={styles.cancelButton}
-              onClick={onClose}
-            />
-
-            <Button
-              type="submit"
-              label="SAVE"
-              className={styles.saveButton}
-            />
-
+            <Button type="button" label="CANCEL"className={styles.cancelButton} onClick={onClose}/>
+            <Button type="submit" label="SAVE"className={styles.saveButton}/>
           </div>
 
         </form>
