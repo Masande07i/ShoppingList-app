@@ -35,8 +35,7 @@ export const addShoppingList = createAsyncThunk(
   "shoppingList/addShoppingList",
   async (shoppingListData: ShoppingListData, thunkAPI) => {
     try {
-      const response = await fetch(
-        "http://localhost:3000/lists",
+      const response = await fetch("http://localhost:3000/lists",
         {
           method: "POST",
           headers: {
@@ -102,9 +101,7 @@ const shoppingListSlice = createSlice({
       .addCase(addShoppingList.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-
         state.shoppingLists.push(action.payload);
-
         state.name = "";
         state.items = [];
       })
@@ -118,12 +115,7 @@ const shoppingListSlice = createSlice({
 });
 
 
-export const {
-  updateListNameInput,
-  addItem,
-  removeItem,
-  clearForm,
-} = shoppingListSlice.actions;
+export const {updateListNameInput,addItem,removeItem,clearForm} = shoppingListSlice.actions;
 
 
 export default shoppingListSlice.reducer;

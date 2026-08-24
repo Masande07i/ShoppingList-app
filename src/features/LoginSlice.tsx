@@ -1,40 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-interface UserData {
-
-  id?: string;
-  name: string;
-  surname: string;
-  email: string;
-  phone: string;
-  password: string;
-  confirmPassword?: string;
-}
+import type { UserData } from "./SignupSlice";
 
 interface LoginState {
-  email: string;
-  password: string;
-  user: UserData | null;
-  loading: boolean;
-  error: string | null;
-  success: boolean;
+ user: UserData | null;
+ loading :boolean;
+ error :string | null
 }
 
 const initialState: LoginState = {
-  email: "",
-  password: "",
   user: null,
   loading: false,
   error: null,
-  success: false,
+
 };
 
-export const loginUser = createAsyncThunk("login/loginUser", async (
-    loginData: { email: string; password: string },
-    thunkAPI) => {
+export const loginUser = createAsyncThunk("login/loginUser", async (loginData:Pick<UserData, "email" | "password" >,thunkAPI) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/users?email=${encodeURIComponent(loginData.email )}`,
+        `http://localhost:3000/users?email=${loginData.email }`,
         {
           method: "GET",
         }
@@ -63,10 +47,7 @@ export const loginUser = createAsyncThunk("login/loginUser", async (
       return user;
 
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error instanceof Error
-          ? error.message
-          : "Something went wrong"
+      return thunkAPI.rejectWithValue(error instanceof Error? error.message: "Something went wrong"
       );
     }
   }
@@ -76,40 +57,22 @@ const loginSlice = createSlice({
   name: "login",
   initialState,
   reducers: {
-    updateEmailInput: (state, action) => {
-      state.email = action.payload;
-    },
-
-    updatePasswordInput: (state, action) => {
-      state.password = action.payload;
-    },
-
-    clearLoginForm: (state) => {
-      state.email = "";
-      state.password = "";
-      state.error = null;
-      state.success = false;
-    },
-
-    logout: (state) => {
-      state.user = null;
-      state.success = false;
-    },
+     clearForm: (state) => {
+             state.user = initialState.user;
+             state.error = null;
+             },
   },
-
   extraReducers: (builder) => {
     builder
-
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
-        state.success = false;
+        
       })
-
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
-        state.success = true;
+        
         state.error = null;
       })
 
@@ -117,16 +80,10 @@ const loginSlice = createSlice({
         state.loading = false;
         state.user = null;
         state.error = action.payload as string;
-        state.success = false;
+        
       });
   },
 });
 
-export const {
-  updateEmailInput,
-  updatePasswordInput,
-  clearLoginForm,
-  logout,
-} = loginSlice.actions;
 
 export default loginSlice.reducer;

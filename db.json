@@ -1,15 +1,6 @@
 {
   "users": [
     {
-      "name": "",
-      "surname": "",
-      "email": "",
-      "phone": "",
-      "password": "",
-      "confirmPassword": "",
-      "id": "fu2ljZFiBeQ"
-    },
-    {
       "name": "Nondumo",
       "surname": "Magoso",
       "email": "magoso.nondumo@gmail.com",
@@ -17,7 +8,26 @@
       "password": "kkk",
       "confirmPassword": "kkk",
       "id": "kcYGe9VZD9M"
+    },
+    {
+      "name": "Nondumo",
+      "surname": "Magoso",
+      "email": "magoso.nondumo@gmail.com",
+      "phone": "08654",
+      "password": "...",
+      "confirmPassword": "...",
+      "id": "sCr36J3-ciM"
+    },
+    {
+      "name": "Masande",
+      "surname": "Mtolo",
+      "email": "masande@gmail.com",
+      "phone": "0837848383",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": "zmmC4R1jTk4"
     }
   ],
+  "lists": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

@@ -1,43 +1,37 @@
 import { Text } from "../../components/Text/Text";
 import style from "./Login.module.css";
 import { Button } from "../../components/Button/Button";
-import {
-  FiShoppingBag,
-  FiMail,
-  FiLock,
-  FiEyeOff,
-} from "react-icons/fi";
+import {FiShoppingBag,FiMail,FiLock,FiEyeOff,} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "../../Store/Store";
-
-import {
-  loginUser,
-  updateEmailInput,
-  updatePasswordInput,
-} from "../../features/LoginSlice";
+import {loginUser,} from "../../features/LoginSlice";
+import { updateRegister } from "../../features/SignupSlice";
 
 export const Login = () => {
-  const user = useSelector((state: RootState) => state.login);
-
+  const userReg = useSelector((state: RootState) => state.signup);
   const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const result = await dispatch(
       loginUser({
-        email: user.email,
-        password: user.password,
+        email: userReg.inputs.email,
+        password: userReg.inputs.password,
       })
     );
 
     if (loginUser.fulfilled.match(result)) {
       navigate('/home');
     }
+    else{
+      console.log("user does not exist");
+      
+    }
+    
   };
 
   return (
@@ -68,9 +62,9 @@ export const Login = () => {
             type="email"
             id="email"
             name="email"
-            value={user.email}
+            value={userReg.inputs.email}
             placeholder="Email address"
-            onChange={(e) =>dispatch(updateEmailInput(e.target.value))}
+            onChange={(e) =>dispatch(updateRegister({email:e.target.value}))}
           />
         </div>
 
@@ -81,9 +75,9 @@ export const Login = () => {
             type="password"
             id="password"
             name="password"
-            value={user.password}
+            value={userReg.inputs.password}
             placeholder="Password"
-            onChange={(e) =>dispatch(updatePasswordInput(e.target.value))}
+            onChange={(e) =>dispatch(updateRegister({password:e.target.value}))}
           />
 
           <FiEyeOff className={style.eyeIcon} />

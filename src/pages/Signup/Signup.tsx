@@ -5,18 +5,10 @@ import {FiShoppingBag,FiUser,FiMail,FiPhone,FiLock,FiEyeOff} from "react-icons/f
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState,AppDispatch } from "../../Store/Store";
-import {
-  signupUser,
-  updateConfirmPasswordInput,
-  updateEmailInput,
-  updateNameInput,
-  updatePasswordInput,
-  updatePhoneInput,
-  updateSurnameInput,
-} from "../../features/SignupSlice";
+import {signupUser,updateRegister} from "../../features/SignupSlice";
 
 export const Signup = () => {
-  const user= useSelector((state: RootState) => state.signup);
+  const inputs= useSelector((state: RootState) => state.signup);
 
  const dispatch = useDispatch<AppDispatch>();
 
@@ -25,14 +17,11 @@ export const Signup = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-   dispatch(signupUser({  name: user.name,
-        surname: user.surname,
-        email: user.email,
-        phone: user.phone,
-        password: user.password,
-        confirmPassword: user.confirmPassword, }));
-   
-    navigate('/login')
+   try
+    { dispatch(signupUser(inputs.inputs)).unwrap();
+      navigate('/login');
+    } catch (err)
+     {console.error("Failed to sign up:", err);}
   };
 
   return (
@@ -58,9 +47,10 @@ export const Signup = () => {
             type="text"
             id="firstName"
             name="firstName"
-            value={user.name}
+            value={inputs.inputs.name}
             placeholder="First name"
-            onChange={(e) =>dispatch(updateNameInput(e.target.value))}
+            onChange={(e) =>dispatch(updateRegister({name: e.target.value}))
+          }
           />
         </div>
 
@@ -70,9 +60,9 @@ export const Signup = () => {
             type="text"
             id="surname"
             name="surname"
-            value={user.surname}
+            value={inputs.inputs.surname}
             placeholder="Surname"
-            onChange={(e) =>dispatch(updateSurnameInput(e.target.value))}
+            onChange={(e) =>dispatch(updateRegister({surname:e.target.value}))}
           />
         </div>
 
@@ -82,9 +72,9 @@ export const Signup = () => {
             type="email"
             id="email"
             name="email"
-            value={user.email}
+            value={inputs.inputs.email}
             placeholder="Email address"
-            onChange={(e) =>dispatch(updateEmailInput(e.target.value))}
+            onChange={(e) =>dispatch(updateRegister({email:e.target.value}))}
           />
         </div>
 
@@ -94,9 +84,9 @@ export const Signup = () => {
             type="tel"
             id="phone"
             name="phone"
-            value={user.phone}
+            value={inputs.inputs.phone}
             placeholder="Phone number"
-            onChange={(e) =>dispatch(updatePhoneInput(e.target.value))}
+            onChange={(e) =>dispatch(updateRegister({phone:e.target.value}))}
           />
         </div>
 
@@ -106,9 +96,9 @@ export const Signup = () => {
             type="password"
             id="password"
             name="password"
-            value={user.password}
+            value={inputs.inputs.password}
             placeholder="Password"
-            onChange={(e) =>dispatch(updatePasswordInput(e.target.value))}
+            onChange={(e) =>dispatch(updateRegister({password:e.target.value}))}
           />
           <FiEyeOff className={style.eyeIcon} />
         </div>
@@ -119,9 +109,9 @@ export const Signup = () => {
             type="password"
             id="confirmPassword"
             name="confirmPassword"
-            value={user.confirmPassword}
+            value={inputs.inputs.confirmPassword}
             placeholder="Confirm password"
-            onChange={(e) =>dispatch(updateConfirmPasswordInput(e.target.value))}
+            onChange={(e) =>dispatch(updateRegister({confirmPassword:e.target.value}))}
           />
           <FiEyeOff className={style.eyeIcon} />
         </div>
