@@ -67,17 +67,17 @@ export const signupSlice = createSlice({
          state.error = null;
          state.success = false;
 })
-.addCase(signupUser.fulfilled, (state) => {
-state.loading = false;
-state.success = true;
+       .addCase(signupUser.fulfilled, (state) => {
+       state.loading = false;
+       state.success = true;
 })
-.addCase(signupUser.rejected, (state, action) => {
-state.loading = false;
-state.error = action.payload as string;
-state.success = false;
+      .addCase(signupUser.rejected, (state, action) => {
+       state.loading = false;
+       state.error = action.payload as string;
+       state.success = false;
 });
 },
-}); 
+});
 
 export const { updateRegister, clearForm } = signupSlice.actions;
 export default signupSlice.reducer;

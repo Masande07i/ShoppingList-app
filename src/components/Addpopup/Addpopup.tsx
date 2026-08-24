@@ -1,101 +1,97 @@
-import styles from './Addpopup.module.css'
-import { Text } from '../Text/Text'
-import { Button } from '../Button/Button'
-import { FiUpload } from 'react-icons/fi'
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../Store/Store";
+import {updateInputs,addShoppingList} from "../../features/ShoppingListSlice";
+import { Button } from "../Button/Button";
+import { Text } from "../Text/Text";
+
+import styles from './Addpopup.module.css';
 
 export const AddItem = () => {
+
+  const shoppingListState = useSelector((state: RootState) => state.shoppingList);
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!shoppingListState.inputs.name || !shoppingListState.inputs.category
+    ) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+
+    dispatch(
+      addShoppingList({
+        name: shoppingListState.inputs.name,
+        category: shoppingListState.inputs.category,
+        notes: shoppingListState.inputs.notes,
+      })
+    );
+  };
+
   return (
     <section className={styles.container}>
+
       <div className={styles.card}>
 
-        <Text variant="h1" className={styles.title}>Add New Item</Text>
+        <Text variant="h1"className={styles.title}>
+          Add New Item
+        </Text>
 
-        <div className={styles.form}>
+        <form onSubmit={handleSubmit}className={styles.form}>
+
           <div className={styles.formGroup}>
-            <Text variant="span" className={styles.label}>
-              Item Name <span>*</span>
+            <Text variant="span"className={styles.label}>
+              Item Name <span >*</span>
             </Text>
 
-             <input
+            <input
               id="itemName"
               type="text"
               className={styles.input}
+              placeholder="Enter item name"
+              value={shoppingListState.inputs.name}
+              onChange={(e) =>dispatch(updateInputs({name: e.target.value}))}
+              required
             />
           </div>
+
 
           <div className={styles.formGroup}>
             <Text variant="span" className={styles.label}>
               Category <span>*</span>
             </Text>
-           <input
+            <input
               id="category"
               type="text"
               className={styles.input}
+              placeholder="Category"
+              value={shoppingListState.inputs.category}
+              onChange={(e) =>dispatch(updateInputs({category: e.target.value}))}
+              required
             />
           </div>
 
           <div className={styles.formGroup}>
-            <Text variant="span" className={styles.label}>
-              Quantity<span>*</span>
+            <Text variant="span"className={styles.label}>
+              Notes
+              <span className={styles.optional}>{" "} (optional)</span>
             </Text>
 
-            <div className={styles.quantity}>
-              <Button
-                label="−"
-                className={styles.quantityButton}
-              />
-
-              <div className={styles.quantityValue}>
-                1
-              </div>
-
-              <Button
-                label="+"
-                className={styles.quantityButton}
-              />
-            </div>
-          </div>
-
-          <div className={styles.formGroup}>
-            <Text variant="span" className={styles.label}>
-              Notes<span className={styles.optional}> (optional)</span>
-            </Text>
-
-           <input
+            <input
               id="notes"
               type="text"
               className={styles.input}
+              placeholder="Add optional notes"
+              value={shoppingListState.inputs.notes}
+              onChange={(e) =>dispatch(updateInputs({notes: e.target.value}))}
             />
           </div>
-
-          <div className={styles.formGroup}>
-            <Text variant="span" className={styles.label}>
-              Image<span className={styles.optional}> (optional)</span>
-            </Text>
-
-            <div className={styles.uploadBox}>
-              <FiUpload className={styles.uploadIcon} />
-
-              <Text variant="span" className={styles.uploadText}>
-                Click to upload picture
-              </Text>
-            </div>
-          </div>
-
-          <div className={styles.buttons}>
-            <Button
-              label="CANCEL"
-              className={styles.actionButton}
-            />
-
-            <Button
-              label="SAVE"
-              className={styles.actionButton}
-            />
-          </div>
-
-        </div>
+          <Button type="submit" label="SAVE"className={styles.actionButton}/>
+          <Button type="submit" label="CANCEL"className={styles.actionButton}/>
+        </form>
       </div>
     </section>
-  )
-}
+  );
+};

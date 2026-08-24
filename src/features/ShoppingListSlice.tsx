@@ -1,52 +1,50 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface ShoppingItem {
-  id?: number;
+  id?: string;
   name: string;
-  quantity: number;
   category: string;
-  completed: boolean;
+  notes?: string;
 }
 
-interface ShoppingListData {
-  name: string;
-  items: ShoppingItem[];
-}
-
-interface ShoppingListState extends ShoppingListData {
-  shoppingLists: ShoppingListData[];
+interface ShoppingListState {
+  inputs: ShoppingItem;
+  shoppingLists: ShoppingItem[];
   loading: boolean;
   error: string | null;
   success: boolean;
 }
 
 const initialState: ShoppingListState = {
-  name: "",
-  items: [],
+  inputs: {
+    name: '',
+    category: '',
+    notes: '',
+  },
   shoppingLists: [],
   loading: false,
   error: null,
   success: false,
 };
 
-
-
 export const addShoppingList = createAsyncThunk(
-  "shoppingList/addShoppingList",
-  async (shoppingListData: ShoppingListData, thunkAPI) => {
+  'shoppingList/addShoppingList',
+
+  async (shoppingItem: ShoppingItem, thunkAPI) => {
     try {
-      const response = await fetch("http://localhost:3000/lists",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(shoppingListData),
-        }
-      );
+      const response = await fetch('http://localhost:3000/lists', {
+        method: 'POST',
+
+        headers: {
+          'Content-Type': 'application/json',
+        },
+
+        body: JSON.stringify(shoppingItem),
+      });
 
       if (!response.ok) {
-        throw new Error("Failed to create shopping list");
+        throw new Error('Failed to create shopping item');
       }
 
       return await response.json();
@@ -55,38 +53,30 @@ export const addShoppingList = createAsyncThunk(
       return thunkAPI.rejectWithValue(
         error instanceof Error
           ? error.message
-          : "Something went wrong"
+          : 'Something went wrong'
       );
     }
   }
 );
 
-
 const shoppingListSlice = createSlice({
-  name: "shoppingList",
+  name: 'shoppingList',
   initialState,
-
   reducers: {
-
-    updateListNameInput: (state, action) => {
-      state.name = action.payload;
-    },
-
-    addItem: (state, action) => {
-      state.items.push(action.payload);
-    },
-
-    removeItem: (state, action) => {
-      state.items = state.items.filter(
-        (item) => item.id !== action.payload
-      );
+    updateInputs: (state,action: PayloadAction<Partial<ShoppingItem>>) => {
+      state.inputs = {
+        ...state.inputs,
+        ...action.payload,
+      };
     },
 
     clearForm: (state) => {
-      state.name = "";
-      state.items = [];
+      state.inputs = {
+        name: '',
+        category: '',
+        notes: '',
+      };
     },
-
   },
 
   extraReducers: (builder) => {
@@ -102,20 +92,21 @@ const shoppingListSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.shoppingLists.push(action.payload);
-        state.name = "";
-        state.items = [];
+        state.inputs = {
+          name: '',
+          category: '',
+          notes: '',
+        };
       })
-
       .addCase(addShoppingList.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload as string;
         state.success = false;
-      });
+
+        state.error =
+          (action.payload as string) ||'Failed to add shopping item';});
   },
 });
 
-
-export const {updateListNameInput,addItem,removeItem,clearForm} = shoppingListSlice.actions;
-
+export const {updateInputs,clearForm} = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;

@@ -17,8 +17,7 @@ const initialState: LoginState = {
 
 export const loginUser = createAsyncThunk("login/loginUser", async (loginData:Pick<UserData, "email" | "password" >,thunkAPI) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/users?email=${loginData.email }`,
+      const response = await fetch(`http://localhost:3000/users?email=${loginData.email }`,
         {
           method: "GET",
         }
