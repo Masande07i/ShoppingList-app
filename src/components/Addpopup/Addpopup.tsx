@@ -18,11 +18,6 @@ export const AddItem = ({ onClose }: AddItemProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!user) {
-     alert("You must be logged in.");
-    return;
-    }
-
     if (
       !shoppingListState.inputs.name ||!shoppingListState.inputs.category
     ) {
