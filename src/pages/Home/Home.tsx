@@ -1,21 +1,19 @@
-import {
-  FiShoppingBag,
-  FiHome,
-  FiShoppingCart,
-  FiUser,
-  FiLogOut
-} from "react-icons/fi";
+import {FiShoppingBag,FiHome,FiShoppingCart,FiUser,FiLogOut} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { Text } from "../../components/Text/Text";
 import { Button } from "../../components/Button/Button";
 import { AddList } from "../../components/Addpopup/AddList";
-import { useSelector } from "react-redux";
 import type { RootState } from "../../Store/Store";
 import style from "./Home.module.css";
+import { fetchShoppingLists } from "../../features/ShoppingListSlice";
+import { useDispatch,useSelector } from "react-redux";
+import type { AppDispatch } from "../../Store/Store";
+import { logout } from "../../features/LoginSlice";
 
 export const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
   const { shoppingLists } = useSelector(
     (state: RootState) => state.shoppingList
@@ -24,6 +22,10 @@ export const Home = () => {
   const user = useSelector(
     (state: RootState) => state.login.user
   );
+
+  useEffect(() => {
+    dispatch(fetchShoppingLists());
+  }, [dispatch]);
 
   const userLists = shoppingLists.filter(
     (list) =>
@@ -70,12 +72,15 @@ export const Home = () => {
         </nav>
 
         <button
-          className={style.logout}
-          onClick={() => navigate("/login")}
-        >
-          <FiLogOut className={style.logoutIcon} />
-          <Text variant="p">Logout</Text>
-        </button>
+           className={style.logout}
+            onClick={() => {
+              dispatch(logout());
+              navigate("/login");
+                }}
+          >
+  <FiLogOut className={style.logoutIcon} />
+  <Text variant="p">Logout</Text>
+</button>
       </aside>
 
       <main className={style.mainContent}>

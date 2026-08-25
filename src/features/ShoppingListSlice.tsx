@@ -34,13 +34,16 @@ export const addShoppingList = createAsyncThunk(
   "shoppingList/addShoppingList",
   async (shoppingList: ShoppingList, thunkAPI) => {
     try {
-      const response = await fetch("http://localhost:3000/lists", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(shoppingList)
-      });
+      const response = await fetch(
+        "http://localhost:3000/lists",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(shoppingList)
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to create shopping list");
@@ -57,9 +60,33 @@ export const addShoppingList = createAsyncThunk(
   }
 );
 
+export const fetchShoppingLists = createAsyncThunk(
+  "shoppingList/fetchShoppingLists",
+  async (_, thunkAPI) => {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/lists"
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch shopping lists");
+      }
+
+      return await response.json();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong"
+      );
+    }
+  }
+);
+
 const shoppingListSlice = createSlice({
   name: "shoppingList",
   initialState,
+
   reducers: {
     updateInputs: (
       state,
@@ -88,9 +115,11 @@ const shoppingListSlice = createSlice({
         state.error = null;
         state.success = false;
       })
+
       .addCase(addShoppingList.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
+
         state.shoppingLists.push(action.payload);
 
         state.inputs = {
@@ -100,12 +129,30 @@ const shoppingListSlice = createSlice({
           userId: ""
         };
       })
+
       .addCase(addShoppingList.rejected, (state, action) => {
         state.loading = false;
         state.success = false;
         state.error =
           (action.payload as string) ||
           "Failed to add shopping list";
+      })
+
+      .addCase(fetchShoppingLists.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+
+      .addCase(fetchShoppingLists.fulfilled, (state, action) => {
+        state.loading = false;
+        state.shoppingLists = action.payload;
+      })
+
+      .addCase(fetchShoppingLists.rejected, (state, action) => {
+        state.loading = false;
+        state.error =
+          (action.payload as string) ||
+          "Failed to fetch shopping lists";
       });
   }
 });
