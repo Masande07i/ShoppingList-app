@@ -62,8 +62,6 @@
 .cancelButton,
 .saveButton {
   width: 150px;
-  background: #ff3f9f;
-  color: black;
   border: none;
   border-radius: 8px;
   height: 40px;

@@ -96,8 +96,8 @@ export const AddItem = ({ onClose }: AddItemProps) => {
           </div>
 
           <div className={styles.actions}>
-            <Button type="button" label="CANCEL"className={styles.cancelButton} onClick={onClose}/>
             <Button type="submit" label="SAVE"className={styles.saveButton}/>
+            <Button type="button" label="CANCEL"className={styles.cancelButton} onClick={onClose}/>
           </div>
 
         </form>

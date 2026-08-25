@@ -5,9 +5,15 @@ import { Text } from "../../components/Text/Text";
 import { Button } from "../../components/Button/Button";
 import { AddItem } from "../../components/Addpopup/Addpopup";
 import style from "./Home.module.css";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../Store/Store";
+
+
 
 export const Home = () => {
   const navigate = useNavigate();
+
+  const {shoppingLists} = useSelector((state: RootState)=>state.shoppingList)
 
   const [showAddItem, setShowAddItem] = useState(false);
 
@@ -52,9 +58,7 @@ export const Home = () => {
 
         </nav>
 
-        <button
-          className={style.logout}
-          onClick={() => navigate("/login")}
+        <button className={style.logout}onClick={() => navigate("/login")}
         >
           <FiLogOut className={style.logoutIcon} />
           <Text variant="p">Logout</Text>
@@ -76,17 +80,35 @@ export const Home = () => {
             </Text>
           </div>
 
-          <Button
-            label="+ Add New List"
-            className={style.addButton}
-            onClick={() => setShowAddItem(true)}
-          />
-
+          <Button label="+ Add New List" className={style.addButton} onClick={() => setShowAddItem(true)}/>
         </div>
 
-      </main>
 
-      {/* POPUP */}
+        
+  <div className={style.listContainer}>
+    {shoppingLists.map((list) => (
+      <div className={style.listCard} key={list.id}>
+
+        <Text variant="h2">
+          {list.name}
+        </Text>
+
+        <Text variant="p">
+          Category: {list.category}
+        </Text>
+
+        {list.notes && (
+          <Text variant="p">
+            {list.notes}
+          </Text>
+        )}
+
+      </div>
+    ))}
+      </div>
+   
+
+      </main>
       {showAddItem && (
         <div className={style.popup}>
           <AddItem onClose={() => setShowAddItem(false)} />
