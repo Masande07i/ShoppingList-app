@@ -3,6 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface ShoppingItem {
   id?: string;
+  userId:string
   name: string;
   category: string;
   notes?: string;
@@ -21,6 +22,7 @@ const initialState: ShoppingListState = {
     name: '',
     category: '',
     notes: '',
+    userId: ''
   },
   shoppingLists: [],
   loading: false,
@@ -68,6 +70,7 @@ const shoppingListSlice = createSlice({
         name: '',
         category: '',
         notes: '',
+        userId: '',
       };
     },
   },
@@ -89,6 +92,7 @@ const shoppingListSlice = createSlice({
           name: '',
           category: '',
           notes: '',
+          userId: '',
         };
       })
       .addCase(addShoppingList.rejected, (state, action) => {

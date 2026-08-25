@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit'; 
 
 export interface UserData {
+  id: string
   name: string;
   surname: string;
   email: string;
@@ -19,12 +20,13 @@ interface SignupState {
 
 const initialState: SignupState = {
   inputs: {
-  name: '',
-  surname: '',
-  email: '',
-  phone: '',
-  password: '',
-  confirmPassword: '',
+   id:'',
+   name: '',
+   surname: '',
+   email: '',
+   phone: '',
+   password: '',
+   confirmPassword: '',
 },
   loading: false,
   error: null,

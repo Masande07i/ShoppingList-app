@@ -13,7 +13,9 @@ import type { RootState } from "../../Store/Store";
 export const Home = () => {
   const navigate = useNavigate();
 
-  const {shoppingLists} = useSelector((state: RootState)=>state.shoppingList)
+  const {shoppingLists} = useSelector((state: RootState)=>state.shoppingList);
+  const user = useSelector((state: RootState) => state.login.user);
+  const userLists = shoppingLists.filter((list) => String(list.userId) === String(user?.id));
 
   const [showAddItem, setShowAddItem] = useState(false);
 
@@ -86,7 +88,7 @@ export const Home = () => {
 
         
   <div className={style.listContainer}>
-    {shoppingLists.map((list) => (
+    {userLists.map((list) => (
       <div className={style.listCard} key={list.id}>
 
         <Text variant="h2">

@@ -12,11 +12,16 @@ interface AddItemProps {
 export const AddItem = ({ onClose }: AddItemProps) => {
 
   const shoppingListState = useSelector((state: RootState) => state.shoppingList);
-
+  const user = useSelector((state: RootState) => state.login.user);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!user) {
+     alert("You must be logged in.");
+    return;
+    }
 
     if (
       !shoppingListState.inputs.name ||!shoppingListState.inputs.category
@@ -24,12 +29,18 @@ export const AddItem = ({ onClose }: AddItemProps) => {
       alert("Please fill out all required fields.");
       return;
     }
+    if (!user) {
+     alert("You must be logged in.");
+    return;
+    }
+
 
     dispatch(
       addShoppingList({
         name: shoppingListState.inputs.name,
         category: shoppingListState.inputs.category,
         notes: shoppingListState.inputs.notes,
+       userId: user.id,
       })
     );
 
