@@ -1,29 +1,40 @@
-import { FiShoppingBag, FiHome, FiShoppingCart, FiUser, FiLogOut } from "react-icons/fi";
+import {
+  FiShoppingBag,
+  FiHome,
+  FiShoppingCart,
+  FiUser,
+  FiLogOut
+} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Text } from "../../components/Text/Text";
 import { Button } from "../../components/Button/Button";
-import { AddItem } from "../../components/Addpopup/Addpopup";
-import style from "./Home.module.css";
+import { AddList } from "../../components/Addpopup/AddList";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../Store/Store";
-
-
+import style from "./Home.module.css";
 
 export const Home = () => {
   const navigate = useNavigate();
 
-  const {shoppingLists} = useSelector((state: RootState)=>state.shoppingList);
-  const user = useSelector((state: RootState) => state.login.user);
-  const userLists = shoppingLists.filter((list) => String(list.userId) === String(user?.id));
+  const { shoppingLists } = useSelector(
+    (state: RootState) => state.shoppingList
+  );
 
-  const [showAddItem, setShowAddItem] = useState(false);
+  const user = useSelector(
+    (state: RootState) => state.login.user
+  );
+
+  const userLists = shoppingLists.filter(
+    (list) =>
+      String(list.userId) === String(user?.id)
+  );
+
+  const [showAddList, setShowAddList] = useState(false);
 
   return (
     <section className={style.home}>
-
       <aside className={style.sidebar}>
-
         <div className={style.logo}>
           <FiShoppingBag className={style.logoIcon} />
 
@@ -33,7 +44,6 @@ export const Home = () => {
         </div>
 
         <nav className={style.navigation}>
-
           <button
             className={style.navItem}
             onClick={() => navigate("/home")}
@@ -44,7 +54,7 @@ export const Home = () => {
 
           <button
             className={style.navItem}
-            onClick={() => navigate("/my-list")}
+            onClick={() => navigate("/home")}
           >
             <FiShoppingCart className={style.navIcon} />
             <Text variant="p">My List</Text>
@@ -57,66 +67,76 @@ export const Home = () => {
             <FiUser className={style.navIcon} />
             <Text variant="p">Profile</Text>
           </button>
-
         </nav>
 
-        <button className={style.logout}onClick={() => navigate("/login")}
+        <button
+          className={style.logout}
+          onClick={() => navigate("/login")}
         >
           <FiLogOut className={style.logoutIcon} />
           <Text variant="p">Logout</Text>
         </button>
-
       </aside>
 
       <main className={style.mainContent}>
-
         <div className={style.header}>
-
           <div>
-            <Text variant="h1" className={style.heading}>
+            <Text
+              variant="h1"
+              className={style.heading}
+            >
               My Shopping List
             </Text>
 
-            <Text variant="p" className={style.description}>
+            <Text
+              variant="p"
+              className={style.description}
+            >
               All your lists in one place
             </Text>
           </div>
 
-          <Button label="+ Add New List" className={style.addButton} onClick={() => setShowAddItem(true)}/>
+          <Button
+            label="+ Add New List"
+            className={style.addButton}
+            onClick={() => setShowAddList(true)}
+          />
         </div>
 
+        <div className={style.listContainer}>
+          {userLists.map((list) => (
+            <div
+              className={style.listCard}
+              key={list.id}
+              onClick={() =>
+                navigate(`/shopping-list/${list.id}`)
+              }
+            >
+              <Text variant="h2">
+                {list.name}
+              </Text>
 
-        
-  <div className={style.listContainer}>
-    {userLists.map((list) => (
-      <div className={style.listCard} key={list.id}>
+              <Text variant="p">
+                Category: {list.category}
+              </Text>
 
-        <Text variant="h2">
-          {list.name}
-        </Text>
-
-        <Text variant="p">
-          Category: {list.category}
-        </Text>
-
-        {list.notes && (
-          <Text variant="p">
-            {list.notes}
-          </Text>
-        )}
-
-      </div>
-    ))}
-      </div>
-   
-
+              {list.notes && (
+                <Text variant="p">
+                  {list.notes}
+                </Text>
+              )}
+            </div>
+          ))}
+        </div>
       </main>
-      {showAddItem && (
+
+      {showAddList && (
         <div className={style.popup}>
-          <AddItem onClose={() => setShowAddItem(false)} />
+          <AddList
+            onClose={() => setShowAddList(false)}
+          />
         </div>
       )}
-
     </section>
   );
 };

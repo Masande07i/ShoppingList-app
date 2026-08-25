@@ -1,27 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../Store/Store";
 import {
-  updateItemInputs,
-  clearItemForm,
-  addShoppingItem
-} from "../../features/ShoppingItemSlice";
+  updateInputs,
+  clearForm,
+  addShoppingList
+} from "../../features/ShoppingListSlice";
 import { Button } from "../Button/Button";
 import { Text } from "../Text/Text";
 import styles from "./Addpopup.module.css";
 
-interface AddItemProps {
+interface AddListProps {
   onClose: () => void;
-  listId: string;
 }
 
-export const AddItem = ({
-  onClose,
-  listId
-}: AddItemProps) => {
+export const AddList = ({ onClose }: AddListProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const shoppingItemState = useSelector(
-    (state: RootState) => state.shoppingItem
+  const shoppingListState = useSelector(
+    (state: RootState) => state.shoppingList
   );
 
   const user = useSelector(
@@ -34,7 +30,7 @@ export const AddItem = ({
     e.preventDefault();
 
     const { name, category, notes } =
-      shoppingItemState.inputs;
+      shoppingListState.inputs;
 
     if (!name || !category) {
       alert("Please fill out all required fields.");
@@ -48,19 +44,18 @@ export const AddItem = ({
 
     try {
       await dispatch(
-        addShoppingItem({
+        addShoppingList({
           name,
           category,
           notes,
-          userId: user.id,
-          listId
+          userId: user.id
         })
       ).unwrap();
 
-      dispatch(clearItemForm());
+      dispatch(clearForm());
       onClose();
     } catch (error) {
-      alert("Failed to add item.");
+      alert("Failed to add shopping list.");
     }
   };
 
@@ -68,7 +63,7 @@ export const AddItem = ({
     <section className={styles.container}>
       <div className={styles.card}>
         <Text variant="h1" className={styles.title}>
-          Add New Item
+          Add New List
         </Text>
 
         <form
@@ -80,16 +75,16 @@ export const AddItem = ({
               variant="span"
               className={styles.label}
             >
-              Item Name <span>*</span>
+              List Name <span>*</span>
             </Text>
 
             <input
               type="text"
               className={styles.input}
-              value={shoppingItemState.inputs.name}
+              value={shoppingListState.inputs.name}
               onChange={(e) =>
                 dispatch(
-                  updateItemInputs({
+                  updateInputs({
                     name: e.target.value
                   })
                 )
@@ -109,10 +104,10 @@ export const AddItem = ({
             <input
               type="text"
               className={styles.input}
-              value={shoppingItemState.inputs.category}
+              value={shoppingListState.inputs.category}
               onChange={(e) =>
                 dispatch(
-                  updateItemInputs({
+                  updateInputs({
                     category: e.target.value
                   })
                 )
@@ -135,10 +130,10 @@ export const AddItem = ({
             <input
               type="text"
               className={styles.input}
-              value={shoppingItemState.inputs.notes}
+              value={shoppingListState.inputs.notes}
               onChange={(e) =>
                 dispatch(
-                  updateItemInputs({
+                  updateInputs({
                     notes: e.target.value
                   })
                 )

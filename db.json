@@ -30,13 +30,37 @@
   ],
   "lists": [
     {
-      "name": "rwwwwwwwwwwwrggggggggg",
-      "category": "gtrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrgw4t",
-      "notes": "ttttttttttttttttttrwhy5eeeeeeeeeeeeeh",
-      "userId": "yCZF8_en1UI",
-      "id": "Ldh0SrySCDs"
+      "name": "ndumoo",
+      "category": "birthday",
+      "notes": "",
+      "userId": "n6zZO8azrlc",
+      "id": "yB6ZTujw0Bc"
+    },
+    {
+      "name": "mine",
+      "category": "hhhu",
+      "notes": "",
+      "userId": "n6zZO8azrlc",
+      "id": "XUK1WJiqf5c"
     }
   ],
-  "items": [],
+  "items": [
+    {
+      "name": "ggygh",
+      "category": "bhhbh",
+      "notes": "bhhh",
+      "userId": "n6zZO8azrlc",
+      "listId": "yB6ZTujw0Bc",
+      "id": "iM5QmF_hd7k"
+    },
+    {
+      "name": "gf",
+      "category": "hjuh",
+      "notes": "gyg",
+      "userId": "n6zZO8azrlc",
+      "listId": "XUK1WJiqf5c",
+      "id": "gpS_rybAFKY"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
