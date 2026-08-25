@@ -1,0 +1,85 @@
+.page {
+  min-height: 100vh;
+  padding: 25px 40px;
+  background: var(--background);
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.backButton {
+  border: none;
+  background: transparent;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.title {
+  color: #ff3fa4;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.headerActions {
+  margin-left: auto;
+  display: flex;
+  gap: 35px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  margin: 25px 15px;
+}
+
+.toolbar select {
+  width: 190px;
+  height: 35px;
+  border: none;
+  padding: 0 10px;
+}
+
+.addButton {
+  margin-left: auto;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 22px;
+  background: #ff3fa4;
+  color: white;
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+  background: #f2c8e9;
+  overflow-x: auto;
+}
+
+.tableHeader,
+.row {
+  display: grid;
+  grid-template-columns:
+    1.2fr
+    1.2fr
+    1fr
+    1.5fr
+    1fr
+    1.3fr
+    1fr;
+
+  align-items: center;
+  padding: 12px 16px;
+}
+
+.tableHeader {
+  border-bottom: 1px solid #444;
+}
+
+.row {
+  min-height: 32px;
+}
