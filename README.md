@@ -1,75 +1,36 @@
-# React + TypeScript + Vite
+# SHOPPING-LIST
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Project picture
 
-Currently, two official plugins are available:
+<img src="https://socialify.git.ci/Masande07i/ShoppingList-app/image?language=1&owner=1&name=1&stargazers=1&theme=Light" alt="ShoppingList-app" width="640" height="320" />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+# Project Description
+```
+The Shopping List App is a web application that allows users to create and manage their personal shopping lists. Users can register and log in to their accounts, create shopping lists, add items to their lists, and manage those items.The application allows users to add, edit, and delete shopping items while keeping each user's shopping lists and items separate from other users. Users can also manage their profile information and login details.The project was built to demonstrate the use of React, TypeScript, Redux Toolkit, and JSON Server to create a responsive application with centralized state management and CRUD functionality.```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+# Installation and set-up
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+``` bash
+Clone the repository:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+git clone https://github.com/Masande07i/ShoppingList-app.git
+cd ShoppingList
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Run App 
+``` bash 
+npm install
+# or 
+yarn install
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+npm run dev
 ```
+
+# Tech Stack
+## 1. React
+## 2. Typescript
+## 3. Redux Toolkit
+## 4. JSON Server
+## 5. React Router
