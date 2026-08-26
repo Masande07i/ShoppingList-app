@@ -82,6 +82,31 @@ export const fetchShoppingLists = createAsyncThunk(
     }
   }
 );
+export const deleteShoppingList = createAsyncThunk(
+  "shoppingList/deleteShoppingList",
+  async (id: string, thunkAPI) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/lists/${id}`,
+        {
+          method: "DELETE"
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete shopping item");
+      }
+
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong"
+      );
+    }
+  }
+);
 
 const shoppingListSlice = createSlice({
   name: "shoppingList",
@@ -153,7 +178,24 @@ const shoppingListSlice = createSlice({
         state.error =
           (action.payload as string) ||
           "Failed to fetch shopping lists";
-      });
+      })
+       .addCase(deleteShoppingList.pending, (state) => {
+             state.loading = true;
+             state.error = null;
+             })
+      
+            .addCase(deleteShoppingList.fulfilled, (state, action) => {
+             state.loading = false;
+             state.success = true;
+             state.shoppingLists = state.shoppingLists.filter( (item) => item.id !== action.payload);
+             })
+            .addCase(deleteShoppingList.rejected, (state, action) => {
+             state.loading = false;
+             state.success = false;
+             state.error =
+             (action.payload as string) ||
+            "Failed to delete shopping item";
+           })
   }
 });
 

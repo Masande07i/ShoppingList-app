@@ -6,7 +6,7 @@ import { Button } from "../../components/Button/Button";
 import { AddList } from "../../components/Addpopup/AddList";
 import type { RootState } from "../../Store/Store";
 import style from "./Home.module.css";
-import { fetchShoppingLists } from "../../features/ShoppingListSlice";
+import { fetchShoppingLists,deleteShoppingList} from "../../features/ShoppingListSlice";
 import { useDispatch,useSelector } from "react-redux";
 import type { AppDispatch } from "../../Store/Store";
 import { logout } from "../../features/LoginSlice";
@@ -112,7 +112,8 @@ export const Home = () => {
           {userLists.map((list) => (
             <div
               className={style.listCard}
-              key={list.id}
+              key={list.id}>
+              <div
               onClick={() =>
                 navigate(`/shopping-list/${list.id}`)
               }
@@ -131,6 +132,12 @@ export const Home = () => {
                 </Text>
               )}
             </div>
+            <button>Edit</button>
+            <button onClick={()=> {
+              if (list.id){
+                dispatch(deleteShoppingList(list.id));
+              }}}>Delete</button>
+          </div>
           ))}
         </div>
       </main>
