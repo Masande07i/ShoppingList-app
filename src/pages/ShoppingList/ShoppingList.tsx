@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../Store/Store";
 import { fetchShoppingItems,deleteShoppingItem } from "../../features/ShoppingItemSlice";
-import { AddItem } from "../../components/Addpopup/Addpopup";
+import { AddItem } from "../../components/Addpopup/AddItem";
 import { Text } from "../../components/Text/Text";
 import styles from "./ShoppingList.module.css";
 import { FiArrowLeft } from "react-icons/fi";

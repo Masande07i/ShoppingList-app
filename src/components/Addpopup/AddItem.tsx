@@ -1,10 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../Store/Store";
-import {
-  updateItemInputs,
-  clearItemForm,
-  addShoppingItem
-} from "../../features/ShoppingItemSlice";
+import {updateItemInputs,clearItemForm,addShoppingItem,updateShoppingItem} from "../../features/ShoppingItemSlice";
 import { Button } from "../Button/Button";
 import { Text } from "../Text/Text";
 import styles from "./Addpopup.module.css";
@@ -14,23 +10,14 @@ interface AddItemProps {
   listId: string;
 }
 
-export const AddItem = ({
-  onClose,
-  listId
-}: AddItemProps) => {
+export const AddItem = ({onClose,listId}: AddItemProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const shoppingItemState = useSelector(
-    (state: RootState) => state.shoppingItem
-  );
+  const shoppingItemState = useSelector((state: RootState) => state.shoppingItem);
+  const user = useSelector((state: RootState) => state.login.user);
+  const editingItem = useSelector((state: RootState) => state.shoppingItem);
 
-  const user = useSelector(
-    (state: RootState) => state.login.user
-  );
-
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { name, category, notes } =
@@ -47,6 +34,15 @@ export const AddItem = ({
     }
 
     try {
+      if(editingItem){
+        await dispatch(updateItemInputs({
+         ... shoppingItemState.inputs,
+         id: editingItem.inputs.id,
+         userId: String(user.id),
+         listId
+        }))
+      }
+      
       await dispatch(
         addShoppingItem({
           name,
@@ -68,12 +64,10 @@ export const AddItem = ({
     <section className={styles.container}>
       <div className={styles.card}>
         <Text variant="h1" className={styles.title}>
-          Add New Item
+         {editingItem ?"Edit Item": "Add New Item" } 
         </Text>
 
-        <form
-          onSubmit={handleSubmit}
-          className={styles.form}
+        <form onSubmit={handleSubmit}className={styles.form}
         >
           <div className={styles.formGroup}>
             <Text
@@ -87,13 +81,7 @@ export const AddItem = ({
               type="text"
               className={styles.input}
               value={shoppingItemState.inputs.name}
-              onChange={(e) =>
-                dispatch(
-                  updateItemInputs({
-                    name: e.target.value
-                  })
-                )
-              }
+              onChange={(e) =>dispatch(updateItemInputs({name: e.target.value}))}
               required
             />
           </div>
@@ -110,13 +98,7 @@ export const AddItem = ({
               type="text"
               className={styles.input}
               value={shoppingItemState.inputs.category}
-              onChange={(e) =>
-                dispatch(
-                  updateItemInputs({
-                    category: e.target.value
-                  })
-                )
-              }
+              onChange={(e) =>dispatch(updateItemInputs({category: e.target.value}))}
               required
             />
           </div>
@@ -148,7 +130,7 @@ export const AddItem = ({
 
           <div className={styles.actions}>
             <Button type="submit"
-              label="SAVE"
+              label={editingItem?"UPDATE": "SAVE"}
               className={styles.saveButton}
             />
 
@@ -156,7 +138,10 @@ export const AddItem = ({
               type="button"
               label="CANCEL"
               className={styles.cancelButton}
-              onClick={onClose}
+              onClick={()=>{
+                  dispatch(clearItemForm());
+                  onClose();
+              }}
             />
           </div>
         </form>

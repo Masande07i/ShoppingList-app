@@ -87,9 +87,7 @@ export const updateShoppingList = createAsyncThunk("shoppingList/updateShoppingL
       const response = await fetch( `http://localhost:3000/lists/${shoppingList.id}`,
         {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json"
-          },
+          headers: {"Content-Type": "application/json"},
           body: JSON.stringify({
             name: shoppingList.name,
             category: shoppingList.category,

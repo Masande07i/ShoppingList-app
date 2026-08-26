@@ -84,6 +84,14 @@
       "userId": "n6zZO8azrlc",
       "listId": null,
       "id": "Qz1PlPIvBRQ"
+    },
+    {
+      "name": "frrfw",
+      "category": "rwr",
+      "notes": "rwf",
+      "userId": "n6zZO8azrlc",
+      "listId": "tIy8zL5ZFEU",
+      "id": "Kvm0yQ7aDh8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
