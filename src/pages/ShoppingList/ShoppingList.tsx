@@ -15,13 +15,8 @@ export const ShoppingList = () => {
 
   const [showAddItem, setShowAddItem] = useState(false);
 
-  const items = useSelector(
-    (state: RootState) => state.shoppingItem.items
-  );
-
-  const loading = useSelector(
-    (state: RootState) => state.shoppingItem.loading
-  );
+  const items = useSelector((state: RootState) => state.shoppingItem.items );
+  const loading = useSelector((state: RootState) => state.shoppingItem.loading);
 
   useEffect(() => {
     if (id) {
@@ -85,24 +80,10 @@ export const ShoppingList = () => {
 
         {!loading &&
           items.map((item) => (
-            <div
-              className={styles.row}
-              key={item.id}
-            >
-              <Text variant="p">
-                {item.name}
-              </Text>
-
-              <Text variant="p">
-                {item.category}
-              </Text>
-
-              <Text variant="p">
-                {item.notes || "-"}
-              </Text>
-
-
-          
+            <div className={styles.row}key={item.id}>
+              <Text variant="p">{item.name}</Text>
+              <Text variant="p">{item.category}</Text>
+              <Text variant="p">{item.notes || "-"}</Text>
 
               <div>
                 <button>Edit</button>

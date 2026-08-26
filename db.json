@@ -39,23 +39,9 @@
   ],
   "lists": [
     {
-      "name": "minesa",
-      "category": "hhhu",
-      "notes": "",
-      "userId": "n6zZO8azrlc",
-      "id": "XUK1WJiqf5c"
-    },
-    {
-      "name": "Wendy",
-      "category": "jdh",
-      "notes": "eeferferfffffffffffff",
-      "userId": "n6zZO8azrlc",
-      "id": "QOeyVu30_C8"
-    },
-    {
       "name": "wendyyz",
       "category": "hh",
-      "notes": "",
+      "notes": "htr",
       "userId": "n6zZO8azrlc",
       "id": "tIy8zL5ZFEU"
     },
@@ -65,6 +51,13 @@
       "notes": "",
       "userId": "n6zZO8azrlc",
       "id": "OOF_pVoMI3w"
+    },
+    {
+      "name": "ybh",
+      "category": "y4b",
+      "notes": "y4",
+      "userId": "n6zZO8azrlc",
+      "id": "HdkipLrdoA0"
     }
   ],
   "items": [
@@ -73,8 +66,24 @@
       "category": "dww",
       "notes": "sw",
       "userId": "n6zZO8azrlc",
-      "listId": "QOeyVu30_C8",
+      "listId": null,
       "id": "gwO0BPRqvqg"
+    },
+    {
+      "name": "rtsgfre",
+      "category": "fre4c",
+      "notes": "ewfrcd",
+      "userId": "n6zZO8azrlc",
+      "listId": "OOF_pVoMI3w",
+      "id": "SQGZ44Wfjqk"
+    },
+    {
+      "name": "grst",
+      "category": "srgt",
+      "notes": "egrtstreg",
+      "userId": "n6zZO8azrlc",
+      "listId": null,
+      "id": "Qz1PlPIvBRQ"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

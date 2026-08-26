@@ -63,14 +63,10 @@
     font-weight: 700;
 }
 .editButton {
-    border: none;
     background: transparent;
-    cursor: pointer;
     font-size: 31px;
     color: #171717;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  
 }
 
 .personalInfo {

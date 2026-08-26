@@ -89,14 +89,8 @@
 }
 
 
-.signupButton button {
+.signupButton button{
   width: 100%;
-  height: 100%;
-  background-color: #ff4ea7;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
 }
 
 .login {

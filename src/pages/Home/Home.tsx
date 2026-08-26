@@ -10,6 +10,9 @@ import { fetchShoppingLists,deleteShoppingList,openAddList,closeAddList,setEditi
 import { useDispatch,useSelector } from "react-redux";
 import type { AppDispatch } from "../../Store/Store";
 import { logout } from "../../features/LoginSlice";
+import { MdDeleteForever } from "react-icons/md";
+import {  FiEdit2 } from "react-icons/fi";
+import { FaShareAlt } from "react-icons/fa";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -67,10 +70,9 @@ export const Home = () => {
            dispatch(logout());
               navigate("/login");
             }}>
-
-  <FiLogOut className={style.logoutIcon} />
-  <Text variant="p">Logout</Text>
-</button>
+        <FiLogOut className={style.logoutIcon} />
+         <Text variant="p">Logout</Text>
+        </button>
       </aside>
 
       <main className={style.mainContent}>
@@ -116,17 +118,23 @@ export const Home = () => {
                 </Text>
               )}
             </div>
+            <div  className={style.buttons}>
             <button onClick={(event) => {event.stopPropagation();
                   dispatch(setEditingList(list));
-                }} >
-                Edit
+                }}  >
+                <FiEdit2 />
               </button>
             <button onClick={(event) => {event.stopPropagation();
                   if (list.id) {dispatch(
                       deleteShoppingList(list.id));
-                  }}}>
-                Delete
+                  }}}style={{color:"red"}} >
+                <MdDeleteForever />
               </button>
+              <button style={{color:"#f32b91"}}><FaShareAlt /></button>
+              </div>
+
+              
+
           </div>
           ))}
         </div>
