@@ -1,12 +1,12 @@
 import {FiShoppingBag,FiHome,FiShoppingCart,FiUser,FiLogOut} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { useState ,useEffect} from "react";
+import { useEffect} from "react";
 import { Text } from "../../components/Text/Text";
 import { Button } from "../../components/Button/Button";
 import { AddList } from "../../components/Addpopup/AddList";
 import type { RootState } from "../../Store/Store";
 import style from "./Home.module.css";
-import { fetchShoppingLists,deleteShoppingList} from "../../features/ShoppingListSlice";
+import { fetchShoppingLists,deleteShoppingList,openAddList,closeAddList,setEditingList} from "../../features/ShoppingListSlice";
 import { useDispatch,useSelector } from "react-redux";
 import type { AppDispatch } from "../../Store/Store";
 import { logout } from "../../features/LoginSlice";
@@ -15,24 +15,16 @@ export const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { shoppingLists } = useSelector(
-    (state: RootState) => state.shoppingList
-  );
-
-  const user = useSelector(
-    (state: RootState) => state.login.user
-  );
+  const { shoppingLists } = useSelector((state: RootState) => state.shoppingList );
+  const user = useSelector((state: RootState) => state.login.user);
+  const showAddList = useSelector((state: RootState) =>state.shoppingList.showAddList);
+ 
 
   useEffect(() => {
     dispatch(fetchShoppingLists());
   }, [dispatch]);
 
-  const userLists = shoppingLists.filter(
-    (list) =>
-      String(list.userId) === String(user?.id)
-  );
-
-  const [showAddList, setShowAddList] = useState(false);
+  const userLists = shoppingLists.filter((list) =>String(list.userId) === String(user?.id));
 
   return (
     <section className={style.home}>
@@ -71,13 +63,11 @@ export const Home = () => {
           </button>
         </nav>
 
-        <button
-           className={style.logout}
-            onClick={() => {
-              dispatch(logout());
+        <button className={style.logout} onClick={() => {
+           dispatch(logout());
               navigate("/login");
-                }}
-          >
+            }}>
+
   <FiLogOut className={style.logoutIcon} />
   <Text variant="p">Logout</Text>
 </button>
@@ -101,11 +91,7 @@ export const Home = () => {
             </Text>
           </div>
 
-          <Button
-            label="+ Add New List"
-            className={style.addButton}
-            onClick={() => setShowAddList(true)}
-          />
+          <Button label="+ Add New List" className={style.addButton} onClick={() => dispatch(openAddList())}/>
         </div>
 
         <div className={style.listContainer}>
@@ -115,9 +101,7 @@ export const Home = () => {
               key={list.id}>
               <div
               onClick={() =>
-                navigate(`/shopping-list/${list.id}`)
-              }
-            >
+                navigate(`/shopping-list/${list.id}`)}>
               <Text variant="h2">
                 {list.name}
               </Text>
@@ -132,11 +116,17 @@ export const Home = () => {
                 </Text>
               )}
             </div>
-            <button>Edit</button>
-            <button onClick={()=> {
-              if (list.id){
-                dispatch(deleteShoppingList(list.id));
-              }}}>Delete</button>
+            <button onClick={(event) => {event.stopPropagation();
+                  dispatch(setEditingList(list));
+                }} >
+                Edit
+              </button>
+            <button onClick={(event) => {event.stopPropagation();
+                  if (list.id) {dispatch(
+                      deleteShoppingList(list.id));
+                  }}}>
+                Delete
+              </button>
           </div>
           ))}
         </div>
@@ -145,7 +135,7 @@ export const Home = () => {
       {showAddList && (
         <div className={style.popup}>
           <AddList
-            onClose={() => setShowAddList(false)}
+            onClose={() => dispatch(closeAddList())}
           />
         </div>
       )}

@@ -52,7 +52,7 @@ export const AddItem = ({
           name,
           category,
           notes,
-          userId: user.id,
+          userId: String(user.id),
           listId
         })
       ).unwrap();
@@ -147,8 +147,7 @@ export const AddItem = ({
           </div>
 
           <div className={styles.actions}>
-            <Button
-              type="submit"
+            <Button type="submit"
               label="SAVE"
               className={styles.saveButton}
             />
