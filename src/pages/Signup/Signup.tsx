@@ -5,7 +5,7 @@ import {FiShoppingBag,FiUser,FiMail,FiPhone,FiLock,FiEyeOff} from "react-icons/f
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState,AppDispatch } from "../../Store/Store";
-import {signupUser,updateRegister} from "../../features/SignupSlice";
+import {signupUser,updateRegister,clearForm} from "../../features/SignupSlice";
 
 export const Signup = () => {
   const inputs= useSelector((state: RootState) => state.signup);
@@ -22,6 +22,8 @@ export const Signup = () => {
       navigate('/login');
     } catch (err)
      {console.error("Failed to sign up:", err);}
+
+     clearForm();
   };
 
   return (

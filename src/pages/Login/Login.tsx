@@ -5,7 +5,7 @@ import {FiShoppingBag,FiMail,FiLock,FiEyeOff,} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "../../Store/Store";
-import {loginUser,} from "../../features/LoginSlice";
+import {loginUser,clearForm} from "../../features/LoginSlice";
 import { updateRegister } from "../../features/SignupSlice";
 
 export const Login = () => {
@@ -29,6 +29,7 @@ export const Login = () => {
       navigate('/home');
     }
     
+    clearForm();
     
   };
 

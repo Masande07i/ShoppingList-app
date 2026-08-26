@@ -57,54 +57,35 @@ const initialState: LoginState = {
   success: false
 };
 
-export const loginUser = createAsyncThunk(
-  "login/loginUser",
-  async (
-    loginData: {
-      email: string;
-      password: string;
-    },
-    thunkAPI
-  ) => {
+export const loginUser = createAsyncThunk("login/loginUser",async (loginData: {email: string; password: string;},
+    thunkAPI) => {
     try {
       const response = await fetch(
         `http://localhost:3000/users?email=${loginData.email}&password=${loginData.password}`
       );
-
       if (!response.ok) {
         throw new Error("Failed to login");
       }
-
       const users = await response.json();
 
       if (users.length === 0) {
-        return thunkAPI.rejectWithValue(
-          "Invalid email or password"
-        );
+        return thunkAPI.rejectWithValue("Invalid email or password" );
       }
 
       return users[0];
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error instanceof Error
-          ? error.message
-          : "Something went wrong"
-      );
-    }
-  }
+      return thunkAPI.rejectWithValue( error instanceof Error? error.message : "Something went wrong"
+      );}}
 );
+
 
 const loginSlice = createSlice({
   name: "login",
   initialState,
 
   reducers: {
-    updateUser: (
-      state,
-      action: PayloadAction<UserData>
-    ) => {
+    updateUser: (state,action: PayloadAction<UserData>) => {
       state.user = action.payload;
-
       localStorage.setItem(
         "loggedInUser",
         JSON.stringify(action.payload)
@@ -120,7 +101,6 @@ const loginSlice = createSlice({
           phone: state.user.phone
         };
       }
-
       state.profileEditOpen = true;
     },
 
@@ -128,25 +108,18 @@ const loginSlice = createSlice({
       state.profileEditOpen = false;
     },
 
-    updateProfileInputs: (
-      state,
-      action: PayloadAction<
-        Partial<LoginState["profileInputs"]>
-      >
-    ) => {
+    updateProfileInputs: (state,action: PayloadAction<Partial<LoginState["profileInputs"]>>) => {
       state.profileInputs = {
         ...state.profileInputs,
         ...action.payload
       };
     },
-
     openPasswordEdit: (state) => {
       state.passwordEditOpen = true;
     },
 
     closePasswordEdit: (state) => {
       state.passwordEditOpen = false;
-
       state.passwordInputs = {
         currentPassword: "",
         newPassword: "",
@@ -154,12 +127,7 @@ const loginSlice = createSlice({
       };
     },
 
-    updatePasswordInputs: (
-      state,
-      action: PayloadAction<
-        Partial<LoginState["passwordInputs"]>
-      >
-    ) => {
+    updatePasswordInputs: (state,action: PayloadAction<Partial<LoginState["passwordInputs"]>>) => {
       state.passwordInputs = {
         ...state.passwordInputs,
         ...action.payload
@@ -172,7 +140,12 @@ const loginSlice = createSlice({
       state.success = false;
 
       localStorage.removeItem("loggedInUser");
-    }
+    },
+      clearForm: (state) => {
+             state.user = initialState.user;
+             state.error = null;
+             state.success = false;},
+
   },
 
   extraReducers: (builder) => {
@@ -204,15 +177,7 @@ const loginSlice = createSlice({
   }
 });
 
-export const {
-  updateUser,
-  openProfileEdit,
-  closeProfileEdit,
-  updateProfileInputs,
-  openPasswordEdit,
-  closePasswordEdit,
-  updatePasswordInputs,
-  logout
+export const {updateUser,openProfileEdit,closeProfileEdit,updateProfileInputs,openPasswordEdit,closePasswordEdit,updatePasswordInputs,logout,clearForm
 } = loginSlice.actions;
 
 export default loginSlice.reducer;

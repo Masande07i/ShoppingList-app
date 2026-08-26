@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../Store/Store";
-import { fetchShoppingItems } from "../../features/ShoppingItemSlice";
+import { fetchShoppingItems,deleteShoppingItem } from "../../features/ShoppingItemSlice";
 import { AddItem } from "../../components/Addpopup/Addpopup";
 import { Text } from "../../components/Text/Text";
 import styles from "./ShoppingList.module.css";
@@ -106,7 +106,12 @@ export const ShoppingList = () => {
 
               <div>
                 <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={() => {
+                if (item.id) {
+                dispatch(deleteShoppingItem(item.id));
+                }}}>
+                  Delete
+                </button>
               </div>
             </div>
           ))}
