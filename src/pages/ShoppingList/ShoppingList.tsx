@@ -7,7 +7,6 @@ import { AddItem } from "../../components/Addpopup/AddItem";
 import { Text } from "../../components/Text/Text";
 import styles from "./ShoppingList.module.css";
 import { FiArrowLeft } from "react-icons/fi";
-import { Button } from "../../components/Button/Button";
 import { MdDeleteForever } from "react-icons/md";
 import {  FiEdit2 } from "react-icons/fi";
 
