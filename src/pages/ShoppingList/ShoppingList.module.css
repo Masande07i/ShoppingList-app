@@ -84,3 +84,8 @@
 .row {
   min-height: 32px;
 }
+.buttons button{
+   background-color: transparent;
+   color:black;
+   font-size: 20px;
+}

@@ -8,6 +8,8 @@ import { Text } from "../../components/Text/Text";
 import styles from "./ShoppingList.module.css";
 import { FiArrowLeft } from "react-icons/fi";
 import { Button } from "../../components/Button/Button";
+import { MdDeleteForever } from "react-icons/md";
+import {  FiEdit2 } from "react-icons/fi";
 
 export const ShoppingList = () => {
   const { id } = useParams();
@@ -86,16 +88,18 @@ export const ShoppingList = () => {
               <Text variant="p">{item.category}</Text>
               <Text variant="p">{item.notes || "-"}</Text>
 
-              <div>
-                <Button label="EDIT"onClick={() => {
+              <div className={styles.buttons}>
+                <button onClick={() => {
                   dispatch(setEditingItem(item));
                   setShowAddItem(true);
-                  }}/>
+                  }} >
+                     <FiEdit2 />
+                  </button>
                 <button onClick={() => {
                 if (item.id) {
                 dispatch(deleteShoppingItem(item.id));
-                }}}>
-                  Delete
+                }}} style={{color:"red"}}>
+                  <MdDeleteForever />
                 </button>
               </div>
             </div>
