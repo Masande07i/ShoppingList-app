@@ -99,7 +99,7 @@ export const updateShoppingItem = createAsyncThunk("shoppingItem/updateShoppingI
       })
 
     });
-    if (response.ok){
+    if (!response.ok){
       throw new Error("Failed to update shopping list");
     }
     return await response.json();

@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../Store/Store";
-import { fetchShoppingItems,deleteShoppingItem } from "../../features/ShoppingItemSlice";
+import { fetchShoppingItems,deleteShoppingItem,setEditingItem } from "../../features/ShoppingItemSlice";
 import { AddItem } from "../../components/Addpopup/AddItem";
 import { Text } from "../../components/Text/Text";
 import styles from "./ShoppingList.module.css";
 import { FiArrowLeft } from "react-icons/fi";
+import { Button } from "../../components/Button/Button";
 
 export const ShoppingList = () => {
   const { id } = useParams();
@@ -86,7 +87,10 @@ export const ShoppingList = () => {
               <Text variant="p">{item.notes || "-"}</Text>
 
               <div>
-                <button>Edit</button>
+                <Button label="EDIT"onClick={() => {
+                  dispatch(setEditingItem(item));
+                  setShowAddItem(true);
+                  }}/>
                 <button onClick={() => {
                 if (item.id) {
                 dispatch(deleteShoppingItem(item.id));

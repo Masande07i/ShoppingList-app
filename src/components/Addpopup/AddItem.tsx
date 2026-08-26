@@ -15,13 +15,12 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
 
   const shoppingItemState = useSelector((state: RootState) => state.shoppingItem);
   const user = useSelector((state: RootState) => state.login.user);
-  const editingItem = useSelector((state: RootState) => state.shoppingItem);
+  const editingItem = useSelector((state: RootState) => state.shoppingItem.editingItem);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { name, category, notes } =
-      shoppingItemState.inputs;
+    const { name, category, notes } = shoppingItemState.inputs;
 
     if (!name || !category) {
       alert("Please fill out all required fields.");
@@ -35,13 +34,13 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
 
     try {
       if(editingItem){
-        await dispatch(updateItemInputs({
-         ... shoppingItemState.inputs,
-         id: editingItem.inputs.id,
+        await dispatch(updateShoppingItem({
+         id: editingItem.id,
+         name,category,notes,
          userId: String(user.id),
          listId
-        }))
-      }
+        })).unwrap();
+      }else{
       
       await dispatch(
         addShoppingItem({
@@ -52,13 +51,12 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
           listId
         })
       ).unwrap();
-
+    }
       dispatch(clearItemForm());
       onClose();
-    } catch (error) {
-      alert("Failed to add item.");
-    }
-  };
+    }  catch (error) {
+      alert(editingItem? "Failed to update item.": "Failed to add item.");
+    }};
 
   return (
     <section className={styles.container}>
@@ -72,8 +70,7 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
           <div className={styles.formGroup}>
             <Text
               variant="span"
-              className={styles.label}
-            >
+              className={styles.label}>
               Item Name <span>*</span>
             </Text>
 
@@ -89,8 +86,7 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
           <div className={styles.formGroup}>
             <Text
               variant="span"
-              className={styles.label}
-            >
+              className={styles.label}>
               Category <span>*</span>
             </Text>
 
@@ -106,8 +102,7 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
           <div className={styles.formGroup}>
             <Text
               variant="span"
-              className={styles.label}
-            >
+              className={styles.label}>
               Notes{" "}
               <span className={styles.optional}>
                 (optional)
