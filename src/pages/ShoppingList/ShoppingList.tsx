@@ -61,8 +61,10 @@ export const ShoppingList = () => {
         <div className={styles.tableHeader}>
           <Text variant="p">Item</Text>
           <Text variant="p">Category</Text>
+          <Text variant="p">Quantity</Text>
           <Text variant="p">Notes</Text>
           <Text variant="p">Actions</Text>
+
         </div>
 
         {loading && (
@@ -86,6 +88,7 @@ export const ShoppingList = () => {
             <div className={styles.row}key={item.id}>
               <Text variant="p">{item.name}</Text>
               <Text variant="p">{item.category}</Text>
+              <Text variant="p">{item.quantity}</Text>
               <Text variant="p">{item.notes || "-"}</Text>
 
               <div className={styles.buttons}>

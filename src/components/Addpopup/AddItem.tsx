@@ -20,7 +20,7 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { name, category, notes } = shoppingItemState.inputs;
+    const { name, category, notes,quantity } = shoppingItemState.inputs;
 
     if (!name || !category) {
       alert("Please fill out all required fields.");
@@ -36,7 +36,7 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
       if(editingItem){
         await dispatch(updateShoppingItem({
          id: editingItem.id,
-         name,category,notes,
+         name,category,notes,quantity,
          userId: String(user.id),
          listId
         })).unwrap();
@@ -47,6 +47,7 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
           name,
           category,
           notes,
+          quantity,
           userId: String(user.id),
           listId
         })
@@ -98,6 +99,22 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
               required
             />
           </div>
+           <div className={styles.formGroup}>
+            <Text
+              variant="span"
+              className={styles.label}>
+              Quantity <span>*</span>
+            </Text>
+
+            <input
+              type="number"
+              min="1"
+              className={styles.input}
+              value={shoppingItemState.inputs.quantity}
+              onChange={(e) =>dispatch(updateItemInputs({quantity: Number(e.target.value)}))}
+              required
+            />
+            </div>
 
           <div className={styles.formGroup}>
             <Text

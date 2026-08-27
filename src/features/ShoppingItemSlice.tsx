@@ -7,6 +7,7 @@ interface ShoppingItem {
   listId: string;
   name: string;
   category: string;
+  quantity:number;
   notes?: string;
 }
 
@@ -25,7 +26,8 @@ const initialState: ShoppingItemState = {
     category: "",
     notes: "",
     userId: "",
-    listId: ""
+    listId: "",
+    quantity: 1
   },
   items: [],
   editingItem:null,
@@ -69,7 +71,7 @@ export const fetchShoppingItems = createAsyncThunk("shoppingItem/fetchShoppingIt
 );
 
 
-export const fetchAllShoppingItems = createAsyncThunk("shoppingItem/fetchShoppingItems",async (_,{rejectWithValue}) => {
+export const fetchAllShoppingItems = createAsyncThunk("shoppingItem/fetchAllShoppingItems",async (_,{rejectWithValue}) => {
     try {
       const response = await fetch(`http://localhost:3000/items`
       );
@@ -79,7 +81,6 @@ export const fetchAllShoppingItems = createAsyncThunk("shoppingItem/fetchShoppin
       }
 
       const data= await response.json();
-      console.log(data)
       return data;
     } catch (error) {
       return rejectWithValue(error instanceof Error? error.message: "Something went wrong");
@@ -111,6 +112,7 @@ export const updateShoppingItem = createAsyncThunk("shoppingItem/updateShoppingI
         name: shoppingItem.name,
         category :shoppingItem.category,
         notes: shoppingItem.notes,
+        quantity: shoppingItem.quantity,
         userId: shoppingItem.userId,
         listId:shoppingItem.listId
       })
@@ -146,7 +148,8 @@ const shoppingItemSlice = createSlice({
         category: "",
         notes: "",
         userId: "",
-        listId: ""
+        listId: "",
+        quantity: 1
       };
     },
     setEditingItem: (state, action: PayloadAction<ShoppingItem>)=>{
@@ -155,6 +158,7 @@ const shoppingItemSlice = createSlice({
         name: action.payload.name,
         category: action.payload.category,
         notes: action.payload.notes,
+        quantity:action.payload.quantity,
         userId: action.payload.userId,
         listId: action.payload.listId,
         id: action.payload.id
@@ -178,6 +182,7 @@ const shoppingItemSlice = createSlice({
           name: "",
           category: "",
           notes: "",
+          quantity: 1,
           userId: "",
           listId: ""
         };
@@ -244,7 +249,8 @@ builder
           category: "",
           notes:"",
           userId: "",
-          listId: ""
+          listId: "",
+          quantity: 1
         };
 
        })

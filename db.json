@@ -108,6 +108,24 @@
       "userId": "n6zZO8azrlc",
       "listId": "RFIZQMogtP8",
       "id": "1aWlgxa8wpo"
+    },
+    {
+      "name": "gfd",
+      "category": "fgg",
+      "notes": "gg",
+      "quantity": 1,
+      "userId": "n6zZO8azrlc",
+      "listId": "tIy8zL5ZFEU",
+      "id": "8835nwxJ1E8"
+    },
+    {
+      "name": "snetb",
+      "category": "stebr",
+      "notes": "steng",
+      "quantity": 4,
+      "userId": "n6zZO8azrlc",
+      "listId": "tIy8zL5ZFEU",
+      "id": "khIqQmEK6vY"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
