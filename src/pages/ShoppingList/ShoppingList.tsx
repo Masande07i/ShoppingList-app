@@ -17,14 +17,15 @@ export const ShoppingList = () => {
 
   const [showAddItem, setShowAddItem] = useState(false);
 
-  const items = useSelector((state: RootState) => state.shoppingItem.items );
+ 
   const loading = useSelector((state: RootState) => state.shoppingItem.loading);
 
   useEffect(() => {
     if (id) {
       dispatch(fetchShoppingItems(id));
     }
-  }, [id, dispatch]);
+  }, []);
+   const items = useSelector((state: RootState) => state.shoppingItem.items );
 
   return (
     <section className={styles.page}>

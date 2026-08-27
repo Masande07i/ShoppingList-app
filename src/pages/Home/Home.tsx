@@ -13,6 +13,8 @@ import { logout } from "../../features/LoginSlice";
 import { MdDeleteForever } from "react-icons/md";
 import {  FiEdit2 } from "react-icons/fi";
 import { FaShareAlt } from "react-icons/fa";
+import { HiOutlineEye } from "react-icons/hi";
+import { fetchAllShoppingItems } from "../../features/ShoppingItemSlice";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -21,10 +23,12 @@ export const Home = () => {
   const { shoppingLists } = useSelector((state: RootState) => state.shoppingList );
   const user = useSelector((state: RootState) => state.login.user);
   const showAddList = useSelector((state: RootState) =>state.shoppingList.showAddList);
+  const { items } = useSelector((state: RootState) => state.shoppingItem);
  
 
   useEffect(() => {
     dispatch(fetchShoppingLists());
+    dispatch(fetchAllShoppingItems());
   }, [dispatch]);
 
   const userLists = shoppingLists.filter((list) =>String(list.userId) === String(user?.id));
@@ -97,7 +101,11 @@ export const Home = () => {
         </div>
 
         <div className={style.listContainer}>
-          {userLists.map((list) => (
+          {userLists.map((list) => {
+
+            const itemCount = items.filter(
+              (item) => String(item.listId) === String(list.id)).length;
+              return(
             <div
               className={style.listCard}
               key={list.id}>
@@ -112,11 +120,12 @@ export const Home = () => {
                 Category: {list.category}
               </Text>
 
-              {list.notes && (
+              {list.notes && 
                 <Text variant="p">
                   {list.notes}
-                </Text>
-              )}
+                </Text>}
+
+                <Text variant="p" >{itemCount} {itemCount === 1? "item" : "items"} </Text>
             </div>
             <div  className={style.buttons}>
             <button onClick={(event) => {event.stopPropagation();
@@ -131,12 +140,14 @@ export const Home = () => {
                 <MdDeleteForever />
               </button>
               <button style={{color:"#f32b91"}}><FaShareAlt /></button>
+              <button ><HiOutlineEye /></button>
               </div>
 
               
 
           </div>
-          ))}
+              );
+           })}
         </div>
       </main>
 

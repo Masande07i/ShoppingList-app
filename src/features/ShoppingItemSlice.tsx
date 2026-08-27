@@ -34,7 +34,7 @@ const initialState: ShoppingItemState = {
   success: false
 };
 
-export const addShoppingItem = createAsyncThunk("shoppingItem/addShoppingItem",async (shoppingItem: ShoppingItem, thunkAPI) => {
+export const addShoppingItem = createAsyncThunk("shoppingItem/addShoppingItem",async (shoppingItem: ShoppingItem, {rejectWithValue}) => {
     try {
       const response = await fetch("http://localhost:3000/items", {
         method: "POST",
@@ -50,10 +50,9 @@ export const addShoppingItem = createAsyncThunk("shoppingItem/addShoppingItem",a
 
       return await response.json();
     } catch (error) {
-      return thunkAPI.rejectWithValue(error instanceof Error? error.message: "Something went wrong");
+      return rejectWithValue(error instanceof Error? error.message: "Something went wrong");
     }}
 );
-
 export const fetchShoppingItems = createAsyncThunk("shoppingItem/fetchShoppingItems",async (listId: string, thunkAPI) => {
     try {
       const response = await fetch(`http://localhost:3000/items?listId=${listId}`
@@ -66,6 +65,24 @@ export const fetchShoppingItems = createAsyncThunk("shoppingItem/fetchShoppingIt
       return await response.json();
     } catch (error) {
       return thunkAPI.rejectWithValue(error instanceof Error? error.message: "Something went wrong");
+    }}
+);
+
+
+export const fetchAllShoppingItems = createAsyncThunk("shoppingItem/fetchShoppingItems",async (_,{rejectWithValue}) => {
+    try {
+      const response = await fetch(`http://localhost:3000/items`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch shopping items");
+      }
+
+      const data= await response.json();
+      console.log(data)
+      return data;
+    } catch (error) {
+      return rejectWithValue(error instanceof Error? error.message: "Something went wrong");
     }}
 );
 
