@@ -48,31 +48,29 @@ const initialState: LoginState = {
     newPassword: "",
     confirmPassword: ""
   },
-
   profileEditOpen: false,
   passwordEditOpen: false,
-
   loading: false,
   error: null,
   success: false
 };
 
-export const loginUser = createAsyncThunk("login/loginUser",async (loginData: {email: string; password: string;},
-    thunkAPI) => {
+export const loginUser = createAsyncThunk("login/loginUser",async (loginData: {email: string; password: string;},thunkAPI) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/users?email=${loginData.email}&password=${loginData.password}`
-      );
+      const response = await fetch(`http://localhost:3000/users?email=${encodeURIComponent(loginData.email)}`);
       if (!response.ok) {
         throw new Error("Failed to login");
       }
       const users = await response.json();
 
-      if (users.length === 0) {
+      const user = users.find((u: UserData) => u.password === loginData.password);
+
+      if (!user) {
         return thunkAPI.rejectWithValue("Invalid email or password" );
       }
+      const {password,confirmPassword,...safeUser} = user;
 
-      return users[0];
+      return safeUser;
     } catch (error) {
       return thunkAPI.rejectWithValue( error instanceof Error? error.message : "Something went wrong"
       );}}

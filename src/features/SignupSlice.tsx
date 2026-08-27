@@ -50,6 +50,7 @@ export const signupUser = createAsyncThunk('signup/signupUser',async (userData: 
                    );
 }});
 
+
 export const signupSlice = createSlice({
     name: 'signup',
     initialState,

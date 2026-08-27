@@ -68,7 +68,7 @@ export const Home = () => {
 
         <button className={style.logout} onClick={() => {
            dispatch(logout());
-              navigate("/login");
+              navigate("/");
             }}>
         <FiLogOut className={style.logoutIcon} />
          <Text variant="p">Logout</Text>

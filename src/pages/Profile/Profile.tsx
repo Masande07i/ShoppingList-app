@@ -4,51 +4,24 @@ import style from "./Profile.module.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../Store/Store";
-import {
-  updateUser,
-  openProfileEdit,
-  closeProfileEdit,
-  updateProfileInputs,
-  openPasswordEdit,
-  closePasswordEdit,
-  updatePasswordInputs
-} from "../../features/LoginSlice";
+import {updateUser,openProfileEdit,closeProfileEdit,updateProfileInputs,openPasswordEdit,closePasswordEdit,updatePasswordInputs} from "../../features/LoginSlice";
 
 export const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const user = useSelector(
-    (state: RootState) => state.login.user
-  );
+  const user = useSelector((state: RootState) => state.login.user);
+  const profileInputs = useSelector((state: RootState) => state.login.profileInputs);
+  const passwordInputs = useSelector((state: RootState) => state.login.passwordInputs);
+  const profileEditOpen = useSelector((state: RootState) => state.login.profileEditOpen);
+  const passwordEditOpen = useSelector((state: RootState) => state.login.passwordEditOpen);
 
-  const profileInputs = useSelector(
-    (state: RootState) => state.login.profileInputs
-  );
-
-  const passwordInputs = useSelector(
-    (state: RootState) => state.login.passwordInputs
-  );
-
-  const profileEditOpen = useSelector(
-    (state: RootState) => state.login.profileEditOpen
-  );
-
-  const passwordEditOpen = useSelector(
-    (state: RootState) => state.login.passwordEditOpen
-  );
-
-  const handleUpdateProfile = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (!user?.id) {
       return;
     }
-
-    const updatedUser = {
-      ...user,
+    const updatedUser = {...user,
       name: profileInputs.name,
       surname: profileInputs.surname,
       email: profileInputs.email,
@@ -56,8 +29,7 @@ export const Profile = () => {
     };
 
     try {
-      const response = await fetch(
-        `http://localhost:3000/users/${user.id}`,
+      const response = await fetch(`http://localhost:3000/users/${user.id}`,
         {
           method: "PUT",
           headers: {
@@ -66,54 +38,38 @@ export const Profile = () => {
           body: JSON.stringify(updatedUser)
         }
       );
-
       if (!response.ok) {
         throw new Error("Failed to update profile");
       }
-
       const data = await response.json();
-
       dispatch(updateUser(data));
       dispatch(closeProfileEdit());
     } catch (error) {
-      console.log(error);
-    }
+      console.log(error);}
   };
 
-  const handleUpdatePassword = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleUpdatePassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (!user?.id) {
       return;
     }
-
-    if (
-      passwordInputs.currentPassword !==
-      user.password
+    if (passwordInputs.currentPassword !==user.password
     ) {
       alert("Current password is incorrect.");
       return;
     }
-
-    if (
-      passwordInputs.newPassword !==
-      passwordInputs.confirmPassword
+    if (passwordInputs.newPassword !==passwordInputs.confirmPassword
     ) {
       alert("Passwords do not match.");
       return;
     }
-
-    const updatedUser = {
-      ...user,
+    const updatedUser = {...user,
       password: passwordInputs.newPassword,
       confirmPassword: passwordInputs.confirmPassword
     };
 
     try {
-      const response = await fetch(
-        `http://localhost:3000/users/${user.id}`,
+      const response = await fetch(`http://localhost:3000/users/${user.id}`,
         {
           method: "PUT",
           headers: {
@@ -126,12 +82,9 @@ export const Profile = () => {
       if (!response.ok) {
         throw new Error("Failed to update password");
       }
-
       const data = await response.json();
-
       dispatch(updateUser(data));
       dispatch(closePasswordEdit());
-
       alert("Password changed successfully.");
     } catch (error) {
       console.log(error);
@@ -140,10 +93,7 @@ export const Profile = () => {
 
   return (
     <section className={style.profilePage}>
-      <button
-        onClick={() => navigate("/home")}
-        className={style.backButton}
-      >
+      <button onClick={() => navigate("/home")}className={style.backButton}>
         <FiArrowLeft />
       </button>
 
@@ -155,7 +105,7 @@ export const Profile = () => {
         </div>
 
         <div className={style.profileDetails}>
-          <Text variant="h2">
+          <Text variant="h2"> 
             {user?.name} {user?.surname}
           </Text>
 
@@ -175,12 +125,8 @@ export const Profile = () => {
             Personal information
           </Text>
 
-          <button
-            className={style.editButton}
-            onClick={() =>
-              dispatch(openProfileEdit())
-            }
-          >
+          <button className={style.editButton}onClick={() =>
+              dispatch(openProfileEdit()) }>
             <FiEdit2 />
           </button>
         </div>
@@ -213,12 +159,8 @@ export const Profile = () => {
           Change Password
         </Text>
 
-        <button
-          className={style.editButton}
-          onClick={() =>
-            dispatch(openPasswordEdit())
-          }
-        >
+        <button className={style.editButton} onClick={() =>
+            dispatch(openPasswordEdit())}>
           <FiEdit2 />
         </button>
       </div>
@@ -234,13 +176,7 @@ export const Profile = () => {
               <input
                 type="text"
                 value={profileInputs.name}
-                onChange={(e) =>
-                  dispatch(
-                    updateProfileInputs({
-                      name: e.target.value
-                    })
-                  )
-                }
+                onChange={(e) =>dispatch(updateProfileInputs({ name: e.target.value}))}
                 placeholder="First Name"
                 required
               />
@@ -248,13 +184,7 @@ export const Profile = () => {
               <input
                 type="text"
                 value={profileInputs.surname}
-                onChange={(e) =>
-                  dispatch(
-                    updateProfileInputs({
-                      surname: e.target.value
-                    })
-                  )
-                }
+                onChange={(e) =>dispatch(updateProfileInputs({surname: e.target.value}))}
                 placeholder="Last Name"
                 required
               />
@@ -262,13 +192,7 @@ export const Profile = () => {
               <input
                 type="email"
                 value={profileInputs.email}
-                onChange={(e) =>
-                  dispatch(
-                    updateProfileInputs({
-                      email: e.target.value
-                    })
-                  )
-                }
+                onChange={(e) =>dispatch(updateProfileInputs({email: e.target.value }))}
                 placeholder="Email"
                 required
               />
@@ -276,13 +200,7 @@ export const Profile = () => {
               <input
                 type="text"
                 value={profileInputs.phone}
-                onChange={(e) =>
-                  dispatch(
-                    updateProfileInputs({
-                      phone: e.target.value
-                    })
-                  )
-                }
+                onChange={(e) =>dispatch(updateProfileInputs({phone: e.target.value }))}
                 placeholder="Phone number"
                 required
               />
@@ -291,12 +209,8 @@ export const Profile = () => {
                 Save
               </button>
 
-              <button
-                type="button"
-                onClick={() =>
-                  dispatch(closeProfileEdit())
-                }
-              >
+              <button type="button" onClick={() =>
+                  dispatch(closeProfileEdit())}>
                 Cancel
               </button>
             </form>
@@ -314,51 +228,24 @@ export const Profile = () => {
             <form onSubmit={handleUpdatePassword}>
               <input
                 type="password"
-                value={
-                  passwordInputs.currentPassword
-                }
-                onChange={(e) =>
-                  dispatch(
-                    updatePasswordInputs({
-                      currentPassword:
-                        e.target.value
-                    })
-                  )
-                }
+                value={passwordInputs.currentPassword}
+                onChange={(e) =>dispatch(updatePasswordInputs({currentPassword: e.target.value}))}
                 placeholder="Current password"
                 required
               />
 
               <input
                 type="password"
-                value={
-                  passwordInputs.newPassword
-                }
-                onChange={(e) =>
-                  dispatch(
-                    updatePasswordInputs({
-                      newPassword:
-                        e.target.value
-                    })
-                  )
-                }
+                value={passwordInputs.newPassword }
+                onChange={(e) =>dispatch(updatePasswordInputs({newPassword:e.target.value}))}
                 placeholder="New password"
                 required
               />
 
               <input
                 type="password"
-                value={
-                  passwordInputs.confirmPassword
-                }
-                onChange={(e) =>
-                  dispatch(
-                    updatePasswordInputs({
-                      confirmPassword:
-                        e.target.value
-                    })
-                  )
-                }
+                value={passwordInputs.confirmPassword}
+                onChange={(e) => dispatch(updatePasswordInputs({confirmPassword: e.target.value}) )}
                 placeholder="Confirm new password"
                 required
               />
@@ -369,10 +256,7 @@ export const Profile = () => {
 
               <button
                 type="button"
-                onClick={() =>
-                  dispatch(closePasswordEdit())
-                }
-              >
+                onClick={() =>dispatch(closePasswordEdit())}>
                 Cancel
               </button>
             </form>

@@ -28,13 +28,13 @@
       "id": "n6zZO8azrlc"
     },
     {
-      "id": "_poU_0XstIc",
+      "id": "6yuff9zhA7M",
       "name": "Nondumo",
       "surname": "Magoso",
-      "email": "magoso.nondumo@gmail.com",
+      "email": "weendy@gmail.com",
       "phone": "0837848383",
-      "password": ",,,",
-      "confirmPassword": ",,,"
+      "password": "1111",
+      "confirmPassword": "1111"
     }
   ],
   "lists": [
@@ -46,18 +46,18 @@
       "id": "tIy8zL5ZFEU"
     },
     {
-      "name": "ggyyg",
-      "category": "n",
-      "notes": "",
-      "userId": "n6zZO8azrlc",
-      "id": "OOF_pVoMI3w"
-    },
-    {
       "name": "ybh",
       "category": "y4b",
       "notes": "y4",
       "userId": "n6zZO8azrlc",
       "id": "HdkipLrdoA0"
+    },
+    {
+      "name": "sabelo",
+      "category": "grocery",
+      "notes": "dvzfdv",
+      "userId": "n6zZO8azrlc",
+      "id": "L7kqcuqE_2A"
     }
   ],
   "items": [
@@ -74,7 +74,7 @@
       "category": "fre4c",
       "notes": "ewfrcd",
       "userId": "n6zZO8azrlc",
-      "listId": "OOF_pVoMI3w",
+      "listId": null,
       "id": "SQGZ44Wfjqk"
     },
     {
