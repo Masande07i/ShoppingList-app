@@ -1,6 +1,6 @@
 import {FiShoppingBag,FiHome,FiShoppingCart,FiUser,FiLogOut} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { useEffect} from "react";
+import { useEffect,useState} from "react";
 import { Text } from "../../components/Text/Text";
 import { Button } from "../../components/Button/Button";
 import { AddList } from "../../components/Addpopup/AddList";
@@ -15,6 +15,7 @@ import {  FiEdit2 } from "react-icons/fi";
 import { FaShareAlt } from "react-icons/fa";
 import { HiOutlineEye } from "react-icons/hi";
 import { fetchAllShoppingItems } from "../../features/ShoppingItemSlice";
+import { Search } from "../../components/Search/Search";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -34,6 +35,32 @@ export const Home = () => {
   }, []);
 
   const userLists = shoppingLists.filter((list) =>String(list.userId) === String(user?.id));
+   const [searchQuery, setSearchQuery] = useState<string>('')
+
+   
+  const onSearch=(newValue: string)=>{
+  setSearchQuery(newValue)
+ }
+
+ const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,
+  listId: string,listName: string) => {event.stopPropagation();
+
+  const shareUrl = `${window.location.origin}/shopping-list/${listId}`;
+  try {
+    if (navigator.share) {
+      await navigator.share({
+        title: listName,
+        text: `Check out my shopping list: ${listName}`,
+        url: shareUrl,
+      });
+    } else {
+      await navigator.clipboard.writeText(shareUrl);
+      alert("Shopping list link copied!");
+    }
+  } catch (error) {
+    console.log("Share cancelled", error);
+  }
+};
 
   return (
     <section className={style.home}>
@@ -80,8 +107,10 @@ export const Home = () => {
          <Text variant="p">Logout</Text>
         </button>
       </aside>
-
       <main className={style.mainContent}>
+         <div  className={style.search}>
+           <Search searchQuery={searchQuery} onSearch={onSearch}/> 
+         </div>
         <div className={style.header}>
           <div>
             <Text
@@ -141,7 +170,12 @@ export const Home = () => {
                   }}}style={{color:"red"}} >
                 <MdDeleteForever />
               </button>
-              <button style={{color:"#f32b91"}}><FaShareAlt /></button>
+              <button style={{ color: "#f32b91" }}onClick={(event) => {
+                  if (list.id) {
+                  handleShare(event, list.id, list.name);
+                  }}}>
+                  <FaShareAlt />
+                </button>
               <button ><HiOutlineEye /></button>
               </div>
 
