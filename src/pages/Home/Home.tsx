@@ -26,10 +26,12 @@ export const Home = () => {
   const { items } = useSelector((state: RootState) => state.shoppingItem);
  
 
+  console.log(items.length)
+  
   useEffect(() => {
     dispatch(fetchShoppingLists());
     dispatch(fetchAllShoppingItems());
-  }, [dispatch]);
+  }, []);
 
   const userLists = shoppingLists.filter((list) =>String(list.userId) === String(user?.id));
 

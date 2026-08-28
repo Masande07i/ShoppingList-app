@@ -210,6 +210,21 @@ builder
           (action.payload as string) ||
           "Failed to fetch shopping items";
       })
+builder
+      .addCase(fetchAllShoppingItems.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchAllShoppingItems.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = action.payload;
+      })
+      .addCase(fetchAllShoppingItems.rejected, (state, action) => {
+        state.loading = false;
+        state.error =
+          (action.payload as string) ||
+          "Failed to fetch shopping items";
+      })
 
 builder
       .addCase(deleteShoppingItem.pending, (state) => {
