@@ -18,7 +18,7 @@ export const AddList = ({ onClose }: AddListProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { name, category, notes } =shoppingListState.inputs;
+    const { name, category, notes,createdAt } =shoppingListState.inputs;
     
     if (!name || !category) {
       alert("Please fill out all required fields.");
@@ -35,6 +35,7 @@ export const AddList = ({ onClose }: AddListProps) => {
             name,
             category,
             notes,
+            
             userId: String(user.id)
           })
         ).unwrap();
@@ -46,6 +47,7 @@ export const AddList = ({ onClose }: AddListProps) => {
             name,
             category,
             notes,
+            createdAt,
             userId: String(user.id)
           })
         ).unwrap();

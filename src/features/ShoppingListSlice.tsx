@@ -7,6 +7,7 @@ interface ShoppingList {
   name: string;
   category: string;
   notes?: string;
+  createdAt?: string;
 }
 
 interface ShoppingListState {
@@ -26,7 +27,8 @@ const initialState: ShoppingListState = {
     name: "",
     category: "",
     notes: "",
-    userId: ""
+    userId: "",
+    createdAt: ""
   },
   shoppingLists: [],
   editingList: null,
@@ -40,13 +42,14 @@ const initialState: ShoppingListState = {
 
 export const addShoppingList = createAsyncThunk("shoppingList/addShoppingList",async (shoppingList: ShoppingList, thunkAPI) => {
     try {
+      const newShoppingList = {...shoppingList,createdAt: new Date().toISOString()};
       const response = await fetch("http://localhost:3000/lists",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify(shoppingList)
+          body: JSON.stringify(newShoppingList)
         }
       );
       if (!response.ok) {
@@ -96,7 +99,8 @@ export const updateShoppingList = createAsyncThunk("shoppingList/updateShoppingL
             name: shoppingList.name,
             category: shoppingList.category,
             notes: shoppingList.notes,
-            userId: shoppingList.userId
+            userId: shoppingList.userId,
+            createdAt: shoppingList.createdAt
           })
         }
       );
@@ -150,7 +154,8 @@ const shoppingListSlice = createSlice({
         category: action.payload.category,
         notes: action.payload.notes || "",
         userId: action.payload.userId,
-        id: action.payload.id
+        id: action.payload.id,
+        createdAt: action.payload.createdAt
       };
     },
     updateSearchQuery:(state,action: PayloadAction<string>) =>{

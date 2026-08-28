@@ -42,20 +42,26 @@ export const Home = () => {
       )
   )
   .sort((a, b) => {
-    if (sortOption === "name-asc") {
-      return a.name.localeCompare(b.name);
-    }
+  if (sortOption === "name-asc") {
+    return a.name.localeCompare(b.name);
+  }
 
-    if (sortOption === "name-desc") {
-      return b.name.localeCompare(a.name);
-    }
+  if (sortOption === "name-desc") {
+    return b.name.localeCompare(a.name);
+  }
 
-    if (sortOption === "oldest") {
-      return Number(a.id) - Number(b.id);
-    }
+  if (sortOption === "oldest") {
+    return (
+      new Date(a.createdAt || 0).getTime() -
+      new Date(b.createdAt || 0).getTime()
+    );
+  }
 
-    return Number(b.id) - Number(a.id);
-  });
+  return (
+    new Date(b.createdAt || 0).getTime() -
+    new Date(a.createdAt || 0).getTime()
+  );
+});
    
   const onSearch=(newValue: string)=>{
   dispatch(updateSearchQuery (newValue))
@@ -174,6 +180,14 @@ export const Home = () => {
               <Text variant="h2">
                 {list.name}
               </Text>
+              <Text variant="p">
+    
+           {list.createdAt
+              ? new Date(list.createdAt).toLocaleDateString("en-ZA")
+               : "No date"}
+            </Text>
+              
+
 
               <div className= {style.items}>
                 <Text variant="p" >{itemCount} {itemCount === 1? "item" : "items"} </Text>
