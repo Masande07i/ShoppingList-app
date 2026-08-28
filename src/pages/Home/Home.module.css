@@ -153,6 +153,7 @@
 }
 .search{
   margin-bottom: 50px;
+  display: flex;
 }
 
 .listCard h2 {

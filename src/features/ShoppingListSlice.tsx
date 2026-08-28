@@ -15,6 +15,7 @@ interface ShoppingListState {
   editingList: ShoppingList | null;
   showAddList: boolean;
   searchQuery: string;
+  sortOption: string;
   loading: boolean;
   error: string | null;
   success: boolean;
@@ -31,6 +32,7 @@ const initialState: ShoppingListState = {
   editingList: null,
   showAddList: false,
   searchQuery: "",
+  sortOption: "newest",
   loading: false,
   error: null,
   success: false
@@ -153,7 +155,10 @@ const shoppingListSlice = createSlice({
     },
     updateSearchQuery:(state,action: PayloadAction<string>) =>{
       state.searchQuery = action.payload;
-    }
+    },
+    setSortOption: (state, action: PayloadAction<string>) => {
+     state.sortOption = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
@@ -246,6 +251,6 @@ builder
   }
 });
 
-export const {updateInputs,clearForm,openAddList,closeAddList,setEditingList,updateSearchQuery} = shoppingListSlice.actions;
+export const {updateInputs,clearForm,openAddList,closeAddList,setEditingList,updateSearchQuery,setSortOption} = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;
