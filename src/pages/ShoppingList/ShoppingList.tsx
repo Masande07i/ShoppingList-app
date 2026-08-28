@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../Store/Store";
-import {fetchShoppingItems,deleteShoppingItem,setEditingItem,} from "../../features/ShoppingItemSlice";
+import {fetchShoppingItems,setSortOption,deleteShoppingItem,setEditingItem,} from "../../features/ShoppingItemSlice";
 import { AddItem } from "../../components/Addpopup/AddItem";
 import { Search } from "../../components/Search/Search";
 import { Text } from "../../components/Text/Text";
@@ -20,7 +20,8 @@ export const ShoppingList = () => {
   const loading = useSelector((state: RootState) => state.shoppingItem.loading);
   const items = useSelector((state: RootState) => state.shoppingItem.items);
   const searchQuery = useSelector((state: RootState) => state.shoppingItem.searchQuery);
-
+  const sortOption = useSelector((state: RootState) => state.shoppingItem.sortOption);
+  
   useEffect(() => {
     if (id) {
       dispatch(fetchShoppingItems(id));
@@ -33,11 +34,22 @@ export const ShoppingList = () => {
 
   const search = searchQuery.toLowerCase().trim();
 
-  const filteredItems = items.filter((item) =>
+ const filteredItems = items.filter((item) =>
     Object.values(item).some((value) =>
-      String(value).toLowerCase().includes(search)
-    )
-  );
+      String(value).toLowerCase().includes(searchQuery.toLowerCase().trim())))
+  .sort((a, b) => {
+    if (sortOption === "name-asc") {
+      return a.name.localeCompare(b.name);
+    }
+    if (sortOption === "name-desc") {
+      return b.name.localeCompare(a.name);
+    }
+    if (sortOption === "oldest") {
+      return Number(a.id) - Number(b.id);
+    }
+    return Number(b.id) - Number(a.id);
+  });
+  
 
   return (
     <section className={styles.page}>
@@ -59,6 +71,14 @@ export const ShoppingList = () => {
 
       <div className={styles.toolbar}>
         <Search searchQuery={searchQuery}onSearch={onSearch}/>
+        <select 
+          value={sortOption}
+          onChange={(event) =>dispatch(setSortOption(event.target.value))}>
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="name-asc">Name A-Z</option>
+          <option value="name-desc">Name Z-A</option>
+        </select>
 
         <select>
           <option value="">All Categories</option>

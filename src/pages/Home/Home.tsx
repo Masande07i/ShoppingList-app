@@ -33,9 +33,7 @@ export const Home = () => {
     dispatch(fetchAllShoppingItems());
   }, []);
   const searchQuery = useSelector((state: RootState) =>state.shoppingList.searchQuery);
- const userLists = shoppingLists
-  .filter(
-    (list) =>
+  const userLists = shoppingLists.filter((list) =>
       String(list.userId) === String(user?.id) &&
       (
         list.name.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
