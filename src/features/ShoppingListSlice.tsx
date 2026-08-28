@@ -14,6 +14,7 @@ interface ShoppingListState {
   shoppingLists: ShoppingList[];
   editingList: ShoppingList | null;
   showAddList: boolean;
+  searchQuery: string;
   loading: boolean;
   error: string | null;
   success: boolean;
@@ -29,6 +30,7 @@ const initialState: ShoppingListState = {
   shoppingLists: [],
   editingList: null,
   showAddList: false,
+  searchQuery: "",
   loading: false,
   error: null,
   success: false
@@ -148,8 +150,10 @@ const shoppingListSlice = createSlice({
         userId: action.payload.userId,
         id: action.payload.id
       };
+    },
+    updateSearchQuery:(state,action: PayloadAction<string>) =>{
+      state.searchQuery = action.payload;
     }
-
   },
 
   extraReducers: (builder) => {
@@ -242,6 +246,6 @@ builder
   }
 });
 
-export const {updateInputs,clearForm,openAddList,closeAddList,setEditingList} = shoppingListSlice.actions;
+export const {updateInputs,clearForm,openAddList,closeAddList,setEditingList,updateSearchQuery} = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;

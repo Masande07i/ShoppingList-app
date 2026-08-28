@@ -9,12 +9,14 @@ interface ShoppingItem {
   category: string;
   quantity:number;
   notes?: string;
+  image?: string;
 }
 
 interface ShoppingItemState {
   inputs: ShoppingItem;
   items: ShoppingItem[];
   editingItem:ShoppingItem | null;
+  searchQuery: string;
   loading:boolean;
   error: string | null;
   success: boolean;
@@ -27,10 +29,12 @@ const initialState: ShoppingItemState = {
     notes: "",
     userId: "",
     listId: "",
-    quantity: 1
+    quantity: 1,
+    image: ""
   },
   items: [],
   editingItem:null,
+  searchQuery:"",
   loading: false,
   error: null,
   success: false
@@ -114,7 +118,8 @@ export const updateShoppingItem = createAsyncThunk("shoppingItem/updateShoppingI
         notes: shoppingItem.notes,
         quantity: shoppingItem.quantity,
         userId: shoppingItem.userId,
-        listId:shoppingItem.listId
+        listId:shoppingItem.listId,
+        image: shoppingItem.image
       })
 
     });
@@ -149,7 +154,8 @@ const shoppingItemSlice = createSlice({
         notes: "",
         userId: "",
         listId: "",
-        quantity: 1
+        quantity: 1,
+        image: ""
       };
     },
     setEditingItem: (state, action: PayloadAction<ShoppingItem>)=>{
@@ -159,10 +165,14 @@ const shoppingItemSlice = createSlice({
         category: action.payload.category,
         notes: action.payload.notes,
         quantity:action.payload.quantity,
+        image : action.payload.image,
         userId: action.payload.userId,
         listId: action.payload.listId,
         id: action.payload.id
       }
+    },
+    updateSearchQuery:(state,action: PayloadAction<string>) =>{
+      state.searchQuery = action.payload;
     }
   },
 
@@ -183,6 +193,7 @@ const shoppingItemSlice = createSlice({
           category: "",
           notes: "",
           quantity: 1,
+          image: "",
           userId: "",
           listId: ""
         };
@@ -265,7 +276,8 @@ builder
           notes:"",
           userId: "",
           listId: "",
-          quantity: 1
+          quantity: 1,
+          image: ""
         };
 
        })
@@ -277,6 +289,6 @@ builder
   }
 });
 
-export const {updateItemInputs,clearItemForm,setEditingItem} = shoppingItemSlice.actions;
+export const {updateItemInputs,clearItemForm,setEditingItem,updateSearchQuery} = shoppingItemSlice.actions;
 
 export default shoppingItemSlice.reducer;

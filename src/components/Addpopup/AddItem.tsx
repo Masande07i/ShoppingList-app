@@ -20,7 +20,7 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { name, category, notes,quantity } = shoppingItemState.inputs;
+    const { name, category, notes,quantity,image } = shoppingItemState.inputs;
 
     if (!name || !category) {
       alert("Please fill out all required fields.");
@@ -36,7 +36,7 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
       if(editingItem){
         await dispatch(updateShoppingItem({
          id: editingItem.id,
-         name,category,notes,quantity,
+         name,category,notes,quantity,image,
          userId: String(user.id),
          listId
         })).unwrap();
@@ -47,6 +47,7 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
           name,
           category,
           notes,
+          image,
           quantity,
           userId: String(user.id),
           listId
@@ -130,15 +131,47 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
               type="text"
               className={styles.input}
               value={shoppingItemState.inputs.notes}
-              onChange={(e) =>
-                dispatch(
-                  updateItemInputs({
-                    notes: e.target.value
-                  })
-                )
-              }
+              onChange={(e) =>dispatch(updateItemInputs({notes: e.target.value}))}
             />
           </div>
+          {/* <div className={styles.formGroup}>
+            <Text
+              variant="span"className={styles.label}>
+              Image
+            </Text>
+
+            <input
+              type="file"
+              className={styles.input}
+              accept="image/*"
+              onChange={(e)=>{
+                const file = e.target.files?.[0];
+                if (!file)return;
+                const reader = new FileReader();
+                reader.onloadend = ()=>{
+                  dispatch(updateItemInputs({ 
+                    image: reader.result as string
+                  }));
+                };
+                reader.readAsDataURL(file);
+              }}
+            />
+          </div> */}
+          <div className={styles.formGroup}>
+           <Text variant="span" className={styles.label}>
+             Image URL <span className={styles.optional}>(optional)</span>
+          </Text>
+            <input
+             type="text"
+              className={styles.input}
+              placeholder="https://example.com"
+              value={shoppingItemState.inputs.image || ''}
+              onChange={(e) => dispatch(updateItemInputs({ image: e.target.value }))}
+                    />
+              </div>
+
+
+
 
           <div className={styles.actions}>
             <Button type="submit"

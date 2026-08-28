@@ -6,14 +6,13 @@ import { Button } from "../../components/Button/Button";
 import { AddList } from "../../components/Addpopup/AddList";
 import type { RootState } from "../../Store/Store";
 import style from "./Home.module.css";
-import { fetchShoppingLists,deleteShoppingList,openAddList,closeAddList,setEditingList} from "../../features/ShoppingListSlice";
+import { fetchShoppingLists,deleteShoppingList,openAddList,closeAddList,setEditingList,updateSearchQuery} from "../../features/ShoppingListSlice";
 import { useDispatch,useSelector } from "react-redux";
 import type { AppDispatch } from "../../Store/Store";
 import { logout } from "../../features/LoginSlice";
 import { MdDeleteForever } from "react-icons/md";
 import {  FiEdit2 } from "react-icons/fi";
 import { FaShareAlt } from "react-icons/fa";
-import { HiOutlineEye } from "react-icons/hi";
 import { fetchAllShoppingItems } from "../../features/ShoppingItemSlice";
 import { Search } from "../../components/Search/Search";
 
@@ -33,13 +32,15 @@ export const Home = () => {
     dispatch(fetchShoppingLists());
     dispatch(fetchAllShoppingItems());
   }, []);
-
-  const userLists = shoppingLists.filter((list) =>String(list.userId) === String(user?.id));
-   const [searchQuery, setSearchQuery] = useState<string>('')
-
+  const searchQuery = useSelector((state: RootState) =>state.shoppingList.searchQuery)
+  const userLists = shoppingLists.filter((list) =>String(list.userId) === String(user?.id) && 
+  list.name.toLowerCase().includes(searchQuery.toLowerCase().trim())||
+  list.category.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
+  list.notes?  list.notes!.toLowerCase().includes(searchQuery.toLowerCase().trim()) : ""
+);
    
   const onSearch=(newValue: string)=>{
-  setSearchQuery(newValue)
+  dispatch(updateSearchQuery (newValue))
  }
 
  const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,
@@ -147,6 +148,10 @@ export const Home = () => {
                 {list.name}
               </Text>
 
+              <div className= {style.items}>
+                <Text variant="p" >{itemCount} {itemCount === 1? "item" : "items"} </Text>
+                </div>
+
               <Text variant="p">
                 Category: {list.category}
               </Text>
@@ -156,7 +161,7 @@ export const Home = () => {
                   {list.notes}
                 </Text>}
 
-                <Text variant="p" >{itemCount} {itemCount === 1? "item" : "items"} </Text>
+                
             </div>
             <div  className={style.buttons}>
             <button onClick={(event) => {event.stopPropagation();
@@ -176,7 +181,7 @@ export const Home = () => {
                   }}}>
                   <FaShareAlt />
                 </button>
-              <button ><HiOutlineEye /></button>
+           
               </div>
 
               
