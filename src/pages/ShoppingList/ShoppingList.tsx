@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../Store/Store";
-import {fetchShoppingItems,setSortOption,setFilterCategory,deleteShoppingItem,setEditingItem,} from "../../features/ShoppingItemSlice";
+import {fetchShoppingItems,setSortOption,closeAddItem,openAddItem,setFilterCategory,deleteShoppingItem,setEditingItem,} from "../../features/ShoppingItemSlice";
 import { AddItem } from "../../components/Addpopup/AddItem";
 import { Search } from "../../components/Search/Search";
 import { Text } from "../../components/Text/Text";
@@ -15,10 +15,11 @@ export const ShoppingList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const [showAddItem, setShowAddItem] = useState(false);
+  
 
   const loading = useSelector((state: RootState) => state.shoppingItem.loading);
   const items = useSelector((state: RootState) => state.shoppingItem.items);
+  const showAddItem = useSelector((state: RootState) => state.shoppingItem.showAddItem);
   const searchQuery = useSelector((state: RootState) => state.shoppingItem.searchQuery);
   const sortOption = useSelector((state: RootState) => state.shoppingItem.sortOption);
   const filterCategory = useSelector((state: RootState) => state.shoppingItem.filterCategory);
@@ -33,7 +34,7 @@ export const ShoppingList = () => {
     dispatch({type: "shoppingItem/updateSearchQuery",payload: newValue, });
   };
 
-  const search = searchQuery.toLowerCase().trim();
+  // const search = searchQuery.toLowerCase().trim();
   const categories = [...new Set(items.map((item) => item.category))];
 
  const filteredItems = items
@@ -82,7 +83,7 @@ export const ShoppingList = () => {
         </Text>
 
         <div className={styles.headerActions}>
-          <button className={styles.addButton}onClick={() => setShowAddItem(true)}>
+          <button className={styles.addButton} onClick={() => dispatch(openAddItem())}>
             + Add Item
           </button>
         </div>
@@ -171,11 +172,12 @@ export const ShoppingList = () => {
               )}
 
               <div className={styles.buttons}>
-                <button
-                  onClick={() => {dispatch(setEditingItem(item));
-                    setShowAddItem(true);}}>
-                  <FiEdit2 />
-                </button>
+                <button onClick={() => {
+                   dispatch(setEditingItem(item));
+                    dispatch(openAddItem());
+                 }}>
+               <FiEdit2 />
+               </button>
 
                 <button
                   onClick={() => {
@@ -192,11 +194,11 @@ export const ShoppingList = () => {
       </div>
 
       {showAddItem && id && (
-        <AddItem
-          listId={id}
-          onClose={() => setShowAddItem(false)}
-        />
-      )}
+        <div className={styles.popup}>
+       <AddItem listId={id}
+        onClose={() => dispatch(closeAddItem())}/>
+        </div>
+          )}
     </section>
   );
 };

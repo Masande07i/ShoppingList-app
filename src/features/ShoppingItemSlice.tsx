@@ -17,6 +17,7 @@ interface ShoppingItemState {
   inputs: ShoppingItem;
   items: ShoppingItem[];
   editingItem:ShoppingItem | null;
+  showAddItem: boolean;
   searchQuery: string;
   sortOption: string;
   filterCategory: string;
@@ -38,6 +39,7 @@ const initialState: ShoppingItemState = {
   items: [],
   editingItem:null,
   searchQuery:"",
+  showAddItem: false,
   sortOption: "newest",
   filterCategory: "",
   loading: false,
@@ -161,6 +163,12 @@ const shoppingItemSlice = createSlice({
         quantity: 1,
         image: ""
       };
+    },
+    openAddItem: (state) => {
+      state.showAddItem = true;
+    },
+    closeAddItem: (state) => {
+      state.showAddItem = false;
     },
     setEditingItem: (state, action: PayloadAction<ShoppingItem>)=>{
       state.editingItem = action.payload;
@@ -300,6 +308,6 @@ builder
   }
 });
 
-export const {updateItemInputs,clearItemForm,setEditingItem,updateSearchQuery,setSortOption,setFilterCategory} = shoppingItemSlice.actions;
+export const {updateItemInputs,clearItemForm,closeAddItem,openAddItem,setEditingItem,updateSearchQuery,setSortOption,setFilterCategory} = shoppingItemSlice.actions;
 
 export default shoppingItemSlice.reducer;

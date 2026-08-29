@@ -63,14 +63,6 @@
   ],
   "items": [
     {
-      "name": "dscfs",
-      "category": "gser",
-      "notes": "2234",
-      "userId": "n6zZO8azrlc",
-      "listId": "RFIZQMogtP8",
-      "id": "1aWlgxa8wpo"
-    },
-    {
       "name": "snetb",
       "category": "stebr",
       "notes": "steng",
@@ -110,7 +102,7 @@
     },
     {
       "name": "bbnn",
-      "category": "bhhh",
+      "category": "bhhhhh",
       "notes": "nnfadfeafeaefa",
       "image": "",
       "quantity": 1,
@@ -118,6 +110,28 @@
       "listId": "BiHxPziIsxA",
       "createdAt": "2026-08-29T20:30:31.152Z",
       "id": "rf_6b1BHMtk"
+    },
+    {
+      "name": "fggh",
+      "category": "ghgghg",
+      "notes": "b",
+      "image": "",
+      "quantity": 7,
+      "userId": "n6zZO8azrlc",
+      "listId": "tIy8zL5ZFEU",
+      "createdAt": "2026-08-29T22:28:30.312Z",
+      "id": "13EFJY7ccMc"
+    },
+    {
+      "name": "vggvgv",
+      "category": "nnn",
+      "notes": "nmn",
+      "image": "",
+      "quantity": 1,
+      "userId": "n6zZO8azrlc",
+      "listId": "BiHxPziIsxA",
+      "createdAt": "2026-08-29T22:47:43.655Z",
+      "id": "Vl_tZIBF0Es"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
