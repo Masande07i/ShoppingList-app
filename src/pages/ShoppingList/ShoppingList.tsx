@@ -44,11 +44,17 @@ export const ShoppingList = () => {
     if (sortOption === "name-desc") {
       return b.name.localeCompare(a.name);
     }
-    if (sortOption === "oldest") {
-      return Number(a.id) - Number(b.id);
-    }
-    return Number(b.id) - Number(a.id);
-  });
+   if (sortOption === "oldest") {
+  return (
+    new Date(a.createdAt || 0).getTime() -
+    new Date(b.createdAt || 0).getTime()
+  );
+  }
+  return (
+  new Date(b.createdAt || 0).getTime() -
+  new Date(a.createdAt || 0).getTime()
+  );
+});
   
 
   return (
@@ -91,6 +97,7 @@ export const ShoppingList = () => {
           <Text variant="p">Category</Text>
           <Text variant="p">Quantity</Text>
           <Text variant="p">Notes</Text>
+          <Text variant="p">Created</Text>
           <Text variant="p">Image</Text>
           <Text variant="p">Actions</Text>
         </div>
@@ -128,6 +135,10 @@ export const ShoppingList = () => {
 
               <Text variant="p">
                 {item.notes || "-"}
+              </Text>
+
+              <Text variant="p">
+                {item.createdAt ? new Date(item.createdAt).toLocaleDateString("en-ZA"): "No date"}
               </Text>
 
               {item.image ? (

@@ -10,6 +10,7 @@ interface ShoppingItem {
   quantity:number;
   notes?: string;
   image?: string;
+  createdAt?: string;
 }
 
 interface ShoppingItemState {
@@ -44,12 +45,16 @@ const initialState: ShoppingItemState = {
 
 export const addShoppingItem = createAsyncThunk("shoppingItem/addShoppingItem",async (shoppingItem: ShoppingItem, {rejectWithValue}) => {
     try {
+       const newShoppingItem = {...shoppingItem,
+        createdAt: new Date().toISOString()
+      };
+
       const response = await fetch("http://localhost:3000/items", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(shoppingItem)
+        body: JSON.stringify(newShoppingItem)
       });
 
       if (!response.ok) {
@@ -121,7 +126,8 @@ export const updateShoppingItem = createAsyncThunk("shoppingItem/updateShoppingI
         quantity: shoppingItem.quantity,
         userId: shoppingItem.userId,
         listId:shoppingItem.listId,
-        image: shoppingItem.image
+        image: shoppingItem.image,
+        createdAt: shoppingItem.createdAt
       })
 
     });
@@ -164,7 +170,8 @@ const shoppingItemSlice = createSlice({
         image : action.payload.image,
         userId: action.payload.userId,
         listId: action.payload.listId,
-        id: action.payload.id
+        id: action.payload.id,
+        createdAt: action.payload.createdAt
       }
     },
     updateSearchQuery:(state,action: PayloadAction<string>) =>{
