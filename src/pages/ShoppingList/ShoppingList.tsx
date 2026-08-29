@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../Store/Store";
-import {fetchShoppingItems,setSortOption,deleteShoppingItem,setEditingItem,} from "../../features/ShoppingItemSlice";
+import {fetchShoppingItems,setSortOption,setFilterCategory,deleteShoppingItem,setEditingItem,} from "../../features/ShoppingItemSlice";
 import { AddItem } from "../../components/Addpopup/AddItem";
 import { Search } from "../../components/Search/Search";
 import { Text } from "../../components/Text/Text";
@@ -21,7 +21,8 @@ export const ShoppingList = () => {
   const items = useSelector((state: RootState) => state.shoppingItem.items);
   const searchQuery = useSelector((state: RootState) => state.shoppingItem.searchQuery);
   const sortOption = useSelector((state: RootState) => state.shoppingItem.sortOption);
-  
+  const filterCategory = useSelector((state: RootState) => state.shoppingItem.filterCategory);
+
   useEffect(() => {
     if (id) {
       dispatch(fetchShoppingItems(id));
@@ -33,29 +34,41 @@ export const ShoppingList = () => {
   };
 
   const search = searchQuery.toLowerCase().trim();
+  const categories = [...new Set(items.map((item) => item.category))];
 
- const filteredItems = items.filter((item) =>
+ const filteredItems = items
+  .filter((item) =>
     Object.values(item).some((value) =>
-      String(value).toLowerCase().includes(searchQuery.toLowerCase().trim())))
+      String(value)
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase().trim())
+    ) &&
+    (
+      filterCategory === "" ||
+      item.category === filterCategory
+    )
+  )
   .sort((a, b) => {
     if (sortOption === "name-asc") {
       return a.name.localeCompare(b.name);
     }
+
     if (sortOption === "name-desc") {
       return b.name.localeCompare(a.name);
     }
-   if (sortOption === "oldest") {
-  return (
-    new Date(a.createdAt || 0).getTime() -
-    new Date(b.createdAt || 0).getTime()
-  );
-  }
-  return (
-  new Date(b.createdAt || 0).getTime() -
-  new Date(a.createdAt || 0).getTime()
-  );
-});
-  
+
+    if (sortOption === "oldest") {
+      return (
+        new Date(a.createdAt || 0).getTime() -
+        new Date(b.createdAt || 0).getTime()
+      );
+    }
+
+    return (
+      new Date(b.createdAt || 0).getTime() -
+      new Date(a.createdAt || 0).getTime()
+    );
+  });
 
   return (
     <section className={styles.page}>
@@ -86,8 +99,16 @@ export const ShoppingList = () => {
           <option value="name-desc">Name Z-A</option>
         </select>
 
-        <select>
-          <option value="">All Categories</option>
+       <select
+        value={filterCategory}
+        onChange={(event) =>dispatch(setFilterCategory(event.target.value))}>
+       <option value="">All Categories</option>
+
+        {categories.map((category) => (
+        <option key={category} value={category}>
+          {category}
+          </option>
+           ))}
         </select>
       </div>
 
