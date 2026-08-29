@@ -6,7 +6,7 @@ import { Button } from "../../components/Button/Button";
 import { AddList } from "../../components/Addpopup/AddList";
 import type { RootState } from "../../Store/Store";
 import style from "./Home.module.css";
-import { fetchShoppingLists,deleteShoppingList,openAddList,closeAddList,setEditingList,updateSearchQuery,setSortOption} from "../../features/ShoppingListSlice";
+import { fetchShoppingLists,deleteShoppingList,setFilterCategory,openAddList,closeAddList,setEditingList,updateSearchQuery,setSortOption} from "../../features/ShoppingListSlice";
 import { useDispatch,useSelector } from "react-redux";
 import type { AppDispatch } from "../../Store/Store";
 import { logout } from "../../features/LoginSlice";
@@ -24,7 +24,8 @@ export const Home = () => {
   const user = useSelector((state: RootState) => state.login.user);
   const showAddList = useSelector((state: RootState) =>state.shoppingList.showAddList);
   const { items } = useSelector((state: RootState) => state.shoppingItem);
-  const sortOption = useSelector((state: RootState) =>state.shoppingList.sortOption)
+  const sortOption = useSelector((state: RootState) =>state.shoppingList.sortOption);
+  const filterCategory = useSelector((state: RootState) => state.shoppingList.filterCategory);
 
   console.log(items.length)
   
@@ -33,36 +34,45 @@ export const Home = () => {
     dispatch(fetchAllShoppingItems());
   }, []);
   const searchQuery = useSelector((state: RootState) =>state.shoppingList.searchQuery);
-  const userLists = shoppingLists.filter((list) =>
-      String(list.userId) === String(user?.id) &&
-      (
-        list.name.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
-        list.category.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
-        list.notes?.toLowerCase().includes(searchQuery.toLowerCase().trim())
-      )
+  const categories = [...new Set(shoppingLists
+      .filter((list) => String(list.userId) === String(user?.id))
+      .map((list) => list.category)
+  )
+];
+ const userLists = shoppingLists.filter((list) =>
+    String(list.userId) === String(user?.id) &&
+    (
+      list.name.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
+      list.category.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
+      list.notes?.toLowerCase().includes(searchQuery.toLowerCase().trim())
+    ) &&
+    (
+      filterCategory === "" ||
+      list.category === filterCategory
+    )
   )
   .sort((a, b) => {
-  if (sortOption === "name-asc") {
-    return a.name.localeCompare(b.name);
-  }
+    if (sortOption === "name-asc") {
+      return a.name.localeCompare(b.name);
+    }
 
-  if (sortOption === "name-desc") {
-    return b.name.localeCompare(a.name);
-  }
+    if (sortOption === "name-desc") {
+      return b.name.localeCompare(a.name);
+    }
 
-  if (sortOption === "oldest") {
+    if (sortOption === "oldest") {
+      return (
+        new Date(a.createdAt || 0).getTime() -
+        new Date(b.createdAt || 0).getTime()
+      );
+    }
+
     return (
-      new Date(a.createdAt || 0).getTime() -
-      new Date(b.createdAt || 0).getTime()
+      new Date(b.createdAt || 0).getTime() -
+      new Date(a.createdAt || 0).getTime()
     );
-  }
+  });
 
-  return (
-    new Date(b.createdAt || 0).getTime() -
-    new Date(a.createdAt || 0).getTime()
-  );
-});
-   
   const onSearch=(newValue: string)=>{
   dispatch(updateSearchQuery (newValue))
  }
@@ -133,18 +143,36 @@ export const Home = () => {
         </button>
       </aside>
       <main className={style.mainContent}>
-         <div  className={style.search}>
-           <Search searchQuery={searchQuery} onSearch={onSearch}/> 
-         
-          <select
-             value={sortOption}
-                 onChange={(event) => dispatch(setSortOption(event.target.value))} >
-                 <option value="newest">Newest</option>
-                <option value="oldest">Oldest</option>
-                <option value="name-asc">Name A-Z</option>
-                 <option value="name-desc">Name Z-A</option>
-                </select>
-             </div>
+        <div className={style.search}>
+  <Search searchQuery={searchQuery} onSearch={onSearch} />
+
+  <select
+    value={sortOption}
+    onChange={(event) =>
+      dispatch(setSortOption(event.target.value))
+    }
+  >
+    <option value="newest">Newest</option>
+    <option value="oldest">Oldest</option>
+    <option value="name-asc">Name A-Z</option>
+    <option value="name-desc">Name Z-A</option>
+  </select>
+
+  <select
+    value={filterCategory}
+    onChange={(event) =>
+      dispatch(setFilterCategory(event.target.value))
+    }
+  >
+    <option value="">All Categories</option>
+
+    {categories.map((category) => (
+      <option key={category} value={category}>
+        {category}
+      </option>
+    ))}
+  </select>
+</div>
         <div className={style.header}>
           <div>
             <Text
