@@ -16,7 +16,54 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
   const shoppingItemState = useSelector((state: RootState) => state.shoppingItem);
   const user = useSelector((state: RootState) => state.login.user);
   const editingItem = useSelector((state: RootState) => state.shoppingItem.editingItem);
+  const compressImage = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
 
+    reader.readAsDataURL(file);
+
+    reader.onload = (event) => {
+      const image = new Image();
+
+      image.src = event.target?.result as string;
+
+      image.onload = () => {
+        const canvas = document.createElement("canvas");
+
+        const maxWidth = 300;
+        const maxHeight = 300;
+
+        let width = image.width;
+        let height = image.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height = height * (maxWidth / width);
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width = width * (maxHeight / height);
+            height = maxHeight;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        const context = canvas.getContext("2d");
+
+        context?.drawImage(image, 0, 0, width, height);
+
+        const compressedImage = canvas.toDataURL("image/jpeg", 0.6);
+
+        resolve(compressedImage);
+      };
+    };
+
+    reader.onerror = () => reject("Failed to read image");
+  });
+};
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -134,7 +181,7 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
               onChange={(e) =>dispatch(updateItemInputs({notes: e.target.value}))}
             />
           </div>
-          {/* <div className={styles.formGroup}>
+          <div className={styles.formGroup}>
             <Text
               variant="span"className={styles.label}>
               Image
@@ -144,34 +191,19 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
               type="file"
               className={styles.input}
               accept="image/*"
-              onChange={(e)=>{
-                const file = e.target.files?.[0];
-                if (!file)return;
-                const reader = new FileReader();
-                reader.onloadend = ()=>{
-                  dispatch(updateItemInputs({ 
-                    image: reader.result as string
-                  }));
-                };
-                reader.readAsDataURL(file);
-              }}
+              onChange={async (e) => {const file = e.target.files?.[0];
+               if (!file) return;
+              try {
+              const compressedImage = await compressImage(file);
+            dispatch(updateItemInputs({image: compressedImage})
+           );
+            } catch (error) {
+                alert("Failed to compress image");
+  }
+}}
+            
             />
-          </div> */}
-          <div className={styles.formGroup}>
-           <Text variant="span" className={styles.label}>
-             Image URL <span className={styles.optional}>(optional)</span>
-          </Text>
-            <input
-             type="text"
-              className={styles.input}
-              placeholder="https://example.com"
-              value={shoppingItemState.inputs.image || ''}
-              onChange={(e) => dispatch(updateItemInputs({ image: e.target.value }))}
-                    />
-              </div>
-
-
-
+          </div>
 
           <div className={styles.actions}>
             <Button type="submit"
