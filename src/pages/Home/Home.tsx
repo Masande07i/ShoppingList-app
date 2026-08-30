@@ -77,10 +77,15 @@ export const Home = () => {
   dispatch(updateSearchQuery (newValue))
  }
 
- const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,
-  listId: string,listName: string) => {event.stopPropagation();
+const handleShare = async (
+  event: React.MouseEvent<HTMLButtonElement>,
+  listId: string,
+  listName: string
+) => {
+  event.stopPropagation();
 
-  const shareUrl = `${window.location.origin}/shopping-list/${listId}`;
+  const shareUrl = `${window.location.origin}/shared-list/${listId}`;
+
   try {
     if (navigator.share) {
       await navigator.share({
@@ -90,7 +95,7 @@ export const Home = () => {
       });
     } else {
       await navigator.clipboard.writeText(shareUrl);
-      alert("Shopping list link copied!");
+      alert("Shared list link copied!");
     }
   } catch (error) {
     console.log("Share cancelled", error);

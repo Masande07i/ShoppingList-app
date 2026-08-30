@@ -7,7 +7,7 @@ import { Login } from './pages/Login/Login'
 import { Profile } from './pages/Profile/Profile'
 import { ShoppingList } from './pages/ShoppingList/ShoppingList'
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute'
-
+import { SharedList } from './pages/SharedList/SharedList'
 function App() {
 
   return (
@@ -21,6 +21,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/shopping-list/:id"element={<ShoppingList />}/>
+          <Route path="/shared-list/:id"element={<SharedList />}/>
           <Route path="/profile" element={<Profile />} />
         </Route>
 
