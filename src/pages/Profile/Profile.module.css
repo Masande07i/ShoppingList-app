@@ -96,3 +96,56 @@
     align-items: center;
     justify-content: space-between;
 }
+
+@media (max-width: 415px) {
+    .profilePage {
+        padding: 15px 12px 30px;
+    }
+
+    .profileHeader {
+        gap: 20px;
+        padding: 5px 10px 20px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .icon {
+        width: 85px;
+        height: 85px;
+    }
+
+    .profileDetails h1 {
+        font-size: 21px;
+    }
+
+    .profileDetails p {
+        font-size: 13px;
+    }
+
+    .card {
+        padding: 10px 15px 20px;
+        margin-bottom: 25px;
+    }
+
+    .personalInfo {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+        row-gap: 20px;
+        padding: 30px 4px 0;
+    }
+
+    .cardHeader h2,
+    .passwordCard h2 {
+        font-size: 17px;
+    }
+
+    .editButton {
+        font-size: 25px;
+    }
+
+    .passwordCard {
+        min-height: 70px;
+        padding: 0 15px;
+    }
+}

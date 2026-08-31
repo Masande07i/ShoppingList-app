@@ -105,3 +105,48 @@
   align-items: center;
   z-index: 1000;
 }
+
+@media (max-width: 800px) {
+    .page {
+        padding: 20px;
+    }
+
+    .header {
+        gap: 10px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .backButton {
+        font-size: 28px;
+    }
+
+    .headerActions {
+        gap: 15px;
+    }
+
+    .toolbar {
+        gap: 15px;
+        margin: 20px 0;
+        flex-wrap: wrap;
+    }
+
+    .toolbar select {
+        width: 160px;
+    }
+
+    .addButton {
+        padding: 9px 18px;
+    }
+
+    .table {
+        overflow-x: auto;
+    }
+
+    .tableHeader,
+    .row {
+        min-width: 850px;
+    }
+}

@@ -232,8 +232,8 @@ const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,listId: st
               </Text>
 
               {list.notes && 
-                <Text variant="p">
-                  {list.notes}
+                <Text variant="p" style={{fontSize: 13, color:"red"}}>
+                 " {list.notes}"
                 </Text>}
 
                 
