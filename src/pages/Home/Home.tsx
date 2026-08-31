@@ -77,11 +77,7 @@ export const Home = () => {
   dispatch(updateSearchQuery (newValue))
  }
 
-const handleShare = async (
-  event: React.MouseEvent<HTMLButtonElement>,
-  listId: string,
-  listName: string
-) => {
+const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,listId: string,listName: string) => {
   event.stopPropagation();
 
   const shareUrl = `${window.location.origin}/shared-list/${listId}`;
@@ -257,8 +253,6 @@ const handleShare = async (
                 </button>
            
               </div>
-
-              
 
           </div>
               );

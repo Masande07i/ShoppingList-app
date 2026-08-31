@@ -1,12 +1,9 @@
-
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import type { AppDispatch, RootState } from "../../Store/Store";
 import { fetchShoppingLists } from "../../features/ShoppingListSlice";
 import { fetchShoppingItems } from "../../features/ShoppingItemSlice";
-
 import { Text } from "../../components/Text/Text";
 import style from "./SharedList.module.css";
 
@@ -14,13 +11,9 @@ export const SharedList = () => {
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { shoppingLists } = useSelector(
-    (state: RootState) => state.shoppingList
-  );
+  const { shoppingLists } = useSelector((state: RootState) => state.shoppingList);
 
-  const { items } = useSelector(
-    (state: RootState) => state.shoppingItem
-  );
+  const { items } = useSelector((state: RootState) => state.shoppingItem);
 
   useEffect(() => {
     dispatch(fetchShoppingLists());
@@ -56,7 +49,6 @@ export const SharedList = () => {
       <div className={style.container}>
 
         <div className={style.header}>
-          
 
           <div>
             <Text variant="h1" className={style.title}>
@@ -116,8 +108,7 @@ export const SharedList = () => {
                  <img
                   src={item.image}
                   alt={item.name}
-                  className={style.itemImage}/>
-  )}
+                  className={style.itemImage}/>)}
 
                   <div className={style.itemInfo}>
                     <Text
@@ -152,7 +143,6 @@ export const SharedList = () => {
             </div>
           )}
         </div>
-
       
       </div>
     </section>

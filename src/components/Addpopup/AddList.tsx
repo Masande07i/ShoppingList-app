@@ -35,7 +35,6 @@ export const AddList = ({ onClose }: AddListProps) => {
             name,
             category,
             notes,
-            
             userId: String(user.id)
           })
         ).unwrap();

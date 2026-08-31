@@ -16,6 +16,7 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
   const shoppingItemState = useSelector((state: RootState) => state.shoppingItem);
   const user = useSelector((state: RootState) => state.login.user);
   const editingItem = useSelector((state: RootState) => state.shoppingItem.editingItem);
+
   const compressImage = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -30,8 +31,8 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
       image.onload = () => {
         const canvas = document.createElement("canvas");
 
-        const maxWidth = 300;
-        const maxHeight = 300;
+        const maxWidth = 50;
+        const maxHeight = 50;
 
         let width = image.width;
         let height = image.height;
@@ -195,14 +196,11 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
                if (!file) return;
               try {
               const compressedImage = await compressImage(file);
-            dispatch(updateItemInputs({image: compressedImage})
-           );
+            dispatch(updateItemInputs({image: compressedImage}));
             } catch (error) {
                 alert("Failed to compress image");
-  }
-}}
-            
-            />
+            }}}
+                />
           </div>
 
           <div className={styles.actions}>
