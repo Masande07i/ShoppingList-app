@@ -1,6 +1,4 @@
-
 import { FaSearch } from 'react-icons/fa'
-import { Text } from '../Text/Text'
 import style from './Search.module.css'
 
 export interface SearchBarProps{
