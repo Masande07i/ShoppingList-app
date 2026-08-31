@@ -141,7 +141,21 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin-top: 30px;
+ 
 }
+.emptyList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 250px;
+}
+
+.emptyIcon {
+    font-size: 80px;
+    color: var(--secondary-text);
+}
+
 
 .listCard {
   background: #f7d4ee;
@@ -149,7 +163,12 @@
   border-radius: 10px;
   width:70%;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.listCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 .search{
   margin-bottom: 50px;

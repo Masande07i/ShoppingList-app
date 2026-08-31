@@ -194,8 +194,13 @@ const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,listId: st
           <Button label="+ Add New List" className={style.addButton} onClick={() => dispatch(openAddList())}/>
         </div>
 
-        <div className={style.listContainer}>
-          {userLists.map((list) => {
+       <div className={style.listContainer}>
+       {userLists.length === 0 ? (
+      <div className={style.emptyList}>
+      <FiShoppingCart className={style.emptyIcon} />
+      </div>
+   ) : (
+    userLists.map((list) => {
 
             const itemCount = items.filter(
               (item) => String(item.listId) === String(list.id)).length;
@@ -256,7 +261,7 @@ const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,listId: st
 
           </div>
               );
-           })}
+           }))}
         </div>
       </main>
 
