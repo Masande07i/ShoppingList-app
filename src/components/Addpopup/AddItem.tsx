@@ -20,17 +20,11 @@ export const AddItem = ({onClose,listId}: AddItemProps) => {
   const compressImage = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-
     reader.readAsDataURL(file);
-
-    reader.onload = (event) => {
-      const image = new Image();
-
+    reader.onload = (event) => { const image = new Image();
       image.src = event.target?.result as string;
-
       image.onload = () => {
         const canvas = document.createElement("canvas");
-
         const maxWidth = 50;
         const maxHeight = 50;
 

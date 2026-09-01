@@ -28,49 +28,31 @@
       "id": "n6zZO8azrlc"
     },
     {
-      "id": "6yuff9zhA7M",
+      "id": "9xgd5W6qL6A",
       "name": "Nondumo",
       "surname": "Magoso",
-      "email": "weendy@gmail.com",
+      "email": "we12ndy@gmail",
       "phone": "0837848383",
-      "password": "1111",
-      "confirmPassword": "1111"
+      "password": ",,,,",
+      "confirmPassword": ",,,,"
     },
     {
-      "id": "b4jNtwAgdjo",
+      "id": "vmRnrmgQSr8",
       "name": "Ntombi",
-      "surname": "Zodwa",
-      "email": "zodwa@gmail.com",
+      "surname": "Ntlahla",
+      "email": "ntombi@gmail.com",
       "phone": "0837848383",
-      "password": "////",
-      "confirmPassword": "////"
+      "password": "nnnn",
+      "confirmPassword": "nnnn"
     },
     {
-      "id": "0P2Bo1_arMY",
-      "name": "",
-      "surname": "",
-      "email": "wendy@gmail.com",
-      "phone": "",
-      "password": "mmmm",
-      "confirmPassword": ""
-    },
-    {
-      "id": "8m_joWRo_wU",
-      "name": "",
-      "surname": "",
-      "email": "wendy@gmail.com",
-      "phone": "",
-      "password": "mmmm",
-      "confirmPassword": ""
-    },
-    {
-      "id": "tjjNsVusxnI",
-      "name": "",
-      "surname": "",
-      "email": "wendy@gmail.com",
-      "phone": "",
-      "password": "mmmm",
-      "confirmPassword": ""
+      "id": "raNurp19a7k",
+      "name": "dw",
+      "surname": "DW",
+      "email": "dlamini.rise1@gmail.com",
+      "phone": "0837848383",
+      "password": "1212",
+      "confirmPassword": "1212"
     }
   ],
   "lists": [
@@ -162,9 +144,9 @@
     {
       "name": "65tt",
       "category": "gftr",
-      "notes": "",
+      "notes": "hjuiykhy",
       "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAyADIDASIAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAAAAYDBwIEBQEI/8QALRAAAgEEAAUEAQIHAAAAAAAAAQIDAAQFEQYSITFBE1FhgSIVkQcUMlJxofD/xAAYAQADAQEAAAAAAAAAAAAAAAAAAgMBBP/EAB4RAAICAQUBAAAAAAAAAAAAAAABAhEhBBITMXFB/9oADAMBAAIRAxEAPwCsKKKev4f8HRZdf1TKIWs0YrHEdj1SPJP9oPt5HxQAi068FcKwX8ByGTjZoubUUR6BtdyfirUixWMiVVjx9qoTQXUK9NfVe3VspUvGNMO4HY08UryJJ4wLF3wxhbq39FrCKPS8qtGOVh9+fuqtzmKlw+UmtJASqnaOR/Up7H/vNXVWvfWVvkLR7W7iEkTjqD4+R7GnlGxIyooyity8sHtr2e35lPpSMm9+x1RUSxYfAvBdk2PiyuWiW4kmHNFC4/BF9yPJPz0qwIo44IlihRY41GlVRoD6rkcKXkV5wzj5YCSqwLGd+GUcp/2K6+6okTbM90brDdG6KMsjngR1JUBW+PNImX46xttAy2BkuLg7AHIUCH55gP2p7nuI7a3knmcJFEpd2PYADZNfPd9Otzf3FwgIWWVnAPcAkmhyaNUUyKSR5JGd22zEkn3JorGiplDt4XO5fh5EmtH1bTsT6cg2jkdD08Ht1GqZIOP+IZWtz+nWnp3Enpowjf8AI710/KluGNszZPzuLe3xdozDyGbwOvYsdD6rTmykrwWUUK+j/JjaFT1Lb3zVRpJOn4InbyvS65r+4WBzCkbShTyA9ifHmki8434ls554ZLDHu1uAZTGrsE322eatQ8UyWnCVsGneXI3CvpidlRzsOY/t0pexcs1+BiEH53twrSTE7OvP+ffvXNpuRt72dOp40lsRuZjirN8QWsscpSO1RQ0scC6XWxreySeuqXK6dxOMcmQxUOpFablM3YsFJ6a7armVeVHPEKKKKUYkSSRYpEV2CuBzKDoNo+ajoorWYvp6STrZ7dqktpHiuEkidkdTsMp0R90UUR7CXRFRRRWGhRRRQB//2Q==",
-      "quantity": 1,
+      "quantity": 3,
       "userId": "n6zZO8azrlc",
       "listId": "tIy8zL5ZFEU",
       "createdAt": "2026-08-31T08:09:22.056Z",

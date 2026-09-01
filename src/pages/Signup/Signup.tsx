@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState,AppDispatch } from "../../Store/Store";
 import {signupUser,updateRegister,clearForm} from "../../features/SignupSlice";
+import type { UserData } from "../../features/SignupSlice";
 
 export const Signup = () => {
   const inputs= useSelector((state: RootState) => state.signup);
@@ -13,18 +14,70 @@ export const Signup = () => {
  const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
+  const validateForm = (inputs: UserData) => {
+  if (!inputs.name.trim()) {
+    alert("Please enter your first name");
+    return false;
+  }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  if (!inputs.surname.trim()) {
+    alert("Please enter your surname");
+    return false;
+  }
 
-   try
-    { dispatch(signupUser(inputs.inputs)).unwrap();
-      navigate('/login');
-    } catch (err)
-     {console.error("Failed to sign up:", err);}
+  if (!inputs.email.trim()) {
+    alert("Please enter your email address");
+    return false;
+  }
 
-     clearForm();
-  };
+  if (!inputs.phone.trim()) {
+    alert("Please enter your phone number");
+    return false;
+  }
+
+  const phoneRegex = /^[0-9+\-\s()]{10,15}$/;
+
+  if (!phoneRegex.test(inputs.phone)) {
+    alert("Please enter a valid phone number");
+    return false;
+  }
+
+  if (!inputs.password.trim()) {
+    alert("Please enter a password");
+    return false;
+  }
+
+  if (!inputs.confirmPassword.trim()) {
+    alert("Please confirm your password");
+    return false;
+  }
+
+  if (inputs.password !== inputs.confirmPassword) {
+    alert("Passwords do not match");
+    return false;
+  }
+
+  return true;
+};
+  
+  const handleSubmit = async ( e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  if (!validateForm(inputs.inputs)) {
+    return;
+  }
+
+  try {
+    await dispatch(signupUser(inputs.inputs)).unwrap();
+
+    dispatch(clearForm());
+
+    navigate("/login");
+  } catch (err) {
+    alert("Failed to sign up");
+    console.error(err);
+  }
+};
 
   return (
     <form onSubmit={handleSubmit} className={style.slate}>

@@ -15,7 +15,8 @@ import {  FiEdit2 } from "react-icons/fi";
 import { FaShareAlt } from "react-icons/fa";
 import { fetchAllShoppingItems } from "../../features/ShoppingItemSlice";
 import { Search } from "../../components/Search/Search";
-
+import  {clearForm} from "../../features/LoginSlice"
+ 
 export const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
@@ -27,8 +28,6 @@ export const Home = () => {
   const sortOption = useSelector((state: RootState) =>state.shoppingList.sortOption);
   const filterCategory = useSelector((state: RootState) => state.shoppingList.filterCategory);
 
-  console.log(items.length)
-  
   useEffect(() => {
     dispatch(fetchShoppingLists());
     dispatch(fetchAllShoppingItems());
@@ -137,6 +136,7 @@ const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,listId: st
 
         <button className={style.logout} onClick={() => {
            dispatch(logout());
+           dispatch(clearForm())
               navigate("/");
             }}>
         <FiLogOut className={style.logoutIcon} />

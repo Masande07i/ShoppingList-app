@@ -29,7 +29,7 @@ export const Login = () => {
       navigate('/home');
     }
     
-    clearForm();
+    dispatch(clearForm());
     
   };
 

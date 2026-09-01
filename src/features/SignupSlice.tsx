@@ -11,7 +11,7 @@ export interface UserData {
   confirmPassword: string;
 }
 
-interface SignupState {
+export interface SignupState {
   inputs: UserData;
   loading: boolean;
   error: string | null;
