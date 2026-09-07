@@ -55,15 +55,28 @@ const initialState: LoginState = {
   success: false
 };
 
+const hashPassword = async (password: string): Promise<string> => {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+
+  const hashBuffer = await crypto.subtle.digest("SHA-256",data);
+
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+};
 export const loginUser = createAsyncThunk("login/loginUser",async (loginData: {email: string; password: string;},thunkAPI) => {
     try {
+      
       const response = await fetch(`http://localhost:3000/users?email=${encodeURIComponent(loginData.email)}`);
       if (!response.ok) {
         throw new Error("Failed to login");
       }
       const users = await response.json();
+      const hashedPassword = await hashPassword(loginData.password);
 
-      const user = users.find((u: UserData) => u.password === loginData.password);
+      const user = users.find((u: UserData) => u.password === hashedPassword);
 
       if (!user) {
         return thunkAPI.rejectWithValue("Invalid email or password" );

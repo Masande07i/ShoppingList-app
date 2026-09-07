@@ -166,7 +166,6 @@ const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,listId: st
     }
   >
     <option value="">All Categories</option>
-
     {categories.map((category) => (
       <option key={category} value={category}>
         {category}
@@ -200,7 +199,7 @@ const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,listId: st
       <FiShoppingCart className={style.emptyIcon} />
       </div>
    ) : (
-    userLists.map((list) => {
+        userLists.map((list) => {
 
             const itemCount = items.filter(
               (item) => String(item.listId) === String(list.id)).length;

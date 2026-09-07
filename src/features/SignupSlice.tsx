@@ -33,13 +33,29 @@ const initialState: SignupState = {
   success: false,
 };
 
+const hashPassword = async (password: string): Promise<string> => {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+  return hashArray
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+};
+
 export const signupUser = createAsyncThunk('signup/signupUser',async (userData: UserData, thunkAPI) => {
   try {
+          const hashedPassword = await hashPassword(userData.password);
+           const userToSave = {...userData,password: hashedPassword,confirmPassword: '', };
+           
            const response = await fetch('http://localhost:3000/users', {
                  method: 'POST',
                  headers: {'Content-Type': 'application/json',
                   },
-           body: JSON.stringify(userData),});
+           body: JSON.stringify(userToSave),});
              if (!response.ok) {
                 throw new Error('Failed to create account');
                 }

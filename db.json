@@ -53,6 +53,24 @@
       "phone": "0837848383",
       "password": "1212",
       "confirmPassword": "1212"
+    },
+    {
+      "id": "NlkNK2A58hY",
+      "name": "Nondumo",
+      "surname": "Magoso",
+      "email": "magoso.nondumo@gmail.com",
+      "phone": "0837848383",
+      "password": "0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c",
+      "confirmPassword": ""
+    },
+    {
+      "id": "XdFBX-qZ1HM",
+      "name": "swee",
+      "surname": "hlophe",
+      "email": "ndumo@gmail.com",
+      "phone": "0837848387",
+      "password": "edee29f882543b956620b26d0ee0e7e950399b1c4222f5de05e06425b4c995e9",
+      "confirmPassword": ""
     }
   ],
   "lists": [
@@ -94,6 +112,46 @@
       "createdAt": "2026-08-31T12:55:34.454Z",
       "userId": "n6zZO8azrlc",
       "id": "TM8gV-HeflE"
+    },
+    {
+      "name": "gtre",
+      "category": "etrgrereg",
+      "notes": "erg",
+      "createdAt": "2026-09-01T13:28:36.626Z",
+      "userId": "raNurp19a7k",
+      "id": "npl7pztA4lg"
+    },
+    {
+      "name": "efrerf",
+      "category": "food",
+      "notes": "erg",
+      "createdAt": "2026-09-01T13:28:55.611Z",
+      "userId": "raNurp19a7k",
+      "id": "DZRj_bsr2-8"
+    },
+    {
+      "name": "fecsa",
+      "category": "feda",
+      "notes": "fd",
+      "createdAt": "2026-09-07T06:39:11.689Z",
+      "userId": "7BGqpvYCMZk",
+      "id": "5eDcxcHraoQ"
+    },
+    {
+      "name": "67nr",
+      "category": "r67n",
+      "notes": "67",
+      "createdAt": "2026-09-07T07:17:21.592Z",
+      "userId": "NlkNK2A58hY",
+      "id": "OWt2JyG1J_s"
+    },
+    {
+      "name": "65nr",
+      "category": "465nr",
+      "notes": "65n4",
+      "createdAt": "2026-09-07T07:17:26.592Z",
+      "userId": "NlkNK2A58hY",
+      "id": "FFd4WgQ8Yzk"
     }
   ],
   "items": [
@@ -195,6 +253,28 @@
       "listId": "wm4mbLV574o",
       "createdAt": "2026-08-31T12:46:40.749Z",
       "id": "gGvT32-HvHw"
+    },
+    {
+      "name": "ffvd",
+      "category": "fdvdf",
+      "notes": "df",
+      "image": "",
+      "quantity": 1,
+      "userId": "raNurp19a7k",
+      "listId": "DZRj_bsr2-8",
+      "createdAt": "2026-09-01T13:29:25.970Z",
+      "id": "ykoCMMvxmUU"
+    },
+    {
+      "name": "45555556",
+      "category": "yn45",
+      "notes": "65y",
+      "image": "",
+      "quantity": 1,
+      "userId": "NlkNK2A58hY",
+      "listId": "FFd4WgQ8Yzk",
+      "createdAt": "2026-09-07T07:17:34.752Z",
+      "id": "zbEVJi5M3lM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
