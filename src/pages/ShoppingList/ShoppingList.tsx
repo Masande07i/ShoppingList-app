@@ -34,7 +34,7 @@ export const ShoppingList = () => {
     dispatch({type: "shoppingItem/updateSearchQuery",payload: newValue, });
   };
 
-  // const search = searchQuery.toLowerCase().trim();
+  
   const categories = [...new Set(items.map((item) => item.category))];
 
  const filteredItems = items

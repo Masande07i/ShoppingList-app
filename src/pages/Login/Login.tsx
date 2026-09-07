@@ -26,10 +26,12 @@ export const Login = () => {
     );
 
     if (loginUser.fulfilled.match(result)) {
+      alert("Login successful!");
+      dispatch(clearForm());
       navigate('/home');
     }
     
-    dispatch(clearForm());
+    
     
   };
 
