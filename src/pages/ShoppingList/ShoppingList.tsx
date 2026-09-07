@@ -23,8 +23,13 @@ export const ShoppingList = () => {
   const searchQuery = useSelector((state: RootState) => state.shoppingItem.searchQuery);
   const sortOption = useSelector((state: RootState) => state.shoppingItem.sortOption);
   const filterCategory = useSelector((state: RootState) => state.shoppingItem.filterCategory);
-
   useEffect(() => {
+  if (id) {
+    dispatch(fetchShoppingItems(id));
+  }
+}, [dispatch, id]);
+
+ useEffect(() => {
   const search = searchParams.get("search") || "";
   const sort = searchParams.get("sort") || "newest";
   const category = searchParams.get("category") || "";
@@ -36,7 +41,7 @@ export const ShoppingList = () => {
 
   dispatch(setSortOption(sort));
   dispatch(setFilterCategory(category));
-}, [dispatch, searchParams]);
+}, [dispatch]);
 
  const onSearch = (newValue: string) => {
   dispatch({
@@ -115,7 +120,7 @@ export const ShoppingList = () => {
           value={sortOption}
           onChange={(event) => {const value = event.target.value;
              dispatch(setSortOption(value));
-            const params = new URLSearchParams(searchParams);
+             const params = new URLSearchParams(searchParams);
 
            if (value !== "newest") {
            params.set("sort", value);
