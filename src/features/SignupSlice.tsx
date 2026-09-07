@@ -48,6 +48,17 @@ const hashPassword = async (password: string): Promise<string> => {
 
 export const signupUser = createAsyncThunk('signup/signupUser',async (userData: UserData, thunkAPI) => {
   try {
+       const checkResponse = await fetch( `http://localhost:3000/users?email=${encodeURIComponent(userData.email)}`);
+      if (!checkResponse.ok) {
+        throw new Error("Failed to check email");
+      }
+      const existingUsers = await checkResponse.json();
+
+      if (existingUsers.length > 0) {
+        return thunkAPI.rejectWithValue(
+          "An account with this email already exists"
+        );
+      }
           const hashedPassword = await hashPassword(userData.password);
            const userToSave = {...userData,password: hashedPassword,confirmPassword: '', };
            

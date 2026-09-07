@@ -74,9 +74,9 @@ export const Signup = () => {
 
     navigate("/login");
   } catch (err) {
-    alert("Failed to sign up");
-    console.error(err);
-  }
+  alert(err);
+  console.error(err);
+}
 };
 
   return (
