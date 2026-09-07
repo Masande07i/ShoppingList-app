@@ -5,7 +5,7 @@ import {FiShoppingBag,FiMail,FiLock,FiEyeOff,FiEye} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "../../Store/Store";
-import {loginUser,clearForm,togglePassword } from "../../features/LoginSlice";
+import {loginUser,clearForm as clearSignupForm,togglePassword } from "../../features/LoginSlice";
 import { updateRegister } from "../../features/SignupSlice";
 
 export const Login = () => {
@@ -27,7 +27,7 @@ export const Login = () => {
 
     if (loginUser.fulfilled.match(result)) {
       alert("Login successful!");
-      dispatch(clearForm());
+      dispatch(clearSignupForm());
       navigate('/home');
     }
     

@@ -56,7 +56,6 @@ export const Signup = () => {
     alert("Passwords do not match");
     return false;
   }
-
   return true;
 };
   
@@ -69,7 +68,8 @@ export const Signup = () => {
 
   try {
     await dispatch(signupUser(inputs.inputs)).unwrap();
-
+     alert("Account created successfully!");
+  
     dispatch(clearForm());
 
     navigate("/login");
