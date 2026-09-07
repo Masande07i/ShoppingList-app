@@ -6,7 +6,7 @@ import { Button } from "../../components/Button/Button";
 import { AddList } from "../../components/Addpopup/AddList";
 import type { RootState } from "../../Store/Store";
 import style from "./Home.module.css";
-import { fetchShoppingLists,deleteShoppingList,setFilterCategory,openAddList,closeAddList,setEditingList,updateSearchQuery,setSortOption} from "../../features/ShoppingListSlice";
+import { fetchShoppingLists,deleteShoppingList,clearShoppingLists,setFilterCategory,openAddList,closeAddList,setEditingList,updateSearchQuery,setSortOption} from "../../features/ShoppingListSlice";
 import { useDispatch,useSelector } from "react-redux";
 import type { AppDispatch } from "../../Store/Store";
 import { logout } from "../../features/LoginSlice";
@@ -28,10 +28,13 @@ export const Home = () => {
   const sortOption = useSelector((state: RootState) =>state.shoppingList.sortOption);
   const filterCategory = useSelector((state: RootState) => state.shoppingList.filterCategory);
 
-  useEffect(() => {
+ useEffect(() => {
+  if (user?.id) {
     dispatch(fetchShoppingLists());
     dispatch(fetchAllShoppingItems());
-  }, []);
+  }
+}, [user?.id, dispatch]);
+
   const searchQuery = useSelector((state: RootState) =>state.shoppingList.searchQuery);
   const categories = [...new Set(shoppingLists
       .filter((list) => String(list.userId) === String(user?.id))
@@ -137,6 +140,7 @@ const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,listId: st
         <button className={style.logout} onClick={() => {
            dispatch(logout());
            dispatch(clearForm())
+           dispatch(clearShoppingLists());
               navigate("/");
             }}>
         <FiLogOut className={style.logoutIcon} />

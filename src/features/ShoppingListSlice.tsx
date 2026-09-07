@@ -168,7 +168,10 @@ const shoppingListSlice = createSlice({
     },
     setFilterCategory: (state, action: PayloadAction<string>) => {
      state.filterCategory = action.payload;
-},
+   },
+   clearShoppingLists: (state) => {
+      state.shoppingLists = [];
+     },
   },
 
   extraReducers: (builder) => {
@@ -261,6 +264,6 @@ builder
   }
 });
 
-export const {updateInputs,clearForm,openAddList,closeAddList,setEditingList,updateSearchQuery,setSortOption,setFilterCategory} = shoppingListSlice.actions;
+export const {updateInputs,clearForm,openAddList,clearShoppingLists,closeAddList,setEditingList,updateSearchQuery,setSortOption,setFilterCategory} = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;

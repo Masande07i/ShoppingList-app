@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../Store/Store";
 import {fetchShoppingItems,setSortOption,closeAddItem,openAddItem,setFilterCategory,deleteShoppingItem,setEditingItem,} from "../../features/ShoppingItemSlice";
@@ -15,7 +15,7 @@ export const ShoppingList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const loading = useSelector((state: RootState) => state.shoppingItem.loading);
   const items = useSelector((state: RootState) => state.shoppingItem.items);
@@ -25,16 +25,36 @@ export const ShoppingList = () => {
   const filterCategory = useSelector((state: RootState) => state.shoppingItem.filterCategory);
 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchShoppingItems(id));
-    }
-  }, [dispatch, id]);
+  const search = searchParams.get("search") || "";
+  const sort = searchParams.get("sort") || "newest";
+  const category = searchParams.get("category") || "";
 
-  const onSearch = (newValue: string) => {
-    dispatch({type: "shoppingItem/updateSearchQuery",payload: newValue, });
-  };
+  dispatch({
+    type: "shoppingItem/updateSearchQuery",
+    payload: search,
+  });
 
-  
+  dispatch(setSortOption(sort));
+  dispatch(setFilterCategory(category));
+}, [dispatch, searchParams]);
+
+ const onSearch = (newValue: string) => {
+  dispatch({
+    type: "shoppingItem/updateSearchQuery",
+    payload: newValue,
+  });
+
+  const params = new URLSearchParams(searchParams);
+
+  if (newValue.trim()) {
+    params.set("search", newValue);
+  } else {
+    params.delete("search");
+  }
+
+  setSearchParams(params);
+};
+
   const categories = [...new Set(items.map((item) => item.category))];
 
  const filteredItems = items
@@ -93,7 +113,18 @@ export const ShoppingList = () => {
         <Search searchQuery={searchQuery}onSearch={onSearch}/>
         <select 
           value={sortOption}
-          onChange={(event) =>dispatch(setSortOption(event.target.value))}>
+          onChange={(event) => {const value = event.target.value;
+             dispatch(setSortOption(value));
+            const params = new URLSearchParams(searchParams);
+
+           if (value !== "newest") {
+           params.set("sort", value);
+           } else {
+           params.delete("sort");
+           }
+
+          setSearchParams(params);
+        }}>
           <option value="newest">Newest</option>
           <option value="oldest">Oldest</option>
           <option value="name-asc">Name A-Z</option>
@@ -102,7 +133,16 @@ export const ShoppingList = () => {
 
        <select
         value={filterCategory}
-        onChange={(event) =>dispatch(setFilterCategory(event.target.value))}>
+        onChange={(event) => {const value = event.target.value;
+         dispatch(setFilterCategory(value));
+         const params = new URLSearchParams(searchParams);
+       if (value) {
+         params.set("category", value);
+       } else {
+         params.delete("category");
+       }
+       setSearchParams(params);
+       }}>
        <option value="">All Categories</option>
 
         {categories.map((category) => (
