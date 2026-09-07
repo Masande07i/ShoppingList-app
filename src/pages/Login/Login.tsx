@@ -1,16 +1,16 @@
 import { Text } from "../../components/Text/Text";
 import style from "./Login.module.css";
 import { Button } from "../../components/Button/Button";
-import {FiShoppingBag,FiMail,FiLock,FiEyeOff,} from "react-icons/fi";
+import {FiShoppingBag,FiMail,FiLock,FiEyeOff,FiEye} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "../../Store/Store";
-import {loginUser,clearForm} from "../../features/LoginSlice";
+import {loginUser,clearForm,togglePassword } from "../../features/LoginSlice";
 import { updateRegister } from "../../features/SignupSlice";
 
 export const Login = () => {
   const userReg = useSelector((state: RootState) => state.signup);
-  const { error } = useSelector((state: RootState) => state.login);
+  const { error , showPassword} = useSelector((state: RootState) => state.login);
   const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ export const Login = () => {
           <FiLock className={style.inputIcon} />
 
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             name="password"
             value={userReg.inputs.password}
@@ -80,8 +80,11 @@ export const Login = () => {
             
           />
           {error && <p className={style.error}>{error}</p>}
-
-          <FiEyeOff className={style.eyeIcon} />
+       {showPassword ? (
+     <FiEye className={style.eyeIcon}onClick={() => dispatch(togglePassword())}/>
+      ) : (
+    <FiEyeOff className={style.eyeIcon}onClick={() => dispatch(togglePassword())}/>
+      )}
         </div>
 
         <div className={style.loginButton}>

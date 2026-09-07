@@ -24,6 +24,7 @@ interface LoginState {
     newPassword: string;
     confirmPassword: string;
   };
+   showPassword: boolean;
   profileEditOpen: boolean;
   passwordEditOpen: boolean;
   loading: boolean;
@@ -42,12 +43,12 @@ const initialState: LoginState = {
     email: "",
     phone: ""
   },
-
   passwordInputs: {
     currentPassword: "",
     newPassword: "",
     confirmPassword: ""
   },
+  showPassword: false,
   profileEditOpen: false,
   passwordEditOpen: false,
   loading: false,
@@ -125,6 +126,9 @@ const loginSlice = createSlice({
         ...action.payload
       };
     },
+    togglePassword: (state) => {
+      state.showPassword = !state.showPassword;
+     },
     openPasswordEdit: (state) => {
       state.passwordEditOpen = true;
     },
@@ -188,7 +192,7 @@ const loginSlice = createSlice({
   }
 });
 
-export const {updateUser,openProfileEdit,closeProfileEdit,updateProfileInputs,openPasswordEdit,closePasswordEdit,updatePasswordInputs,logout,clearForm
+export const {updateUser,openProfileEdit,closeProfileEdit,togglePassword,updateProfileInputs,openPasswordEdit,closePasswordEdit,updatePasswordInputs,logout,clearForm
 } = loginSlice.actions;
 
 export default loginSlice.reducer;
