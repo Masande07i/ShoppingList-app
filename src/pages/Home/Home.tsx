@@ -21,14 +21,15 @@ export const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
+  const [searchParams, setSearchParams] = useSearchParams();
   const { shoppingLists } = useSelector((state: RootState) => state.shoppingList );
   const user = useSelector((state: RootState) => state.login.user);
   const showAddList = useSelector((state: RootState) =>state.shoppingList.showAddList);
   const { items } = useSelector((state: RootState) => state.shoppingItem);
   const sortOption = useSelector((state: RootState) =>state.shoppingList.sortOption);
   const filterCategory = useSelector((state: RootState) => state.shoppingList.filterCategory);
-  const [searchParams, setSearchParams] = useSearchParams();
-
+  
+const searchQuery = useSelector((state: RootState) =>state.shoppingList.searchQuery);
  useEffect(() => {
   if (user && typeof user === 'object' && 'id' in user) {
     dispatch(fetchShoppingLists());
@@ -36,8 +37,41 @@ export const Home = () => {
   }
 }, [user?.id, dispatch]);
 
+ useEffect(() => {
+  const search = searchParams.get("search") || "";
+  const sort = searchParams.get("sort") || "newest";
+  const category = searchParams.get("category") || "";
 
-  const searchQuery = useSelector((state: RootState) =>state.shoppingList.searchQuery);
+  dispatch(updateSearchQuery(search));
+  dispatch(setSortOption(sort));
+  dispatch(setFilterCategory(category));
+}, [dispatch]);
+
+
+useEffect(() => {
+  const params = new URLSearchParams();
+
+  if (searchQuery.trim()) {
+    params.set("search", searchQuery.trim());
+  }
+
+  if (sortOption !== "newest") {
+    params.set("sort", sortOption);
+  }
+
+  if (filterCategory) {
+    params.set("category", filterCategory);
+  }
+
+  setSearchParams(params, { replace: true });
+}, [
+  searchQuery,
+  sortOption,
+  filterCategory,
+  setSearchParams,
+]);
+
+
   const categories = [...new Set(shoppingLists
       .filter((list) => String(list.userId) === String(user?.id))
       .map((list) => list.category)
@@ -76,29 +110,7 @@ export const Home = () => {
       new Date(a.createdAt || 0).getTime()
     );
   });
-  useEffect(() => {
-  const params = new URLSearchParams();
-
-  if (searchQuery.trim()) {
-    params.set("search", searchQuery.trim());
-  }
-
-  if (sortOption !== "newest") {
-    params.set("sort", sortOption);
-  }
-
-  if (filterCategory) {
-    params.set("category", filterCategory);
-  }
-
-  setSearchParams(params, { replace: true });
-}, [
-  searchQuery,
-  sortOption,
-  filterCategory,
-  setSearchParams,
-]);
-
+ 
   const onSearch=(newValue: string)=>{
   dispatch(updateSearchQuery (newValue))
  }

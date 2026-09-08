@@ -104,7 +104,8 @@ export const Login = () => {
         </Text>
 
         <a
-          href="#"onClick={(e) => {e.preventDefault();navigate("/signup");
+          href="#"onClick={(e) => {e.preventDefault();
+            navigate("/signup");
           }}
         > Sign up </a>
       </div>

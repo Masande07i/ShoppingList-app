@@ -1,11 +1,11 @@
 import { Text } from "../../components/Text/Text";
 import style from "./Signup.module.css";
 import { Button } from "../../components/Button/Button";
-import {FiShoppingBag,FiUser,FiMail,FiPhone,FiLock,FiEyeOff} from "react-icons/fi";
+import {FiShoppingBag,FiUser,FiMail,FiPhone,FiLock,FiEyeOff,FiEye} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState,AppDispatch } from "../../Store/Store";
-import {signupUser,updateRegister,clearForm} from "../../features/SignupSlice";
+import {signupUser,updateRegister,clearForm,togglePassword,toggleConfirmPassword} from "../../features/SignupSlice";
 import type { UserData } from "../../features/SignupSlice";
 
 export const Signup = () => {
@@ -145,31 +145,47 @@ export const Signup = () => {
           />
         </div>
 
-        <div className={style.inputContainer}>
-          <FiLock className={style.inputIcon} />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={inputs.inputs.password}
-            placeholder="Password"
-            onChange={(e) =>dispatch(updateRegister({password:e.target.value}))}
-          />
-          <FiEyeOff className={style.eyeIcon} />
-        </div>
+          <div className={style.inputContainer}>
+            <FiLock className={style.inputIcon} />
 
-        <div className={style.inputContainer}>
-          <FiLock className={style.inputIcon} />
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={inputs.inputs.confirmPassword}
-            placeholder="Confirm password"
-            onChange={(e) =>dispatch(updateRegister({confirmPassword:e.target.value}))}
-          />
-          <FiEyeOff className={style.eyeIcon} />
-        </div>
+            <input
+              type={inputs.showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              value={inputs.inputs.password}
+              placeholder="Password"
+              onChange={(e) =>
+                dispatch(updateRegister({ password: e.target.value }))
+              }
+            />
+
+            {inputs.showPassword ? (
+              <FiEye className={style.eyeIcon} onClick={() => dispatch(togglePassword())} />
+            ) : (
+              <FiEyeOff className={style.eyeIcon}onClick={() => dispatch(togglePassword())}/>
+            )}
+          </div>
+
+          <div className={style.inputContainer}>
+            <FiLock className={style.inputIcon} />
+
+            <input
+              type={inputs.showConfirmPassword ? "text" : "password"}
+              id="confirmPassword"
+              name="confirmPassword"
+              value={inputs.inputs.confirmPassword}
+              placeholder="Confirm password"
+              onChange={(e) =>
+                dispatch(updateRegister({ confirmPassword: e.target.value }))
+              }
+            />
+
+            {inputs.showConfirmPassword ? (
+              <FiEye className={style.eyeIcon}onClick={() => dispatch(toggleConfirmPassword())} />
+            ) : (
+              <FiEyeOff className={style.eyeIcon}onClick={() => dispatch(toggleConfirmPassword())} />
+            )}
+          </div>
 
         <div className={style.signupButton}>
           <Button label="SIGN UP" type="submit"/>

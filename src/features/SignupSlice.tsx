@@ -13,6 +13,9 @@ export interface UserData {
 
 export interface SignupState {
   inputs: UserData;
+   
+  showPassword: boolean;
+  showConfirmPassword: boolean;
   loading: boolean;
   error: string | null;
   success: boolean;
@@ -28,6 +31,8 @@ const initialState: SignupState = {
    password: '',
    confirmPassword: '',
 },
+  showPassword: false,
+  showConfirmPassword: false,
   loading: false,
   error: null,
   success: false,
@@ -84,11 +89,20 @@ export const signupSlice = createSlice({
      reducers: {
         updateRegister: (state, action: PayloadAction<Partial<UserData>>) => {
           state.inputs = { ...state.inputs, ...action.payload };
-},
+       },
         clearForm: (state) => {
          state.inputs = initialState.inputs;
          state.error = null;
          state.success = false;},
+
+         togglePassword: (state) => {
+       state.showPassword = !state.showPassword;
+      },
+
+      toggleConfirmPassword: (state) => {
+     state.showConfirmPassword = !state.showConfirmPassword;
+   },
+      
 },
      extraReducers: (builder) => {
      builder
@@ -109,5 +123,5 @@ export const signupSlice = createSlice({
 },
 });
 
-export const { updateRegister, clearForm } = signupSlice.actions;
+export const { updateRegister, clearForm, togglePassword, toggleConfirmPassword } = signupSlice.actions;
 export default signupSlice.reducer;
