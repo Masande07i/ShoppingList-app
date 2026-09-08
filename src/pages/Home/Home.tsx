@@ -1,5 +1,5 @@
 import {FiShoppingBag,FiHome,FiShoppingCart,FiUser,FiLogOut} from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useSearchParams } from "react-router-dom";
 import { useEffect} from "react";
 import { Text } from "../../components/Text/Text";
 import { Button } from "../../components/Button/Button";
@@ -27,6 +27,7 @@ export const Home = () => {
   const { items } = useSelector((state: RootState) => state.shoppingItem);
   const sortOption = useSelector((state: RootState) =>state.shoppingList.sortOption);
   const filterCategory = useSelector((state: RootState) => state.shoppingList.filterCategory);
+  const [searchParams, setSearchParams] = useSearchParams();
 
  useEffect(() => {
   if (user && typeof user === 'object' && 'id' in user) {
@@ -34,6 +35,7 @@ export const Home = () => {
     dispatch(fetchAllShoppingItems());
   }
 }, [user?.id, dispatch]);
+
 
   const searchQuery = useSelector((state: RootState) =>state.shoppingList.searchQuery);
   const categories = [...new Set(shoppingLists
@@ -74,6 +76,28 @@ export const Home = () => {
       new Date(a.createdAt || 0).getTime()
     );
   });
+  useEffect(() => {
+  const params = new URLSearchParams();
+
+  if (searchQuery.trim()) {
+    params.set("search", searchQuery.trim());
+  }
+
+  if (sortOption !== "newest") {
+    params.set("sort", sortOption);
+  }
+
+  if (filterCategory) {
+    params.set("category", filterCategory);
+  }
+
+  setSearchParams(params, { replace: true });
+}, [
+  searchQuery,
+  sortOption,
+  filterCategory,
+  setSearchParams,
+]);
 
   const onSearch=(newValue: string)=>{
   dispatch(updateSearchQuery (newValue))
