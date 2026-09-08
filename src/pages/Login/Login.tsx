@@ -5,8 +5,8 @@ import {FiShoppingBag,FiMail,FiLock,FiEyeOff,FiEye} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "../../Store/Store";
-import {loginUser,clearForm as clearSignupForm,togglePassword } from "../../features/LoginSlice";
-import { updateRegister } from "../../features/SignupSlice";
+import {loginUser,togglePassword } from "../../features/LoginSlice";
+import { updateRegister,clearForm as clearSignupForm } from "../../features/SignupSlice";
 
 export const Login = () => {
   const userReg = useSelector((state: RootState) => state.signup);

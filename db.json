@@ -1,16 +1,18 @@
 {
   "users": [
     {
-      "id": "0xfXvQWQNQE",
+      "id": "7YqzCZM_2lo",
       "name": "Nondumo",
       "surname": "Magoso",
       "email": "magoso.nondumo@gmail.com",
-      "phone": "0837848384"
+      "phone": "0837848383",
+      "password": "0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c",
+      "confirmPassword": ""
     },
     {
-      "id": "BAsZqr5tbHU",
-      "name": "Nondumo",
-      "surname": "Magoso",
+      "id": "g2hJiZe-gWo",
+      "name": "esfefr",
+      "surname": "ersers",
       "email": "ndumo@gmail.com",
       "phone": "0837848387",
       "password": "87eee136f73cd0a771068277f170bd4ad82d929fd17507e3939a5182186d40c1",
@@ -19,52 +21,90 @@
   ],
   "lists": [
     {
-      "name": "trwwvf",
-      "category": "rwtvfe",
-      "notes": "wrtvf",
-      "createdAt": "2026-09-07T08:23:11.858Z",
-      "userId": "0xfXvQWQNQE",
-      "id": "UdHLgl4qX3Y"
+      "name": "tvwq34",
+      "category": "wqv34",
+      "notes": "wqv34",
+      "createdAt": "2026-09-08T12:55:15.600Z",
+      "userId": "7YqzCZM_2lo",
+      "id": "D8SkNBXvHg8"
     },
     {
-      "name": "groceries",
-      "category": "food",
-      "notes": "get it from spar",
-      "createdAt": "2026-09-07T08:23:44.763Z",
-      "userId": "0xfXvQWQNQE",
-      "id": "VU6Lz5degNw"
+      "name": "aer g",
+      "category": "aer",
+      "notes": "aer",
+      "createdAt": "2026-09-08T12:55:58.192Z",
+      "userId": "7YqzCZM_2lo",
+      "id": "DnFx2yBkHi0"
     },
     {
-      "name": "khetjhi",
-      "category": "evrbfre",
-      "notes": "rrfd",
-      "createdAt": "2026-09-07T08:59:20.992Z",
-      "userId": "BAsZqr5tbHU",
-      "id": "URsSiBmfhKQ"
+      "name": "serg v",
+      "category": "se vrg",
+      "notes": "ersv",
+      "createdAt": "2026-09-08T12:56:18.080Z",
+      "userId": "g2hJiZe-gWo",
+      "id": "S59Wfl4ukyc"
+    },
+    {
+      "name": "ersgv",
+      "category": "esvrg",
+      "notes": "re",
+      "createdAt": "2026-09-08T12:56:22.968Z",
+      "userId": "g2hJiZe-gWo",
+      "id": "BMbKyiG5pMo"
+    },
+    {
+      "name": "Mine",
+      "category": "dtyh",
+      "notes": "",
+      "createdAt": "2026-09-08T12:58:05.647Z",
+      "userId": "g2hJiZe-gWo",
+      "id": "_Wpr6U6Ufes"
     }
   ],
   "items": [
     {
-      "name": "tryyt",
-      "category": "ggyh",
-      "notes": "",
+      "name": "aegr ",
+      "category": "a er",
+      "notes": "ae",
       "image": "",
       "quantity": 1,
-      "userId": "0xfXvQWQNQE",
-      "listId": "VU6Lz5degNw",
-      "createdAt": "2026-09-07T13:24:21.755Z",
-      "id": "L1TwFFXhgMc"
+      "userId": "7YqzCZM_2lo",
+      "listId": "D8SkNBXvHg8",
+      "createdAt": "2026-09-08T12:55:37.080Z",
+      "id": "xLZa270ZGDc"
     },
     {
-      "name": "ice cream",
-      "category": "desserts",
-      "notes": "",
-      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAyADIDASIAAhEBAxEB/8QAGgABAAMBAQEAAAAAAAAAAAAAAAMFBgQCB//EADAQAAEDAwMCAwcEAwAAAAAAAAECAwQABRESITEGQRNRYRQVIjJxkaEzQoGCQ3Kx/8QAGAEAAwEBAAAAAAAAAAAAAAAAAAECAwT/xAAdEQACAgMAAwAAAAAAAAAAAAAAAQIDERJRITFx/9oADAMBAAIRAxEAPwD5hSlKAFX6+nECQbem4tqugAPs4bOknGdIXxq/jHrXNHsEuZERIguxpORlbaXglbfoUqwftmr4vyLeWLlf/Y0yo3xMttaVPyVYwkrIJwkAen3q0ukt8Mcy05IfbZZTqccUEpT5k7CtrF6HjNxwq4SnlPK4QzgAHy3Bz+Kz/Sq0s3tqS6gltlKlKVnARsdzW5lX62xGjIeltLcI+FCFBR+gA/7xV1xjjMjnvnNPWJm19EPa1aJjYTnbI3x60qqe6kubj7i0SVoSpRISD8ozxSlmvhWt3TqYutykYh9PQfAZSANLTIcWo+alkZycelSzJVyQ2B1JZA+12dLHguIHGykgDvwQdzUi3gbVHNwlqt1sWg+DCh/E68M/MrOBz3Ue2wqOLMt8YLVZb1cIjwGrRMbBbd24OkkZxnGQd8UjU40260ThqgXZMVZP6M5JTj+6QQfwa8SYFrgRl+PcUTZRGG24mdCfVSyN/oBUvtdmuhPvFhVvkH/PFRqbV6qb7f186j9yxc6zfrd4XOR4mvT/AK6ecds/zS+DKpLzqWVMpWQ2ogqT2JFR1duzrfbY70WzhUhx9stuzHkaTpPIQnfAI7nf6d6SpY0KUpSGbCK+3IkR57M+2tR/AaZktygkrAbSAoBB3UDj9vNZWWplUx5UZJSyVqLYPZOdqhpTbyJLBLGeMd9LoSleMgpVwQRgj7VuG+jLa80Ul2Q26rKkkKBH2xx+awVb+w9Tw5MNuPcHgzIQMa1bBWO+eK0q1fiRhfulmJj71anrPPMV4hQxqQsfuT547cVwVquuLhGmqhNx5DbymgsqLZyN9ONx9DWVqJpKWEa1ycopv2KUpUlilKUAKUpQApSlAClKUAf/2Q==",
-      "quantity": 40,
-      "userId": "0xfXvQWQNQE",
-      "listId": "VU6Lz5degNw",
-      "createdAt": "2026-09-07T13:32:49.010Z",
-      "id": "jzici9nTvHc"
+      "name": "ae rg",
+      "category": " er",
+      "notes": "a erg",
+      "image": "",
+      "quantity": 1,
+      "userId": "7YqzCZM_2lo",
+      "listId": "D8SkNBXvHg8",
+      "createdAt": "2026-09-08T12:55:48.639Z",
+      "id": "ciAYCJ9ShIE"
+    },
+    {
+      "name": "rq",
+      "category": "qrcvqr",
+      "notes": "32c",
+      "image": "",
+      "quantity": 1,
+      "userId": "g2hJiZe-gWo",
+      "listId": "BMbKyiG5pMo",
+      "createdAt": "2026-09-08T12:56:38.735Z",
+      "id": "Y9h1gMUQPww"
+    },
+    {
+      "name": "qr3",
+      "category": "qcrv",
+      "notes": "qrc",
+      "image": "",
+      "quantity": 1,
+      "userId": "g2hJiZe-gWo",
+      "listId": "BMbKyiG5pMo",
+      "createdAt": "2026-09-08T12:56:44.616Z",
+      "id": "eDM7j1DpYc4"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -29,7 +29,7 @@ export const Home = () => {
   const filterCategory = useSelector((state: RootState) => state.shoppingList.filterCategory);
 
  useEffect(() => {
-  if (user?.id) {
+  if (user && typeof user === 'object' && 'id' in user) {
     dispatch(fetchShoppingLists());
     dispatch(fetchAllShoppingItems());
   }

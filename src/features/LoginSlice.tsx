@@ -157,7 +157,7 @@ const loginSlice = createSlice({
       localStorage.removeItem("loggedInUser");
     },
       clearForm: (state) => {
-             state.user = initialState.user;
+            //  state.user = initialState.user;
              state.error = null;
              state.success = false;},
 
