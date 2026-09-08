@@ -204,7 +204,7 @@ export const Profile = () => {
                 placeholder="Phone number"
                 required
               />
-
+              <div className={style.buttons}>
               <button type="submit">
                 Save
               </button>
@@ -213,6 +213,7 @@ export const Profile = () => {
                   dispatch(closeProfileEdit())}>
                 Cancel
               </button>
+              </div>
             </form>
           </div>
         </div>
@@ -249,7 +250,7 @@ export const Profile = () => {
                 placeholder="Confirm new password"
                 required
               />
-
+              <div className={style.buttons}>
               <button type="submit">
                 Change Password
               </button>
@@ -259,6 +260,7 @@ export const Profile = () => {
                 onClick={() =>dispatch(closePasswordEdit())}>
                 Cancel
               </button>
+              </div>
             </form>
           </div>
         </div>

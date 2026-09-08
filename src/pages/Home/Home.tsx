@@ -28,48 +28,48 @@ export const Home = () => {
   const { items } = useSelector((state: RootState) => state.shoppingItem);
   const sortOption = useSelector((state: RootState) =>state.shoppingList.sortOption);
   const filterCategory = useSelector((state: RootState) => state.shoppingList.filterCategory);
-  
-const searchQuery = useSelector((state: RootState) =>state.shoppingList.searchQuery);
- useEffect(() => {
-  if (user && typeof user === 'object' && 'id' in user) {
-    dispatch(fetchShoppingLists());
-    dispatch(fetchAllShoppingItems());
-  }
-}, [user?.id, dispatch]);
+    
+  const searchQuery = useSelector((state: RootState) =>state.shoppingList.searchQuery);
+  useEffect(() => {
+    if (user && typeof user === 'object' && 'id' in user) {
+      dispatch(fetchShoppingLists());
+      dispatch(fetchAllShoppingItems());
+    }
+  }, [user?.id, dispatch]);
 
- useEffect(() => {
-  const search = searchParams.get("search") || "";
-  const sort = searchParams.get("sort") || "newest";
-  const category = searchParams.get("category") || "";
+  useEffect(() => {
+    const search = searchParams.get("search") || "";
+    const sort = searchParams.get("sort") || "newest";
+    const category = searchParams.get("category") || "";
 
-  dispatch(updateSearchQuery(search));
-  dispatch(setSortOption(sort));
-  dispatch(setFilterCategory(category));
-}, [dispatch]);
+    dispatch(updateSearchQuery(search));
+    dispatch(setSortOption(sort));
+    dispatch(setFilterCategory(category));
+  }, [dispatch]);
 
 
-useEffect(() => {
-  const params = new URLSearchParams();
+    useEffect(() => {
+      const params = new URLSearchParams();
 
-  if (searchQuery.trim()) {
-    params.set("search", searchQuery.trim());
-  }
+      if (searchQuery.trim()) {
+        params.set("search", searchQuery.trim());
+      }
 
-  if (sortOption !== "newest") {
-    params.set("sort", sortOption);
-  }
+      if (sortOption !== "newest") {
+        params.set("sort", sortOption);
+      }
 
-  if (filterCategory) {
-    params.set("category", filterCategory);
-  }
+      if (filterCategory) {
+        params.set("category", filterCategory);
+      }
 
-  setSearchParams(params, { replace: true });
-}, [
-  searchQuery,
-  sortOption,
-  filterCategory,
-  setSearchParams,
-]);
+      setSearchParams(params, { replace: true });
+    }, [
+      searchQuery,
+      sortOption,
+      filterCategory,
+      setSearchParams,
+    ]);
 
 
   const categories = [...new Set(shoppingLists
@@ -236,6 +236,9 @@ const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,listId: st
        <div className={style.listContainer}>
        {userLists.length === 0 ? (
       <div className={style.emptyList}>
+        <Text variant="h2" style ={{ color: "#FF4EA7", marginBottom: "10px" }}>
+          No shopping lists found.
+        </Text>
       <FiShoppingCart className={style.emptyIcon} />
       </div>
    ) : (
