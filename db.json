@@ -17,6 +17,15 @@
       "phone": "0837848387",
       "password": "87eee136f73cd0a771068277f170bd4ad82d929fd17507e3939a5182186d40c1",
       "confirmPassword": ""
+    },
+    {
+      "id": "DRo4GmjH6l0",
+      "name": "Sabelo",
+      "surname": "Gumede",
+      "email": "Sabelo.gumede@gmail.com",
+      "phone": "0837848384",
+      "password": "0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c",
+      "confirmPassword": ""
     }
   ],
   "lists": [
@@ -27,6 +36,30 @@
       "createdAt": "2026-09-08T13:48:46.189Z",
       "userId": "elZ7TvBqphg",
       "id": "yaeI4aypyG8"
+    },
+    {
+      "name": "ru67d",
+      "category": "rdeb6ht",
+      "notes": "dhbr",
+      "createdAt": "2026-09-09T09:49:03.070Z",
+      "userId": "XDy-QRLj9_A",
+      "id": "fpVOkr-toQY"
+    },
+    {
+      "name": "e5bh",
+      "category": "b5",
+      "notes": "",
+      "createdAt": "2026-09-09T09:49:26.405Z",
+      "userId": "XDy-QRLj9_A",
+      "id": "ONEFcev-m1M"
+    },
+    {
+      "name": "Meat",
+      "category": "food",
+      "notes": "yhhehd",
+      "createdAt": "2026-09-09T12:47:11.437Z",
+      "userId": "DRo4GmjH6l0",
+      "id": "L4bS3xnU1Sg"
     }
   ],
   "items": [
@@ -51,6 +84,83 @@
       "listId": "yaeI4aypyG8",
       "createdAt": "2026-09-08T13:49:10.853Z",
       "id": "jsMuDwZC_5A"
+    },
+    {
+      "name": "565uye6",
+      "category": "e5hb",
+      "notes": "e5b",
+      "image": "",
+      "quantity": 1,
+      "userId": "elZ7TvBqphg",
+      "listId": "yaeI4aypyG8",
+      "createdAt": "2026-09-09T09:48:11.166Z",
+      "id": "ktsVrqwnb_w"
+    },
+    {
+      "name": " ytd",
+      "category": "ytd",
+      "notes": "",
+      "image": "",
+      "quantity": 1,
+      "userId": "XDy-QRLj9_A",
+      "listId": "fpVOkr-toQY",
+      "createdAt": "2026-09-09T09:49:11.854Z",
+      "id": "mlXdESJ8qW8"
+    },
+    {
+      "name": "e5h6b ",
+      "category": "e5hb 6",
+      "notes": "5eh6",
+      "image": "",
+      "quantity": 1,
+      "userId": "XDy-QRLj9_A",
+      "listId": "fpVOkr-toQY",
+      "createdAt": "2026-09-09T09:49:16.470Z",
+      "id": "gtMpCvdpMY0"
+    },
+    {
+      "name": "e5b",
+      "category": "e5bh6",
+      "notes": "",
+      "image": "",
+      "quantity": 1,
+      "userId": "XDy-QRLj9_A",
+      "listId": "fpVOkr-toQY",
+      "createdAt": "2026-09-09T09:49:20.469Z",
+      "id": "lu-ZFW2eZII"
+    },
+    {
+      "name": "5eb6",
+      "category": "5b6e",
+      "notes": "5be6",
+      "image": "",
+      "quantity": 1,
+      "userId": "XDy-QRLj9_A",
+      "listId": "ONEFcev-m1M",
+      "createdAt": "2026-09-09T09:49:33.693Z",
+      "id": "E1qVY-O5TTM"
+    },
+    {
+      "name": "56b",
+      "category": "b655b6",
+      "notes": "5b6eeeeeeeeee",
+      "image": "",
+      "quantity": 1,
+      "userId": "XDy-QRLj9_A",
+      "listId": "ONEFcev-m1M",
+      "createdAt": "2026-09-09T09:49:38.670Z",
+      "id": "5sq-RRlw0nE"
+    },
+    {
+      "name": "Brisket",
+      "category": "meat",
+      "notes": "gyttehth",
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAyADIDASIAAhEBAxEB/8QAHAABAAIDAQEBAAAAAAAAAAAAAAUHAgMGAQQI/8QALRAAAQMDAwIEBQUAAAAAAAAAAQACAwQFEQYSITFREyJhoQcyQXHBFBVCgbH/xAAYAQADAQEAAAAAAAAAAAAAAAAAAgMEAf/EACYRAAEDAwMCBwAAAAAAAAAAAAABAgMEERITITFRcQUjMjNhgcH/2gAMAwEAAhEDEQA/AK3oqSaurIaSmbulmcGtH5Pou0d8NpxC0tucZl4y0xENHfnP4UppbRkVudS3Krlm/WtG7wxgNbkYweMk8n6rsFdsbWtVzzM+VVciMIu12GgtdOIqWPaceZ+PM4+pUXqbTVPcaaR8cTG1ZGWSjy5I+hXUHgZXg8w5AKWCuhnXTZv9CS00kfmLsUrdNP3K1RiWrhHhE43sduAPYqLV3Xi1RXOikpZWuDJB5tpAI7EZVX6o08bJPG6KR0lPLkNLvmaR9CmlhxTJvA8M+S4u5IFERQNJZ9m15bZaFgusr4KljQHkxlwkPcbRx7dV1VDVQ11HFV07t0UrQ5pVDK6dKW/9t05SQbQ2RzPEk45Lnc8+w/pZvEKlzYcOp2ngbqZdCYZG6eXY3oOSV9sNM2Mc8nutkIaIm7MYws01FTpAzZbqpyeTUd2NMsAfx7rgPilbJBbKerjefDjlw9mO44PT091Yqwka1zTvxgDnPRbcltYhil7n5tRWLWs0A6tndJPIHmRxd4YO3OecYGMIp4lcvgrpWVoO83i6zStrJxJS00YbktG4uPTnqeAVWq7+Cuj0lo+BrYwa+tBkxnoT0J9AMcd1hrUyYjUS6rwaIdluvCG/XupTTsdaqNxE7wPGeD8jT/H7n/Puq5WUj3yyOkkcXPcSXOJySViq08DYWYoJI9XrcIiK4gREQB635x91K6pe5+oqze4u2v2tyc4AHQeiIpO91vZfwdPSpEoiKogREQAREQB//9k=",
+      "quantity": 6,
+      "userId": "DRo4GmjH6l0",
+      "listId": "L4bS3xnU1Sg",
+      "createdAt": "2026-09-09T12:47:41.724Z",
+      "id": "TiJaXZFHsVw"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

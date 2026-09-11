@@ -31,7 +31,7 @@ export const Home = () => {
     
   const searchQuery = useSelector((state: RootState) =>state.shoppingList.searchQuery);
   useEffect(() => {
-    if (user && typeof user === 'object' && 'id' in user) {
+    if (user?.id) {
       dispatch(fetchShoppingLists());
       dispatch(fetchAllShoppingItems());
     }

@@ -70,6 +70,7 @@ export const addShoppingItem = createAsyncThunk("shoppingItem/addShoppingItem",a
       return rejectWithValue(error instanceof Error? error.message: "Something went wrong");
     }}
 );
+
 export const fetchShoppingItems = createAsyncThunk("shoppingItem/fetchShoppingItems",async (listId: string, thunkAPI) => {
     try {
       const response = await fetch(`http://localhost:3000/items?listId=${listId}`

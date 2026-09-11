@@ -23,6 +23,7 @@ export const ShoppingList = () => {
   const searchQuery = useSelector((state: RootState) => state.shoppingItem.searchQuery);
   const sortOption = useSelector((state: RootState) => state.shoppingItem.sortOption);
   const filterCategory = useSelector((state: RootState) => state.shoppingItem.filterCategory);
+  
   useEffect(() => {
   if (id) {
     dispatch(fetchShoppingItems(id));
