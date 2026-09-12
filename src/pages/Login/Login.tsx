@@ -10,7 +10,7 @@ import { updateRegister,clearForm as clearSignupForm } from "../../features/Sign
 
 export const Login = () => {
   const userReg = useSelector((state: RootState) => state.signup);
-  const { error , showPassword} = useSelector((state: RootState) => state.login);
+  const { error , showPassword, loading} = useSelector((state: RootState) => state.login);
   const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export const Login = () => {
     );
 
     if (loginUser.fulfilled.match(result)) {
-      alert("Login successful!");
+
       dispatch(clearSignupForm());
       navigate('/home');
     }
@@ -87,14 +87,13 @@ export const Login = () => {
       ) : (
     <FiEyeOff className={style.eyeIcon}onClick={() => dispatch(togglePassword())}/>
       )}
-        </div>
-
-        <div className={style.loginButton}>
-          <Button
-            label="LOG IN"
-            type="submit"
-          />
-        </div>
+       </div>
+      <div className={style.loginButton}>
+        <Button
+          label={loading ? "LOGGING IN..." : "LOG IN"}
+          type="submit"
+        />
+      </div>
 
       </div>
 

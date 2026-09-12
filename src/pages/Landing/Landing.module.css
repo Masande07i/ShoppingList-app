@@ -1,69 +1,352 @@
 .landing {
     min-height: 100vh;
-    background-color: #f9e2f1;
-    padding: 28px 36px;
+    background: #f9e2f1;
+    padding: 25px 55px 45px;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .navh {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: -30px;
+    padding: 0 5px;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
 }
 
-.icon {
+.logoIcon {
+    width: 48px;
+    height: 48px;
+    border: 3px solid #ff4ea7;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #ff4ea7;
-    font-size: 40px;
+    font-size: 28px;
 }
 
 .navButtons {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 15px;
+}
+
+.navButtons button {
+    min-width: 95px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.navButtons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 78, 167, 0.25);
 }
 
 .hero {
+    max-width: 1350px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 70px 50px 0 23px;
+    padding: 80px 30px 50px;
+    gap: 60px;
 }
 
 .heroText {
-    display: flex;
-    align-items: center;
+    max-width: 650px;
+    animation: fadeIn 0.8s ease;
 }
 
-.heroText span {
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    color: #ed087c;
+    padding: 9px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.badge span {
+    width: 8px;
+    height: 8px;
+    background: #ff4ea7;
+    border-radius: 50%;
+}
+
+.heroText h1 {
+    font-size: clamp(50px, 6vw, 82px);
+    line-height: 0.98;
+    margin: 0;
+}
+
+.heroText h1 span {
     color: #ed087c;
 }
 
-.shoppingBag {
-    width: 300px;
-    height: 280px;
-    margin-right: 130px;
+.description {
+    max-width: 500px;
+    color: #5e4b57;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-top: 25px;
+}
+
+
+
+
+.heroButtons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.heroButtons button {
+    min-width: 150px;
+    padding: 14px 22px;
+    border-radius: 9px;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.heroButtons button:first-child {
+    box-shadow: 0 8px 20px rgba(255, 78, 167, 0.25);
+}
+
+.heroButtons button:first-child:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 78, 167, 0.35);
+}
+
+.learnButton {
+    background: white;
+    color: #ed087c;
+    border: 2px solid #ff4ea7;
+    cursor: pointer;
+}
+
+.learnButton:hover {
+    background: #ff4ea7;
+    color: white;
+}
+
+
+
+.trust {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-top: 25px;
+    color: #66535e;
+    font-size: 13px;
+}
+
+.trust div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.trust svg {
+    color: #ed087c;
+    font-size: 16px;
+}
+
+
+
+.shoppingBagArea {
+    position: relative;
+    width: 500px;
+    height: 430px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+}
+
+.circle {
+    position: absolute;
+    width: 370px;
+    height: 370px;
+    background: #f5c7e0;
+    border-radius: 50%;
+}
+
+.shoppingBag {
+    position: relative;
+    z-index: 2;
+    width: 270px;
+    height: 270px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 50px rgba(126, 51, 92, 0.12);
 }
 
 .bagIcon {
     color: #ff4ea7;
-    font-size: 250px;
-    stroke-width: 1;
+    font-size: 190px;
+    stroke-width: 1.3;
 }
 
-.cta {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 110px;
-    gap: 25px;
+
+@media (max-width: 900px) {
+
+    .landing {
+        padding: 20px 25px 40px;
+    }
+
+    .hero {
+        padding: 60px 10px 40px;
+    }
+
+    .shoppingBagArea {
+        width: 380px;
+        height: 380px;
+    }
+
+    .circle {
+        width: 300px;
+        height: 300px;
+    }
+
+    .shoppingBag {
+        width: 220px;
+        height: 220px;
+    }
+
+    .bagIcon {
+        font-size: 150px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .navh {
+        align-items: flex-start;
+    }
+
+    .logo h1 {
+        font-size: 28px;
+    }
+
+    .logoIcon {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+    }
+
+    .navButtons {
+        gap: 8px;
+    }
+
+    .navButtons button {
+        min-width: auto;
+        padding: 10px 13px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 55px;
+    }
+
+    .heroText {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .description {
+        font-size: 16px;
+    }
+
+    .heroButtons {
+        justify-content: center;
+    }
+
+    .trust {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .shoppingBagArea {
+        width: 100%;
+        max-width: 450px;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .landing {
+        padding: 15px;
+    }
+
+    .logo h1 {
+        font-size: 23px;
+    }
+
+    .logoIcon {
+        width: 35px;
+        height: 35px;
+        font-size: 19px;
+    }
+
+    .navButtons button {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    .heroText h1 {
+        font-size: 48px;
+    }
+
+    .heroButtons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .heroButtons button {
+        width: 100%;
+    }
+
+    .shoppingBagArea {
+        height: 320px;
+    }
+
+    .circle {
+        width: 250px;
+        height: 250px;
+    }
+
+    .shoppingBag {
+        width: 190px;
+        height: 190px;
+    }
+
+    .bagIcon {
+        font-size: 130px;
+    }
 }

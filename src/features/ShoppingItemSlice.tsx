@@ -164,6 +164,7 @@ const shoppingItemSlice = createSlice({
         quantity: 1,
         image: ""
       };
+      state.editingItem = null;
     },
     openAddItem: (state) => {
       state.showAddItem = true;

@@ -61,8 +61,7 @@ export const signupUser = createAsyncThunk('signup/signupUser',async (userData: 
 
       if (existingUsers.length > 0) {
         return thunkAPI.rejectWithValue(
-          "An account with this email already exists"
-        );
+          "An account with this email already exists");
       }
           const hashedPassword = await hashPassword(userData.password);
            const userToSave = {...userData,password: hashedPassword,confirmPassword: '', };
@@ -78,8 +77,7 @@ export const signupUser = createAsyncThunk('signup/signupUser',async (userData: 
                   return await response.json();
                  } catch (error) {
                          return thunkAPI.rejectWithValue(
-                   error instanceof Error ? error.message : 'Something went wrong'
-                   );
+                   error instanceof Error ? error.message : 'Something went wrong' );
 }});
 
 

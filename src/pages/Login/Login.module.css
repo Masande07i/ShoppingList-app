@@ -75,6 +75,10 @@
   color: #222;
 }
 
+.inputContainer:hover {
+  border: 1px solid #ff4ea7;
+  transform: translateY(-1px);
+}
 .inputContainer input::placeholder {
   color: #222;
 }
@@ -99,11 +103,16 @@
   font-weight: 600;
   text-decoration: none;
 }
-
 .loginButton button {
   width: 100%;
+  transition: 0.2s;
 }
 
+.loginButton button:hover {
+  opacity: 0.85;
+  cursor: pointer;
+  transform: translateY(-2px);
+}
 .signup {
   display: flex;
   align-items: center;
@@ -125,5 +134,7 @@
 .error {
   color: red;
   font-size: 14px;
-  margin-top: 8px;
+  margin: -12px 0 -8px 0;
+  width: 100%;
+  text-align: left;
 }

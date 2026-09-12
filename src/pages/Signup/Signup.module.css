@@ -76,6 +76,10 @@
   font-size: 15px;
   color: #222;
 }
+.inputContainer:hover {
+  border: 1px solid #ff4ea7;
+  transform: translateY(-1px);
+}
 
 .inputContainer input::placeholder {
   color: #222;
@@ -91,6 +95,12 @@
 
 .signupButton button{
   width: 100%;
+  transition: 0.2s;
+}
+.signupButton button:hover {
+  opacity: 0.85;
+  cursor: pointer;
+  transform: translateY(-2px);
 }
 
 .login {
