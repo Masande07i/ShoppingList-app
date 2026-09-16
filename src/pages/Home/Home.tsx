@@ -184,6 +184,7 @@ const handleShare = async (event: React.MouseEvent<HTMLButtonElement>,listId: st
         </button>
       </aside>
       <main className={style.mainContent}>
+        <Text variant="h2" className={style.welcome}> Hello , {user?.name} {user?.surname}</Text>
         <div className={style.search}>
   <Search searchQuery={searchQuery} onSearch={onSearch} />
 

@@ -88,7 +88,11 @@
   padding: 80px 50px;
   box-sizing: border-box;
 }
-
+.welcome{
+  margin-top: -30px;
+  margin-bottom: 40px;
+  color: #f32b91;
+}
 .header {
   display: flex;
   justify-content: space-between;

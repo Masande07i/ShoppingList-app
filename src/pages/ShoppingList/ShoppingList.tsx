@@ -9,6 +9,7 @@ import { Text } from "../../components/Text/Text";
 import styles from "./ShoppingList.module.css";
 import { FiArrowLeft, FiEdit2 } from "react-icons/fi";
 import { MdDeleteForever } from "react-icons/md";
+import { fetchShoppingLists } from "../../features/ShoppingListSlice";
 
 export const ShoppingList = () => {
   const { id } = useParams();
@@ -23,10 +24,16 @@ export const ShoppingList = () => {
   const searchQuery = useSelector((state: RootState) => state.shoppingItem.searchQuery);
   const sortOption = useSelector((state: RootState) => state.shoppingItem.sortOption);
   const filterCategory = useSelector((state: RootState) => state.shoppingItem.filterCategory);
-  
+ const shoppingLists = useSelector((state: RootState) => state.shoppingList.shoppingLists);
+
+const list = shoppingLists.find((shoppingList) => shoppingList.id === id);
+
+
   useEffect(() => {
   if (id) {
     dispatch(fetchShoppingItems(id));
+      dispatch(fetchShoppingLists());
+  
   }
 }, [dispatch, id]);
 
@@ -105,7 +112,7 @@ export const ShoppingList = () => {
         </button>
 
         <Text variant="h1" className={styles.title}>
-          Shopping List
+         {list?.name} list items
         </Text>
 
         <div className={styles.headerActions}>

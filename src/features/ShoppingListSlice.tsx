@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-interface ShoppingList {
+export interface ShoppingList {
   id?: string;
   userId: string;
   name: string;

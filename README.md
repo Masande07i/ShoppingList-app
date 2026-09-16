@@ -4,10 +4,12 @@
 
 <img src="https://socialify.git.ci/Masande07i/ShoppingList-app/image?language=1&owner=1&name=1&stargazers=1&theme=Light" alt="ShoppingList-app" width="640" height="320" />
 
+# Moodboard
 
+![Shopping List Moodboard](./src/assets/moodboard.png)
 # Project Description
-```
-The Shopping List App is a web application that allows users to create and manage their personal shopping lists. Users can register and log in to their accounts, create shopping lists, add items to their lists, and manage those items.The application allows users to add, edit, and delete shopping items while keeping each user's shopping lists and items separate from other users. Users can also manage their profile information and login details.The project was built to demonstrate the use of React, TypeScript, Redux Toolkit, and JSON Server to create a responsive application with centralized state management and CRUD functionality.```
+
+```The Shopping List App is a web application that allows users to create and manage their personal shopping lists. Users can register and log in to their accounts, create shopping lists, add items to their lists, and manage those items.The application allows users to add, edit, and delete shopping items while keeping each user's shopping lists and items separate from other users. Users can also manage their profile information and login details.The project was built to demonstrate the use of React, TypeScript, Redux Toolkit, and JSON Server to create a responsive application with centralized state management and CRUD functionality.```
 
 
 # Installation and set-up
@@ -26,6 +28,9 @@ npm install
 yarn install
 
 npm run dev
+
+npx json-server db.json
+
 ```
 
 # Tech Stack
